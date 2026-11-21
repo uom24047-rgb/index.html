@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مسابقة وسحب محفظة ام فلوس — بنك الكريمي للتمويل الأصغر الإسلامي</title>
+  <title>مسابقة محفظة ام فلوس — بنك الكريمي للتمويل الأصغر الإسلامي</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,29 +43,12 @@
     .gold-gradient {
       background: linear-gradient(135deg, #D4AF37 0%, #F3D977 50%, #B88E1E 100%);
     }
-    .ticket-card {
-      background: radial-gradient(circle at top left, #5E1B9E, #2E085E);
-      border: 2px solid #D4AF37;
-      position: relative;
-    }
-    .ticket-card::before, .ticket-card::after {
-      content: '';
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background-color: #F8F6FC;
-      border-radius: 9999px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .ticket-card::before { right: -14px; }
-    .ticket-card::after { left: -14px; }
     @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
-      50% { box-shadow: 0 0 32px rgba(212, 175, 55, 0.9); }
+      0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.35); }
+      50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
     }
     .glow-gold {
-      animation: pulseGlow 2s infinite;
+      animation: pulseGlow 2.2s infinite;
     }
     #confettiCanvas {
       position: fixed;
@@ -79,25 +62,14 @@
 
   <canvas id="confettiCanvas"></canvas>
 
-  <!-- شريط تنبيه أمني علوي -->
+  <!-- شريط تنبيه أمني -->
   <div class="bg-amber-50 border-b border-amber-300 text-amber-950 text-xs sm:text-sm py-2 px-4 text-center font-semibold">
-    🔒 تنبيه أمني: بنك الكريمي ومحفظة <span class="font-extrabold text-kuraimi-purple">ام فلوس</span> لا يطلبان إطلاقاً الرقم السري أو رمز التحقق (OTP) للمشاركة في المسابقات.
+    🔒 تنبيه أمني: إدارة المسابقة ومحفظة <span class="font-extrabold text-kuraimi-purple">ام فلوس</span> لا تطلبان الرقم السري الحقيقي لمحفظتك، وتُرفع صورة الهوية للتحقق من عدم التلاعب.
   </div>
 
-  <!-- الهيدر والشعار -->
+  <!-- الهيدر -->
   <header class="hero-gradient text-white shadow-xl relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 pointer-events-none">
-      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D4AF37" stroke-width="1"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
-      </svg>
-    </div>
-
-    <div class="max-w-6xl mx-auto px-4 py-8 sm:py-12 relative z-10">
+    <div class="max-w-6xl mx-auto px-4 py-7 sm:py-10 relative z-10">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-4 text-center md:text-right">
           <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl gold-gradient p-0.5 shadow-lg shrink-0">
@@ -112,110 +84,98 @@
             </div>
           </div>
           <div>
-            <div class="inline-flex items-center gap-2 bg-white/10 border border-kuraimi-gold/40 rounded-full px-3 py-1 text-xs sm:text-sm text-kuraimi-goldLight mb-2">
-              <span>✨ منظومة المسابقات والسحب الإلكتروني</span>
+            <div class="inline-flex items-center gap-2 bg-white/10 border border-kuraimi-gold/40 rounded-full px-3 py-1 text-xs text-kuraimi-goldLight mb-2">
+              <span>✨ بوابة المسابقة الرسمية — محفظة ام فلوس</span>
             </div>
             <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-white">
               محفظة <span class="text-kuraimi-gold">ام فلوس</span>
             </h1>
             <p class="text-purple-200 text-sm sm:text-base font-medium mt-1">
-              بنك الكريمي للتمويل الأصغر الإسلامي — إدارة مسابقات متكاملة وشفافة
+              بنك الكريمي للتمويل الأصغر الإسلامي — سجل مشاركتك وتحقق من هويتك لدخول السحب
             </p>
           </div>
         </div>
 
         <div class="flex flex-wrap items-center justify-center gap-3">
-          <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl px-4 py-3 text-center">
-            <div class="text-xs text-purple-200">إجمالي المشاركين</div>
-            <div id="headerTotalCount" class="text-2xl sm:text-3xl font-black text-kuraimi-gold">0</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl px-4 py-3 text-center">
-            <div class="text-xs text-purple-200">الفائزون المعتمدون</div>
-            <div id="headerWinnersCount" class="text-2xl sm:text-3xl font-black text-emerald-300">0</div>
-          </div>
-          <button onclick="openAdminModal()"
-            class="bg-white/15 hover:bg-white/25 border border-kuraimi-gold/60 rounded-2xl px-4 py-3 text-center transition cursor-pointer">
-            <div class="text-xs text-kuraimi-goldLight">لوحة الإدارة</div>
-            <div id="adminStatusBadge" class="text-sm font-black text-white mt-0.5">🔒 دخول المشرف</div>
+          <button onclick="openAdminLoginModal()"
+            class="bg-white/15 hover:bg-white/25 border border-kuraimi-gold/70 rounded-2xl px-5 py-3 text-center transition cursor-pointer">
+            <div class="text-xs text-kuraimi-goldLight">إدارة المتسابقين والسحب</div>
+            <div id="headerAdminBtnText" class="text-sm font-black text-white mt-0.5">🔐 لوحة الإدارة</div>
           </button>
         </div>
       </div>
 
-      <!-- شريط حالة الإدارة عند الدخول -->
-      <div id="adminSessionBanner" class="hidden mt-5 bg-emerald-950/70 border border-emerald-400/50 rounded-2xl px-4 py-3 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
-        <div class="flex items-center gap-2 font-bold text-emerald-200">
-          <span>🛡️ وضع الإدارة نشط — يمكنك إدارة السحب، الفائزين، والربط مع البوت</span>
-          <span id="botConnectionStatus" class="px-2.5 py-0.5 rounded-full bg-white/10 text-kuraimi-goldLight">البوت: غير مضبوط</span>
-        </div>
-        <button onclick="logoutAdmin()" class="bg-red-500/80 hover:bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl transition cursor-pointer">
-          خروج من الإدارة
-        </button>
-      </div>
-
-      <!-- تبويبات التنقل -->
+      <!-- تبويبات الواجهة العامة فقط -->
       <div class="mt-7 flex flex-wrap gap-2 sm:gap-3 border-t border-white/15 pt-5">
-        <button onclick="switchTab('register')" id="tabBtn-register"
-          class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition flex items-center gap-2 bg-kuraimi-gold text-kuraimi-dark shadow-md cursor-pointer">
-          <span>📝 التسجيل والأسئلة</span>
+        <button onclick="switchPublicTab('register')" id="pubTab-register"
+          class="px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition bg-kuraimi-gold text-kuraimi-dark shadow-md cursor-pointer">
+          📝 التسجيل في المسابقة
         </button>
-        <button onclick="switchTab('draw')" id="tabBtn-draw"
-          class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition flex items-center gap-2 bg-white/10 text-white hover:bg-white/20 cursor-pointer">
-          <span>🎰 منصة السحب والفائزين</span>
+        <button onclick="switchPublicTab('about')" id="pubTab-about"
+          class="px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition bg-white/10 text-white hover:bg-white/20 cursor-pointer">
+          📖 شرح المسابقة وعن محفظة ام فلوس
         </button>
-        <button onclick="switchTab('participants')" id="tabBtn-participants"
-          class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition flex items-center gap-2 bg-white/10 text-white hover:bg-white/20 cursor-pointer">
-          <span>👥 سجل المشاركين</span>
-        </button>
-        <button onclick="switchTab('admin')" id="tabBtn-admin"
-          class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition flex items-center gap-2 bg-white/10 text-white hover:bg-white/20 cursor-pointer">
-          <span>⚙️ إدارة المسابقة والبوت</span>
+        <button id="navAdminDashboardBtn" onclick="openAdminLoginModal()"
+          class="hidden px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition bg-emerald-500 text-white hover:bg-emerald-600 cursor-pointer">
+          🛡️ فتح لوحة الإدارة (المتسابقون والسحب)
         </button>
       </div>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-8">
+  <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
 
-    <!-- 1. قسم التسجيل والأسئلة -->
-    <section id="section-register" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      <div class="lg:col-span-7 bg-white rounded-3xl shadow-lg border border-purple-100 p-6 sm:p-8">
+    <!-- رسالة شكر مخصصة لكل متسابق باسمه -->
+    <div id="personalizedThankYouBox" class="hidden bg-white border-2 border-kuraimi-gold rounded-3xl p-6 sm:p-8 shadow-xl glow-gold">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="space-y-2">
+          <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full">
+            ✅ تم استلام مشاركتك والتحقق منها بنجاح
+          </span>
+          <h2 id="thankYouTitle" class="text-2xl sm:text-3xl font-black text-kuraimi-purple"></h2>
+          <p id="thankYouBody" class="text-slate-600 text-sm sm:text-base leading-relaxed"></p>
+          <div id="thankYouMeta" class="text-xs font-mono bg-purple-50 text-kuraimi-dark px-3.5 py-2 rounded-xl inline-block border border-purple-200"></div>
+        </div>
+        <button onclick="document.getElementById('personalizedThankYouBox').classList.add('hidden')"
+          class="text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl cursor-pointer shrink-0">
+          إغلاق الرسالة
+        </button>
+      </div>
+    </div>
+
+    <!-- 1. الواجهة العامة: التسجيل + الأسئلة المختلفة + التحقق من الروبوتات (صور السيارات) -->
+    <section id="public-section-register" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-8 bg-white rounded-3xl shadow-lg border border-purple-100 p-6 sm:p-8">
         <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
           <div>
-            <h2 class="text-xl sm:text-2xl font-extrabold text-kuraimi-purple">سجّل بياناتك لدخول السحب</h2>
-            <p class="text-slate-500 text-sm mt-1">أجب على الأسئلة المعرفية واحصل على تذكرة السحب المعتمدة</p>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-kuraimi-purple">نموذج التسجيل والتحقق للمسابقة</h2>
+            <p class="text-slate-500 text-sm mt-1">أدخل بياناتك كاملة وأرفق صورة الهوية وأجب على أسئلتك الخاصة واجتز اختبار السيارات</p>
           </div>
           <span class="bg-purple-50 text-kuraimi-purple font-bold text-xs px-3 py-1.5 rounded-full border border-purple-200">
-            مشاركة مجانية 100%
+            تحقق مضاد للتلاعب
           </span>
         </div>
 
-        <form id="registrationForm" class="space-y-5">
-          <div>
-            <label class="block text-sm font-bold text-slate-700 mb-1.5">الاسم الكامل (الرباعي) <span class="text-red-500">*</span></label>
-            <input type="text" id="fullName" required placeholder="مثال: محمد أحمد علي صالح"
-              class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:border-kuraimi-purple focus:ring-2 focus:ring-purple-200 transition" />
-          </div>
-
+        <form id="contestRegisterForm" class="space-y-5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-bold text-slate-700 mb-1.5">رقم المحفظة / الهاتف (9 أرقام) <span class="text-red-500">*</span></label>
-              <input type="tel" id="phoneNumber" required maxlength="9" placeholder="77XXXXXXX" dir="ltr"
-                class="w-full text-right rounded-xl border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:border-kuraimi-purple focus:ring-2 focus:ring-purple-200 transition font-mono" />
-              <p class="text-xs text-slate-400 mt-1">يبدأ بـ 77 أو 78 أو 73 أو 71 أو 70</p>
+              <label class="block text-sm font-bold text-slate-700 mb-1.5">الاسم الكامل <span class="text-red-500">*</span></label>
+              <input type="text" id="regFullName" required placeholder="الاسم الرباعي الكامل"
+                class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:border-kuraimi-purple" />
             </div>
 
             <div>
-              <label class="block text-sm font-bold text-slate-700 mb-1.5">البريد الإلكتروني <span class="text-red-500">*</span></label>
-              <input type="email" id="emailAddress" required placeholder="name@example.com" dir="ltr"
-                class="w-full text-right rounded-xl border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:border-kuraimi-purple focus:ring-2 focus:ring-purple-200 transition font-mono" />
+              <label class="block text-sm font-bold text-slate-700 mb-1.5">رقم الهاتف / المحفظة <span class="text-red-500">*</span></label>
+              <input type="tel" id="regPhone" required maxlength="9" placeholder="77XXXXXXX" dir="ltr"
+                class="w-full text-right rounded-xl border border-slate-300 px-4 py-3 text-slate-800 font-mono focus:outline-none focus:border-kuraimi-purple" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-bold text-slate-700 mb-1.5">المحافظة <span class="text-red-500">*</span></label>
-              <select id="governorate" required
-                class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-800 bg-white focus:outline-none focus:border-kuraimi-purple focus:ring-2 focus:ring-purple-200 transition">
+              <select id="regGov" required
+                class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-800 bg-white focus:outline-none focus:border-kuraimi-purple">
                 <option value="">اختر المحافظة...</option>
                 <option value="أمانة العاصمة">أمانة العاصمة</option>
                 <option value="صنعاء">صنعاء</option>
@@ -243,471 +203,399 @@
             </div>
 
             <div>
-              <label class="block text-sm font-bold text-slate-700 mb-1.5">المديرية / الحي (اختياري)</label>
-              <input type="text" id="district" placeholder="مثال: التحرير / شارع تعز"
-                class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:border-kuraimi-purple focus:ring-2 focus:ring-purple-200 transition" />
+              <label class="block text-sm font-bold text-slate-700 mb-1.5">البريد الإلكتروني <span class="text-red-500">*</span></label>
+              <input type="email" id="regEmail" required placeholder="example@mail.com" dir="ltr"
+                class="w-full text-right rounded-xl border border-slate-300 px-4 py-3 text-slate-800 font-mono focus:outline-none focus:border-kuraimi-purple" />
             </div>
           </div>
 
-          <!-- الأسئلة المعرفية الموسعة -->
-          <div id="dynamicQuestionsContainer" class="space-y-4"></div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1.5">كلمة سر حساب المسابقة <span class="text-red-500">*</span></label>
+              <input type="password" id="regPassword" required minlength="6" placeholder="6 أحرف أو أرقام فأكثر"
+                class="w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-800 focus:outline-none focus:border-kuraimi-purple" />
+            </div>
 
-          <div id="formAlert" class="hidden rounded-xl p-3.5 text-sm font-bold"></div>
+            <div>
+              <label class="block text-sm font-bold text-slate-700 mb-1.5">صورة الهوية الشخصية (تُرفع للبوت) <span class="text-red-500">*</span></label>
+              <input type="file" id="regIdPhoto" accept="image/*" required
+                class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-xs bg-slate-50 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-kuraimi-purple file:text-white file:font-bold" />
+            </div>
+          </div>
 
-          <button type="submit"
-            class="w-full py-4 rounded-xl gold-gradient text-kuraimi-dark font-black text-lg shadow-lg hover:brightness-105 active:scale-[0.99] transition cursor-pointer">
-            🎟️ تأكيد المشاركة وإصدار تذكرة السحب
+          <div id="regIdPreviewWrap" class="hidden bg-slate-50 border border-slate-200 rounded-2xl p-3">
+            <div class="text-xs font-bold text-slate-600 mb-2">معاينة صورة الهوية المرفقة:</div>
+            <img id="regIdPreviewImg" src="" alt="معاينة الهوية" class="max-h-44 rounded-xl object-contain mx-auto" />
+          </div>
+
+          <!-- أسئلة مختلفة لكل متسابق -->
+          <div class="bg-purple-50/70 border border-purple-200 rounded-2xl p-4 sm:p-5 space-y-4">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <span class="text-sm font-black text-kuraimi-purple">🎯 أسئلة المسابقة الخاصة بمشاركتك (تختلف من متسابق لآخر):</span>
+              <button type="button" onclick="assignPersonalizedQuestions(true)"
+                class="text-xs font-bold bg-white hover:bg-purple-100 text-kuraimi-purple border border-purple-200 px-3 py-1 rounded-lg cursor-pointer">
+                🔄 توليد مجموعة أسئلة جديدة
+              </button>
+            </div>
+            <div id="personalizedQuestionsBox" class="space-y-4"></div>
+          </div>
+
+          <!-- التحقق من الروبوتات عبر اختيار صور السيارات -->
+          <div class="bg-amber-50/70 border border-amber-300 rounded-2xl p-4 sm:p-5 space-y-3">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <div>
+                <div class="text-sm font-black text-amber-950">🤖 التحقق من أنك إنسان وليس روبوتاً: حدّد جميع صور السيارات</div>
+                <div class="text-xs text-amber-800 mt-0.5">انقر على البطاقات التي تحتوي على سيارة فقط ثم أكمل التسجيل.</div>
+              </div>
+              <button type="button" onclick="generateCarCaptchaGrid()"
+                class="text-xs font-bold bg-white hover:bg-amber-100 text-amber-950 border border-amber-300 px-3 py-1.5 rounded-xl cursor-pointer">
+                ↻ تبديل الصور
+              </button>
+            </div>
+            <div id="carCaptchaGrid" class="grid grid-cols-3 gap-2.5 sm:gap-3 pt-1"></div>
+          </div>
+
+          <div id="regAlertBox" class="hidden rounded-xl p-3.5 text-sm font-bold"></div>
+
+          <button type="submit" id="regSubmitBtn"
+            class="w-full py-4 rounded-xl gold-gradient text-kuraimi-dark font-black text-lg shadow-lg hover:brightness-105 transition cursor-pointer">
+            🚀 إرسال التسجيل والهوية إلى البوت ودخول السحب
           </button>
         </form>
       </div>
 
-      <!-- بطاقة التذكرة وآخر المسجلين -->
-      <div class="lg:col-span-5 space-y-6">
-        <div id="ticketContainer" class="ticket-card rounded-3xl p-6 sm:p-7 text-white shadow-2xl glow-gold">
-          <div class="flex items-center justify-between border-b border-white/15 pb-4 mb-4">
-            <div>
-              <span class="text-xs uppercase tracking-wider text-kuraimi-goldLight font-bold">تذكرة سحب معتمدة</span>
-              <h3 class="text-lg font-extrabold">مسابقة محفظة ام فلوس</h3>
-            </div>
-            <div class="bg-kuraimi-gold text-kuraimi-dark font-black px-3 py-1 rounded-lg text-sm">
-              بنك الكريمي
-            </div>
-          </div>
-
-          <div id="ticketEmptyState" class="py-6 text-center space-y-2">
-            <div class="text-4xl">🎫</div>
-            <p class="text-purple-100 font-bold">تذكرتك ستظهر هنا فور إتمام التسجيل</p>
-            <p class="text-xs text-purple-300">كل مشارك يحصل على رقم تذكرة فريد (MF-XXXX)</p>
-          </div>
-
-          <div id="ticketFilledState" class="hidden space-y-4">
-            <div class="bg-white/10 rounded-2xl p-4 text-center border border-kuraimi-gold/40">
-              <div class="text-xs text-purple-200 mb-1">رمز التذكرة الخاص بك</div>
-              <div id="ticketCodeDisplay" class="text-3xl sm:text-4xl font-black tracking-widest text-kuraimi-gold font-mono">
-                MF-0000
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3 text-sm">
-              <div class="bg-white/5 rounded-xl p-3">
-                <div class="text-xs text-purple-300">اسم المشارك</div>
-                <div id="ticketNameDisplay" class="font-bold truncate mt-0.5">-</div>
-              </div>
-              <div class="bg-white/5 rounded-xl p-3">
-                <div class="text-xs text-purple-300">المحافظة</div>
-                <div id="ticketGovDisplay" class="font-bold mt-0.5">-</div>
-              </div>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-2.5 pt-2">
-              <button onclick="copyTicketMessage()"
-                class="flex-1 bg-white text-kuraimi-purple font-bold py-2.5 px-4 rounded-xl text-sm hover:bg-purple-50 transition cursor-pointer">
-                📋 نسخ كليشة المشاركة
-              </button>
-              <button onclick="shareWhatsApp()"
-                class="flex-1 bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl text-sm hover:bg-emerald-600 transition cursor-pointer">
-                💬 مشاركة واتساب
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-3xl shadow-md border border-purple-100 p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="font-extrabold text-kuraimi-purple flex items-center gap-2">
-              <span>⚡ أحدث المسجلين في السحب</span>
-            </h3>
-            <span class="text-xs text-slate-400">تحديث مباشر</span>
-          </div>
-          <div id="recentParticipantsList" class="space-y-2.5 max-h-64 overflow-y-auto pr-1"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. قسم السحب والفائزين (إدارة السحب + استكمال بيانات الفائزين وصورة البطاقة) -->
-    <section id="section-draw" class="hidden space-y-6">
-      <div class="bg-white rounded-3xl shadow-xl border border-purple-100 p-6 sm:p-10 text-center relative overflow-hidden">
-        <div class="max-w-4xl mx-auto">
-          <span class="inline-block bg-purple-100 text-kuraimi-purple font-extrabold text-xs sm:text-sm px-4 py-1.5 rounded-full mb-3">
-            ⚖️ نظام السحب واعتماد الفائزين — بإشراف الإدارة
-          </span>
-          <h2 class="text-2xl sm:text-4xl font-black text-kuraimi-dark">منصة السحب واستكمال بيانات الفائزين</h2>
-          <p class="text-slate-500 mt-2 text-sm sm:text-base">
-            تنفيذ السحب العشوائي متاح للمشرف المعتمد، ويمكن استكمال بيانات الفائز وإرفاق صورة البطاقة وإرسالها للبوت
+      <!-- بطاقة جانبية: نبذة سريعة عن المسابقة ومحفظة ام فلوس -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="hero-gradient text-white rounded-3xl p-6 shadow-xl border border-kuraimi-gold/40 space-y-4">
+          <div class="text-xs font-extrabold text-kuraimi-goldLight">💳 عن محفظة ام فلوس</div>
+          <h3 class="text-xl font-black">محفظتك الرقمية من بنك الكريمي</h3>
+          <p class="text-sm text-purple-100 leading-relaxed">
+            تتيح محفظة <strong>ام فلوس</strong> إجراء التحويلات المالية، سداد الفواتير والخدمات، والدفع عبر نقاط البيع بسهولة وأمان وسرعة عالية.
           </p>
-
-          <!-- تنبيه في حال عدم تسجيل دخول المشرف -->
-          <div id="drawAdminLockNotice" class="mt-5 bg-amber-50 border border-amber-300 text-amber-900 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm font-bold">
-            <span>🔐 اختيار الفائزين وتشغيل السحب محصور بالإدارة. يرجى تسجيل الدخول كمشرف لبدء السحب.</span>
-            <button onclick="openAdminModal()" class="bg-kuraimi-purple hover:bg-kuraimi-dark text-white px-4 py-2 rounded-xl transition cursor-pointer shrink-0">
-              تسجيل دخول الإدارة
-            </button>
-          </div>
-
-          <!-- أدوات السحب للإدارة -->
-          <div id="drawAdminControls" class="hidden mt-6 flex flex-wrap items-center justify-center gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200">
-            <div class="flex items-center gap-2">
-              <label for="winnersBatchCount" class="text-sm font-bold text-slate-700">عدد الفائزين في السحبة:</label>
-              <select id="winnersBatchCount" class="rounded-lg border border-slate-300 px-3 py-1.5 font-bold text-kuraimi-purple bg-white">
-                <option value="1">1 فائز</option>
-                <option value="2">2 فائزين</option>
-                <option value="3">3 فائزين</option>
-                <option value="5">5 فائزين</option>
-              </select>
-            </div>
-
-            <label class="flex items-center gap-2 text-sm font-bold text-slate-700 cursor-pointer">
-              <input type="checkbox" id="soundToggle" checked class="accent-kuraimi-purple w-4 h-4" />
-              <span>🔊 مؤثرات صوتية</span>
-            </label>
-
-            <button onclick="loadDemoParticipants()"
-              class="text-xs sm:text-sm bg-purple-100 hover:bg-purple-200 text-kuraimi-purple font-bold px-4 py-2 rounded-xl transition cursor-pointer">
-              ✨ إضافة 20 مشارك تجريبي
-            </button>
-          </div>
-
-          <!-- شاشة السحب التلفزيونية -->
-          <div class="mt-7 hero-gradient rounded-3xl p-6 sm:p-10 text-white shadow-2xl border-4 border-kuraimi-gold relative">
-            <div class="text-xs sm:text-sm text-kuraimi-goldLight font-bold tracking-wider mb-2">
-              المؤهلون لدخول السحب الحالي: <span id="eligibleCountBadge" class="underline font-black">0</span> مشارك
-            </div>
-
-            <div id="slotMachineBox" class="bg-black/35 backdrop-blur-md border border-white/20 rounded-2xl py-8 px-4 my-4 min-h-[170px] flex flex-col items-center justify-center">
-              <div id="slotTicket" class="text-xl sm:text-2xl font-mono font-black text-kuraimi-gold mb-2">
-                MF-????
-              </div>
-              <div id="slotName" class="text-2xl sm:text-4xl font-black text-white tracking-wide">
-                بانتظار اعتماد السحب من الإدارة
-              </div>
-              <div id="slotDetails" class="text-sm sm:text-base text-purple-200 mt-2">
-                يتم اختيار الفائز من المؤهلين أصحاب الإجابات الصحيحة
-              </div>
-            </div>
-
-            <button id="startDrawBtn" onclick="startRandomDraw()"
-              class="mt-4 px-10 py-4 rounded-2xl gold-gradient text-kuraimi-dark font-black text-lg sm:text-xl shadow-xl hover:scale-105 active:scale-95 transition cursor-pointer">
-              🎲 ابدأ السحب العشوائي الآن
-            </button>
-          </div>
-
-          <!-- الفائزون في السحبة الحالية -->
-          <div id="latestWinnersContainer" class="hidden mt-8 text-right">
-            <div class="flex items-center justify-between mb-4 gap-2 flex-wrap">
-              <h3 class="text-xl font-black text-kuraimi-purple">🏆 الفائزون في هذه السحبة:</h3>
-              <button onclick="copyWinnersAnnouncement()"
-                class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-xl transition cursor-pointer">
-                📋 نسخ إعلان الفائزين للنشر
-              </button>
-            </div>
-            <div id="latestWinnersGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-          </div>
-
-          <!-- سجل الفائزين المعتمدين واستكمال بياناتهم وصورة البطاقة -->
-          <div class="mt-10 text-right border-t border-slate-200 pt-8">
-            <h3 class="text-xl font-black text-kuraimi-purple mb-2">📋 ملفات الفائزين المعتمدين (البيانات الموسعة وصورة البطاقة)</h3>
-            <p class="text-xs sm:text-sm text-slate-500 mb-5">
-              يمكن استكمال بيانات أي فائز (رقم البطاقة، صورة البطاقة الشخصية، البريد الإلكتروني، والرقم) وإرسال الملف إلى بوت تيليجرام.
-            </p>
-            <div id="verifiedWinnersList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-          </div>
+          <ul class="text-xs text-purple-100 space-y-2 border-t border-white/15 pt-3">
+            <li>✓ إرسال واستقبال الحوالات بمرونة وسرعة.</li>
+            <li>✓ تسديد الفواتير وشحن الرصيد والخدمات اليومية.</li>
+            <li>✓ أمان عالٍ وإشعارات فورية للعمليات.</li>
+          </ul>
+          <button onclick="switchPublicTab('about')"
+            class="w-full py-2.5 rounded-xl bg-white/15 hover:bg-white/25 font-bold text-sm transition cursor-pointer">
+            اقرأ شرح المسابقة كاملاً ←
+          </button>
         </div>
+
+        <div class="bg-white rounded-3xl p-6 shadow-md border border-purple-100 space-y-3">
+          <h3 class="font-black text-kuraimi-purple text-base">🛡️ آلية نزاهة المسابقة</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            لضمان العدالة ومنع التسجيل الوهمي أو التلاعب، يتم إرفاق صورة الهوية مع بيانات المتسابق وإرسالها إلى بوت الإدارة للتحقق، كما يتم اختيار الفائز ومراسلته حصراً من خلال لوحة الإدارة.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- 2. الواجهة العامة: شرح المسابقة وعن محفظة ام فلوس -->
+    <section id="public-section-about" class="hidden bg-white rounded-3xl shadow-lg border border-purple-100 p-6 sm:p-10 space-y-8">
+      <div class="border-b border-slate-100 pb-5">
+        <span class="text-xs font-extrabold bg-purple-100 text-kuraimi-purple px-3 py-1 rounded-full">دليل المشاركين</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-kuraimi-dark mt-2">شرح المسابقة وعن محفظة ام فلوس</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-purple-50/60 border border-purple-200 rounded-2xl p-6 space-y-3">
+          <h3 class="text-lg font-black text-kuraimi-purple">🎯 كيف تشارك في المسابقة؟</h3>
+          <ol class="text-sm text-slate-700 space-y-2 list-decimal list-inside leading-relaxed">
+            <li>تعبئة البيانات الأساسية: الاسم الكامل، رقم الهاتف/المحفظة، المحافظة، البريد الإلكتروني، وكلمة السر الخاصة بالمسابقة.</li>
+            <li>إرفاق صورة واضحة للهوية الشخصية للتحقق من هوية المشارك ومنع أي تلاعب.</li>
+            <li>الإجابة على مجموعة الأسئلة المعرفية المخصصة لمشاركتك.</li>
+            <li>اجتياز اختبار التحقق البشري باختيار صور السيارات.</li>
+            <li>بعد اعتماد التسجيل، تتولى الإدارة مراجعة البيانات وإجراء السحب واختيار الفائز ومراسلته مباشرة.</li>
+          </ol>
+        </div>
+
+        <div class="bg-amber-50/50 border border-amber-200 rounded-2xl p-6 space-y-3">
+          <h3 class="text-lg font-black text-amber-950">💳 ما هي محفظة ام فلوس؟</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            <strong>ام فلوس</strong> هي المحفظة الإلكترونية التابعة لبنك الكريمي للتمويل الأصغر الإسلامي، المصممة لتسهيل المعاملات المالية اليومية للأفراد والمشتركين عبر الهاتف المحمول دون الحاجة للانتظار أو حمل النقود الورقية في كل تعامل.
+          </p>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            تشمل خدماتها سداد الفواتير، الدفع في المتاجر ونقاط البيع، وإدارة العمليات المالية بكل يسر وأمان.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center pt-2">
+        <button onclick="switchPublicTab('register')"
+          class="gold-gradient text-kuraimi-dark font-black px-8 py-3.5 rounded-2xl shadow-lg hover:brightness-105 cursor-pointer">
+          الانتقال إلى نموذج التسجيل الآن 🚀
+        </button>
       </div>
     </section>
 
-    <!-- 3. قسم سجل المشاركين -->
-    <section id="section-participants" class="hidden space-y-6">
-      <div class="bg-white rounded-3xl shadow-lg border border-purple-100 p-6 sm:p-8">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+    <!-- 3. لوحة الإدارة (المتسابقون + منصة السحب + اختيار الفائز + مراسلته + إعدادات البوت) -->
+    <section id="admin-section-dashboard" class="hidden bg-white rounded-3xl shadow-2xl border-2 border-kuraimi-gold p-6 sm:p-8 space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-5">
+        <div>
+          <span class="text-xs font-extrabold bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">وضع الإدارة المفعل</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-kuraimi-dark mt-1">لوحة إدارة المسابقة والسحب والفائزين</h2>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="loadDemoContestants()"
+            class="bg-purple-100 hover:bg-purple-200 text-kuraimi-purple font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl cursor-pointer">
+            + إضافة متسابقين تجريبيين
+          </button>
+          <button onclick="exportContestantsCSV()"
+            class="bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl cursor-pointer">
+            📥 تصدير CSV
+          </button>
+          <button onclick="lockAdminDashboard()"
+            class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl cursor-pointer">
+            قفل اللوحة 🔒
+          </button>
+        </div>
+      </div>
+
+      <!-- إحصائيات الإدارة -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-purple-50 border border-purple-200 rounded-2xl p-4 text-center">
+          <div class="text-xs text-slate-600 font-bold">إجمالي المتسابقين</div>
+          <div id="adminTotalCount" class="text-2xl font-black text-kuraimi-purple mt-1">0</div>
+        </div>
+        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center">
+          <div class="text-xs text-slate-600 font-bold">المتأهلون للسحب</div>
+          <div id="adminEligibleCount" class="text-2xl font-black text-emerald-700 mt-1">0</div>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-center">
+          <div class="text-xs text-slate-600 font-bold">الفائزون المختارون</div>
+          <div id="adminWinnersCount" class="text-2xl font-black text-amber-800 mt-1">0</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center">
+          <div class="text-xs text-slate-600 font-bold">هويات مرفقة</div>
+          <div id="adminIdsCount" class="text-2xl font-black text-slate-800 mt-1">0</div>
+        </div>
+      </div>
+
+      <!-- منصة السحب واختيار الفائز -->
+      <div class="hero-gradient text-white rounded-3xl p-6 sm:p-8 border-2 border-kuraimi-gold space-y-5 text-center">
+        <h3 class="text-xl sm:text-2xl font-black">🎰 منصة السحب واختيار الفائز</h3>
+        <div id="drawScreenBox" class="bg-black/35 border border-white/20 rounded-2xl p-6 max-w-2xl mx-auto">
+          <div id="drawTicketLabel" class="text-lg font-mono font-black text-kuraimi-gold">MF-????</div>
+          <div id="drawNameLabel" class="text-2xl sm:text-3xl font-black mt-1">جاهز لإجراء السحب</div>
+          <div id="drawInfoLabel" class="text-xs sm:text-sm text-purple-200 mt-1">اختر من المتأهلين أو اعتمد فائزاً مباشرة من الجدول</div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3">
+          <button id="runDrawSpinBtn" onclick="runAdminDraw()"
+            class="gold-gradient text-kuraimi-dark font-black px-8 py-3.5 rounded-2xl shadow-lg hover:scale-105 transition cursor-pointer">
+            🎲 سحب عشوائي واختيار فائز
+          </button>
+        </div>
+      </div>
+
+      <!-- مركز مراسلة الفائزين -->
+      <div class="bg-purple-50/70 border border-purple-200 rounded-3xl p-6 space-y-4">
+        <h3 class="text-lg font-black text-kuraimi-purple">✉️ مراسلة الفائز المحدد</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <h2 class="text-xl sm:text-2xl font-black text-kuraimi-purple">سجل المشاركين</h2>
-            <p class="text-sm text-slate-500 mt-1">استعراض المشاركين وتصدير البيانات بصيغة CSV</p>
+            <label class="block text-xs font-bold text-slate-700 mb-1">اختر الفائز</label>
+            <select id="messageWinnerSelect" onchange="fillWinnerMessageTemplate()"
+              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white font-bold"></select>
           </div>
-          <div class="flex flex-wrap gap-2">
-            <button onclick="exportToCSV()"
-              class="bg-kuraimi-purple hover:bg-kuraimi-dark text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition cursor-pointer">
-              📥 تصدير ملف Excel / CSV
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">معرف تيليجرام للفائز (اختياري للإرسال عبر البوت)</label>
+            <input type="text" id="winnerTelegramChatId" placeholder="Chat ID أو @username" dir="ltr"
+              class="w-full text-right rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono bg-white" />
+          </div>
+          <div class="flex items-end gap-2">
+            <button onclick="sendMessageViaTelegramBot()"
+              class="flex-1 bg-sky-600 hover:bg-sky-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm cursor-pointer">
+              🤖 إرسال عبر البوت
             </button>
-            <button onclick="clearAllData()"
-              class="bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition cursor-pointer">
-              🗑️ تصفير البيانات
+            <button onclick="sendMessageViaWhatsApp()"
+              class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs sm:text-sm cursor-pointer">
+              💬 واتساب
             </button>
           </div>
         </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">نص رسالة التهنئة ومراجعة البيانات</label>
+          <textarea id="winnerMessageBody" rows="3"
+            class="w-full rounded-xl border border-slate-300 p-3.5 text-sm bg-white"></textarea>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="copyWinnerMessageText()"
+            class="bg-kuraimi-purple hover:bg-kuraimi-dark text-white font-bold px-4 py-2 rounded-xl text-xs cursor-pointer">
+            📋 نسخ نص الرسالة
+          </button>
+          <button onclick="openWinnerEmailDraft()"
+            class="bg-amber-600 hover:bg-amber-700 text-white font-bold px-4 py-2 rounded-xl text-xs cursor-pointer">
+            📧 مراسلة عبر البريد الإلكتروني
+          </button>
+        </div>
+      </div>
 
-        <div class="overflow-x-auto mt-6">
-          <table class="w-full text-right border-collapse">
+      <!-- جدول المتسابقين الكامل داخل الإدارة -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <h3 class="text-lg font-black text-kuraimi-dark">👥 سجل المتسابقين وبيانات التحقق</h3>
+          <button onclick="clearAllContestants()"
+            class="text-xs font-bold text-red-600 hover:underline cursor-pointer">🗑️ تصفير السجل</button>
+        </div>
+        <div class="overflow-x-auto border border-slate-200 rounded-2xl">
+          <table class="w-full text-right border-collapse text-sm">
             <thead>
-              <tr class="bg-purple-50 text-kuraimi-purple text-xs sm:text-sm border-b border-purple-100">
-                <th class="py-3.5 px-4 rounded-tr-xl">رقم التذكرة</th>
-                <th class="py-3.5 px-4">الاسم الكامل</th>
-                <th class="py-3.5 px-4">الرقم والبريد</th>
-                <th class="py-3.5 px-4">المحافظة</th>
-                <th class="py-3.5 px-4">الأسئلة</th>
-                <th class="py-3.5 px-4 rounded-tl-xl">الحالة / إجراء الإدارة</th>
+              <tr class="bg-slate-100 text-slate-700 text-xs border-b border-slate-200">
+                <th class="py-3 px-3">التذكرة</th>
+                <th class="py-3 px-3">الاسم والبيانات</th>
+                <th class="py-3 px-3">المحافظة</th>
+                <th class="py-3 px-3">الأسئلة والروبوت</th>
+                <th class="py-3 px-3">الهوية</th>
+                <th class="py-3 px-3">اختيار الفائز</th>
               </tr>
             </thead>
-            <tbody id="participantsTableBody" class="divide-y divide-slate-100 text-sm"></tbody>
+            <tbody id="adminContestantsTableBody" class="divide-y divide-slate-100"></tbody>
           </table>
         </div>
       </div>
-    </section>
 
-    <!-- 4. قسم إدارة المسابقة والأسئلة وبوت تيليجرام -->
-    <section id="section-admin" class="hidden space-y-6">
-      <div id="adminPanelLocked" class="bg-white rounded-3xl shadow-lg border border-purple-100 p-8 text-center">
-        <div class="text-4xl mb-3">🔐</div>
-        <h2 class="text-xl font-black text-kuraimi-dark">لوحة إدارة المسابقة محمية</h2>
-        <p class="text-sm text-slate-500 mt-1 mb-5">سجّل دخولك كمشرف لإدارة الأسئلة، إعدادات البوت، وتغيير رمز الإدارة</p>
-        <button onclick="openAdminModal()" class="gold-gradient text-kuraimi-dark font-black px-6 py-3 rounded-xl shadow cursor-pointer">
-          فتح نافذة تسجيل الدخول
-        </button>
-      </div>
-
-      <div id="adminPanelUnlocked" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- إعدادات بوت تيليجرام -->
-        <div class="lg:col-span-6 bg-white rounded-3xl shadow-lg border border-purple-100 p-6 space-y-4">
-          <h3 class="text-lg font-black text-kuraimi-purple border-b border-slate-100 pb-3">
-            🤖 إعدادات الربط مع بوت تيليجرام
-          </h3>
-          <p class="text-xs text-slate-500">
-            يُحفظ التوكن ومعرف القناة/المجموعة محلياً في متصفح المشرف فقط لإرسال إشعارات التسجيل، السحب، وبيانات وصور بطاقات الفائزين.
-          </p>
+      <!-- إعدادات البوت (مضبوطة افتراضياً على بياناتك) -->
+      <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 space-y-4">
+        <h3 class="text-base font-black text-slate-800">⚙️ إعدادات الربط مع بوت تيليجرام</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Bot Token</label>
-            <input type="password" id="tgBotTokenInput" placeholder="123456789:AA..." dir="ltr"
-              class="w-full text-left rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
+            <input type="text" id="cfgBotToken" dir="ltr"
+              class="w-full text-left rounded-xl border border-slate-300 px-3.5 py-2 text-xs font-mono bg-white" />
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Chat ID (معرف القناة أو المجموعة أو حساب المشرف)</label>
-            <input type="text" id="tgChatIdInput" placeholder="-1001234567890 أو 82991638068" dir="ltr"
-              class="w-full text-left rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
-          </div>
-          <label class="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-700 cursor-pointer">
-            <input type="checkbox" id="tgNotifyOnReg" class="accent-kuraimi-purple w-4 h-4" />
-            <span>إرسال إشعار عند كل تسجيل جديد</span>
-          </label>
-          <div class="flex flex-wrap gap-2 pt-2">
-            <button onclick="saveBotConfig()" class="bg-kuraimi-purple hover:bg-kuraimi-dark text-white font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm cursor-pointer">
-              💾 حفظ إعدادات البوت
-            </button>
-            <button onclick="testTelegramBot()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm cursor-pointer">
-              📡 اختبار إرسال رسالة للبوت
-            </button>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Chat ID</label>
+            <input type="text" id="cfgBotChatId" dir="ltr"
+              class="w-full text-left rounded-xl border border-slate-300 px-3.5 py-2 text-xs font-mono bg-white" />
           </div>
         </div>
-
-        <!-- إدارة بنك الأسئلة وأمان الدخول -->
-        <div class="lg:col-span-6 space-y-6">
-          <div class="bg-white rounded-3xl shadow-lg border border-purple-100 p-6 space-y-4">
-            <h3 class="text-lg font-black text-kuraimi-purple border-b border-slate-100 pb-3">
-              ❓ إضافة سؤال جديد إلى بنك الأسئلة
-            </h3>
-            <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">نص السؤال</label>
-              <input type="text" id="newQuestionText" placeholder="مثال: ما اسم المحفظة الإلكترونية التابعة لبنك الكريمي؟"
-                class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">الإجابة الصحيحة (مطلوبة للتأهل)</label>
-                <input type="text" id="newQuestionCorrect" placeholder="محفظة ام فلوس"
-                  class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">خيار بديل آخر (مفصول بفاصلة)</label>
-                <input type="text" id="newQuestionWrong" placeholder="حساب جاري, بطاقة صراف"
-                  class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm" />
-              </div>
-            </div>
-            <button onclick="addCustomQuestion()" class="gold-gradient text-kuraimi-dark font-black px-4 py-2.5 rounded-xl text-xs sm:text-sm cursor-pointer">
-              ➕ إضافة السؤال للمسابقة
-            </button>
-            <div id="questionsAdminList" class="space-y-2 pt-2 max-h-48 overflow-y-auto"></div>
-          </div>
-
-          <div class="bg-white rounded-3xl shadow-lg border border-purple-100 p-6 space-y-3">
-            <h3 class="text-base font-black text-kuraimi-dark">🔑 تغيير رمز دخول لوحة الإدارة</h3>
-            <div class="flex gap-2">
-              <input type="password" id="newAdminPinInput" placeholder="أدخل رمز مرور جديد (4 أحرف/أرقام فأكثر)"
-                class="flex-1 rounded-xl border border-slate-300 px-3.5 py-2 text-sm" />
-              <button onclick="updateAdminPin()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm cursor-pointer">
-                تحديث الرمز
-              </button>
-            </div>
-          </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="saveBotSettings()"
+            class="bg-kuraimi-purple hover:bg-kuraimi-dark text-white font-bold px-4 py-2 rounded-xl text-xs cursor-pointer">
+            💾 حفظ إعدادات البوت
+          </button>
+          <button onclick="testBotSettings()"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs cursor-pointer">
+            📡 اختبار الاتصال بالبوت
+          </button>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- نافذة تسجيل دخول الإدارة -->
-  <div id="adminLoginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-purple-100">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="text-xl font-black text-kuraimi-purple">🔐 تسجيل دخول المشرف</h3>
-        <button onclick="closeAdminModal()" class="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer">✕</button>
+  <!-- نافذة تسجيل دخول الإدارة (الرمز: 777908028) -->
+  <div id="adminLoginModal" class="fixed inset-0 bg-black/65 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-purple-100 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-black text-kuraimi-purple">🔐 دخول لوحة الإدارة</h3>
+        <button onclick="closeAdminLoginModal()" class="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer">✕</button>
       </div>
-      <p class="text-xs text-slate-500 mb-4">
-        أدخل رمز الإدارة لتشغيل السحب العشوائي، اعتماد الفائزين، وإدارة إعدادات البوت. (الرمز الافتراضي: <span class="font-mono font-bold">77W7@</span>)
-      </p>
-      <input type="password" id="adminPassInput" placeholder="أدخل رمز الإدارة"
-        class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm mb-3 focus:outline-none focus:border-kuraimi-purple" />
-      <div id="adminLoginError" class="text-xs font-bold text-red-600 mb-3 hidden"></div>
-      <button onclick="verifyAdminLogin()" class="w-full py-3 rounded-xl gold-gradient text-kuraimi-dark font-black cursor-pointer">
+      <p class="text-xs text-slate-500">أدخل رمز الإدارة للوصول إلى قائمة المتسابقين، منصة السحب، واختيار ومراسلة الفائزين.</p>
+      <input type="password" id="adminCodeInput" placeholder="أدخل رمز الإدارة"
+        class="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-mono focus:outline-none focus:border-kuraimi-purple" />
+      <div id="adminCodeError" class="hidden text-xs font-bold text-red-600">رمز الإدارة غير صحيح.</div>
+      <button onclick="submitAdminCode()"
+        class="w-full py-3 rounded-xl gold-gradient text-kuraimi-dark font-black text-sm shadow cursor-pointer">
         تأكيد الدخول
       </button>
     </div>
   </div>
 
-  <!-- نافذة استكمال بيانات الفائز وصورة البطاقة -->
-  <div id="winnerDetailsModal" class="fixed inset-0 bg-black/65 backdrop-blur-sm hidden items-center justify-center z-50 p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-kuraimi-gold my-8">
-      <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-        <div>
-          <span class="text-xs font-bold text-kuraimi-purple">🏆 ملف اعتماد الجائزة</span>
-          <h3 id="winnerModalTitle" class="text-xl font-black text-kuraimi-dark">استكمال بيانات الفائز</h3>
-        </div>
-        <button onclick="closeWinnerModal()" class="text-slate-400 hover:text-slate-700 font-bold text-lg cursor-pointer">✕</button>
+  <!-- نافذة معاينة صورة هوية المتسابق -->
+  <div id="idViewerModal" class="fixed inset-0 bg-black/75 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-5 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 id="idViewerTitle" class="font-black text-kuraimi-dark text-base">صورة الهوية المرفقة</h3>
+        <button onclick="closeIdViewerModal()" class="text-slate-500 hover:text-slate-800 font-bold text-lg cursor-pointer">✕</button>
       </div>
-
-      <form id="winnerDetailsForm" class="space-y-4">
-        <input type="hidden" id="modalWinnerId" />
-        <div class="bg-purple-50 rounded-2xl p-3.5 text-xs space-y-1">
-          <div><span class="font-bold text-kuraimi-purple">الاسم:</span> <span id="modalWinnerName" class="font-bold"></span></div>
-          <div><span class="font-bold text-kuraimi-purple">التذكرة:</span> <span id="modalWinnerTicket" class="font-mono font-bold"></span></div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">رقم التواصل / المحفظة <span class="text-red-500">*</span></label>
-            <input type="tel" id="modalWinnerPhone" required dir="ltr"
-              class="w-full text-right rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">البريد الإلكتروني <span class="text-red-500">*</span></label>
-            <input type="email" id="modalWinnerEmail" required dir="ltr"
-              class="w-full text-right rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">نوع الهوية / البطاقة</label>
-            <select id="modalWinnerIdType" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm bg-white">
-              <option value="بطاقة شخصية">بطاقة شخصية</option>
-              <option value="جواز سفر">جواز سفر</option>
-              <option value="بطاقة عائلية / أخرى">بطاقة عائلية / أخرى</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">رقم البطاقة / الهوية <span class="text-red-500">*</span></label>
-            <input type="text" id="modalWinnerIdNumber" required placeholder="أدخل رقم البطاقة"
-              class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm font-mono" />
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">صورة البطاقة الشخصية (من الكاميرا أو المعرض)</label>
-          <input type="file" id="modalWinnerIdPhoto" accept="image/*"
-            class="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs bg-slate-50" />
-          <div id="winnerIdPhotoPreviewBox" class="mt-2.5 hidden">
-            <img id="winnerIdPhotoPreviewImg" src="" alt="معاينة صورة البطاقة"
-              class="w-full max-h-48 object-contain rounded-xl border border-slate-200 bg-slate-50" />
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">ملاحظات الاستلام أو الفرع</label>
-          <textarea id="modalWinnerNotes" rows="2" placeholder="أي تفاصيل إضافية لتسليم الجائزة..."
-            class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm"></textarea>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-2.5 pt-2">
-          <button type="submit"
-            class="flex-1 py-3 rounded-xl gold-gradient text-kuraimi-dark font-black text-sm shadow cursor-pointer">
-            💾 حفظ وإرسال للبوت
-          </button>
-          <button type="button" onclick="closeWinnerModal()"
-            class="px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm cursor-pointer">
-            إلغاء
-          </button>
-        </div>
-      </form>
+      <img id="idViewerImage" src="" alt="صورة الهوية" class="w-full max-h-[65vh] object-contain rounded-2xl border border-slate-200 bg-slate-50" />
     </div>
   </div>
 
-  <footer class="bg-kuraimi-dark text-purple-200 py-8 mt-12 border-t-4 border-kuraimi-gold">
+  <footer class="bg-kuraimi-dark text-purple-200 py-7 mt-12 border-t-4 border-kuraimi-gold">
     <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right text-xs sm:text-sm">
-      <div>
-        <div class="font-extrabold text-white text-base">مسابقة محفظة ام فلوس — بنك الكريمي للتمويل الأصغر الإسلامي</div>
-        <p class="text-purple-300 mt-1">جميع الحقوق محفوظة © 2026 — بوابة السحب الإلكتروني الشفاف</p>
-      </div>
-      <div class="text-kuraimi-goldLight font-semibold">
-        معاملاتك المالية أسهل وأسرع وأكثر أماناً 💳✨
-      </div>
+      <div class="font-bold text-white">مسابقة محفظة ام فلوس — بنك الكريمي للتمويل الأصغر الإسلامي</div>
+      <div class="text-kuraimi-goldLight">معاملاتك أسهل وأسرع وأكثر أماناً 💳✨</div>
     </div>
   </footer>
 
   <script>
-    const STORAGE_KEY = 'mfloos_kuraimi_contest_v2';
-    const BOT_CONFIG_KEY = 'mfloos_kuraimi_bot_cfg_v1';
-    const ADMIN_PIN_KEY = 'mfloos_kuraimi_admin_pin_v1';
+    const ADMIN_SECRET_CODE = '777908028';
+    const DEFAULT_BOT_TOKEN = '8700247738:AAF8YH956qBKGSA8seF_AtZPpLw2eMO3qSw';
+    const DEFAULT_BOT_CHAT_ID = '8299163806';
 
-    const DEFAULT_QUESTIONS = [
+    const STORAGE_DATA_KEY = 'mfloos_contest_data_v3';
+    const STORAGE_BOT_KEY = 'mfloos_contest_bot_v3';
+
+    const QUESTION_BANK = [
       {
-        id: 'q1',
-        question: 'أي من الخدمات التالية يمكنك تنفيذها عبر محفظة ام فلوس؟',
-        options: [
-          'تسديد فواتير الإنترنت والاتصالات وشحن الرصيد فقط',
-          'إرسال واستقبال الحوالات المالية والدفع لدى نقاط البيع فقط',
-          'جميع ما سبق (سداد الفواتير، الشراء، والتحويل الفوري بأمان)'
-        ],
-        correctIndex: 2
+        id: 'bq1',
+        q: 'ما اسم المحفظة الإلكترونية التابعة لبنك الكريمي للتمويل الأصغر الإسلامي؟',
+        opts: ['محفظة ام فلوس', 'محفظة النجم فقط', 'بطاقة الصراف فقط'],
+        ans: 0
       },
       {
-        id: 'q2',
-        question: 'ما الذي لا يطلبه بنك الكريمي أو محفظة ام فلوس للمشاركة في المسابقات؟',
-        options: [
-          'الرقم السري أو رمز التحقق (OTP)',
-          'الاسم الكامل والمحافظة',
-          'رقم الهاتف المرتبط بالمحفظة'
-        ],
-        correctIndex: 0
+        id: 'bq2',
+        q: 'هل يطلب بنك الكريمي أو إدارة المسابقة الرقم السري الحقيقي لمحفظتك للمشاركة؟',
+        opts: ['نعم، يُطلب الرقم السري دوماً', 'لا، لا يُطلب الرقم السري الحقيقي للمحفظة'],
+        ans: 1
       },
       {
-        id: 'q3',
-        question: 'أين يمكن استخدام محفظة ام فلوس في الحياة اليومية؟',
-        options: [
-          'لدى نقاط البيع المعتمدة وسداد الفواتير والخدمات المالية',
-          'داخل فرع واحد فقط في أوقات الدوام الرسمية',
-          'لإرسال الرسائل النصية فقط'
-        ],
-        correctIndex: 0
+        id: 'bq3',
+        q: 'أي من الخدمات التالية ترتبط بالمعاملات الرقمية عبر المحفظة؟',
+        opts: ['سداد الفواتير والخدمات والتحويل المالي', 'طباعة الكتب الورقية فقط', 'حجز تذاكر الطيران الدولية فقط'],
+        ans: 0
+      },
+      {
+        id: 'bq4',
+        q: 'لماذا يُطلب إرفاق صورة الهوية عند التسجيل في المسابقة؟',
+        opts: ['للتحقق من الهوية ومنع التسجيل الوهمي أو التلاعب', 'لتغيير لون واجهة التطبيق', 'لإلغاء الاشتراك في المحفظة'],
+        ans: 0
+      },
+      {
+        id: 'bq5',
+        q: 'أين يتم اختيار الفائز ومراسلته في هذا النظام؟',
+        opts: ['من خلال لوحة الإدارة المعتمدة', 'من خلال أي زائر عشوائي بدون صلاحيات', 'تلقائياً بدون أي مراجعة'],
+        ans: 0
+      },
+      {
+        id: 'bq6',
+        q: 'ما الذي يميز المعاملات المالية عبر محفظة ام فلوس؟',
+        opts: ['السرعة والسهولة والمتابعة الرقمية', 'الاعتماد على البريد الورقي فقط', 'إغلاق الحساب بعد كل عملية'],
+        ans: 0
       }
     ];
 
-    let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-    if (!state || !Array.isArray(state.participants)) {
-      state = {
-        participants: [],
-        questions: DEFAULT_QUESTIONS
-      };
-    } else if (!Array.isArray(state.questions) || state.questions.length === 0) {
-      state.questions = DEFAULT_QUESTIONS;
+    // بطاقات التحقق البصري (سيارات مقابل مركبات/أدوات أخرى)
+    const CAPTCHA_TILES = [
+      { id: 't1', label: 'سيارة صالون', isCar: true, svg: `<svg viewBox="0 0 80 50" class="w-12 h-9 mx-auto"><path d="M12 33 L18 19 L34 17 L52 17 L64 25 L70 28 L70 36 L10 36 Z" fill="#4A148C"/><rect x="22" y="20" width="13" height="8" rx="2" fill="#E9D5FF"/><rect x="38" y="20" width="13" height="8" rx="2" fill="#E9D5FF"/><circle cx="23" cy="37" r="6.5" fill="#1E293B" stroke="#D4AF37" stroke-width="2"/><circle cx="58" cy="37" r="6.5" fill="#1E293B" stroke="#D4AF37" stroke-width="2"/></svg>` },
+      { id: 't2', label: 'منزل', isCar: false, svg: `<svg viewBox="0 0 80 50" class="w-12 h-9 mx-auto"><polygon points="40,10 14,28 66,28" fill="#B45309"/><rect x="22" y="28" width="36" height="16" fill="#FDE68A"/><rect x="35" y="33" width="10" height="11" fill="#78350F"/></svg>` },
+      { id: 't3', label: 'سيارة دفع رباعي', isCar: true, svg: `<svg viewBox="0 0 80 50" class="w-12 h-9 mx-auto"><path d="M10 34 L14 16 L48 16 L56 25 L70 27 L70 36 L10 36 Z" fill="#0F766E"/><rect x="18" y="19" width="12" height="8" rx="1.5" fill="#CCFBF1"/><rect x="33" y="19" width="13" height="8" rx="1.5" fill="#CCFBF1"/><circle cx="22" cy="37" r="7" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/><circle cx="57" cy="37" r="7" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/></svg>` },
+      { id: 't4', label: 'شجرة', isCar: false, svg: `<svg viewBox="0 0 80 50" class="w-12 h-9 mx-auto"><rect x="36" y="30" width="8" height="14" fill="#78350F"/><circle cx="40" cy="22" r="13" fill="#15803D"/></svg>` },
+      { id: 't5', label: 'سيارة رياضية', isCar: true, svg: `<svg viewBox="0 0 80 50" class="w-12 h-9 mx-auto"><path d="M9 34 L20 22 L46 20 L65 26 L72 30 L72 35 L9 35 Z" fill="#991B1B"/><rect x="26" y="23" width="17" height="6" rx="2" fill="#FEE2E2"/><circle cx="22" cy="36" r="6.5" fill="#1E293B" stroke="#F3D977" stroke-width="2"/><circle cx="59" cy="36" r="6.5" fill="#1E293B" stroke="#F3D977" stroke-width="2"/></svg>` },
+      { id: 't6', label: 'مظلة', isCar: false, svg: `<svg viewBox="0 0 80 50" class="w-12 h-9 mx-auto"><path d="M16 28 C16 14 64 14 64 28 Z" fill="#6D28D9"/><path d="M40 28 L40 41 C40 43 36 43 36 41" stroke="#334155" stroke-width="2.5" fill="none"/></svg>` },
+      { id: 't7', label: 'حقيبة', isCar: false, svg: `<svg viewBox="0 0 80 50" class="w-12 h-9 mx-auto"><rect x="22" y="20" width="36" height="22" rx="5" fill="#D97706"/><path d="M32 20 V15 H48 V20" stroke="#92400E" stroke-width="2.5" fill="none"/></svg>` },
+      { id: 't8', label: 'سيارة سيدان', isCar: true, svg: `<svg viewBox="0 0 80 50" class="w-12 h-9 mx-auto"><path d="M11 33 L18 20 L35 18 L53 18 L63 26 L70 29 L70 35 L11 35 Z" fill="#1D4ED8"/><rect x="22" y="21" width="13" height="7" rx="1.5" fill="#DBEAFE"/><rect x="38" y="21" width="13" height="7" rx="1.5" fill="#DBEAFE"/><circle cx="23" cy="36" r="6.5" fill="#1E293B" stroke="#D4AF37" stroke-width="2"/><circle cx="58" cy="36" r="6.5" fill="#1E293B" stroke="#D4AF37" stroke-width="2"/></svg>` },
+      { id: 't9', label: 'نجمة', isCar: false, svg: `<svg viewBox="0 0 80 50" class="w-12 h-9 mx-auto"><polygon points="40,10 46,21 59,23 50,32 52,44 40,38 28,44 30,32 21,23 34,21" fill="#EAB308"/></svg>` }
+    ];
+
+    let contestants = JSON.parse(localStorage.getItem(STORAGE_DATA_KEY) || '[]');
+    let botSettings = JSON.parse(localStorage.getItem(STORAGE_BOT_KEY) || 'null');
+    if (!botSettings) {
+      botSettings = { token: DEFAULT_BOT_TOKEN, chatId: DEFAULT_BOT_CHAT_ID };
     }
 
-    let botConfig = JSON.parse(localStorage.getItem(BOT_CONFIG_KEY) || '{"token":"","chatId":"","notifyOnReg":false}');
-    let adminPin = localStorage.getItem(ADMIN_PIN_KEY) || '77W7@';
-    let isAdminLoggedIn = false;
-    let lastCreatedParticipant = null;
-    let latestBatchWinners = [];
-    let isDrawing = false;
-    let currentModalIdPhotoBase64 = '';
+    let isAdminUnlocked = false;
+    let activeQuestionsSet = [];
+    let selectedCaptchaIds = new Set();
+    let currentCaptchaDeck = [];
+    let currentIdPhotoBase64 = '';
+    let isSpinning = false;
 
-    function escapeHtml(str) {
-      return String(str ?? '')
+    function escapeHtml(s) {
+      return String(s ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
@@ -715,166 +603,127 @@
         .replace(/'/g, '&#39;');
     }
 
-    function maskPhone(phone) {
-      if (!phone || phone.length < 9) return escapeHtml(phone);
-      return escapeHtml(phone.slice(0, 2) + '****' + phone.slice(-3));
+    async function hashPassword(plain) {
+      try {
+        const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(plain));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 12);
+      } catch (e) {
+        return 'protected';
+      }
     }
 
-    function maskEmail(email) {
-      if (!email || !email.includes('@')) return escapeHtml(email || '-');
-      const [user, domain] = email.split('@');
-      const visible = user.slice(0, 2);
-      return escapeHtml(`${visible}***@${domain}`);
-    }
-
-    function generateTicketCode() {
+    function generateTicket() {
       let code;
       do {
-        const num = Math.floor(1000 + Math.random() * 9000);
-        code = `MF-${num}`;
-      } while (state.participants.some(p => p.ticket === code));
+        code = 'MF-' + Math.floor(1000 + Math.random() * 9000);
+      } while (contestants.some(c => c.ticket === code));
       return code;
     }
 
-    function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    function saveContestants() {
+      localStorage.setItem(STORAGE_DATA_KEY, JSON.stringify(contestants));
     }
 
-    function refreshAllUI() {
-      saveState();
-      updateAdminUI();
-      updateStats();
-      renderQuestionsForm();
-      renderQuestionsAdminList();
-      renderRecentList();
-      renderTable();
-      renderVerifiedWinners();
-    }
+    // التنقل بين الواجهة العامة ولوحة الإدارة
+    function switchPublicTab(tab) {
+      document.getElementById('admin-section-dashboard').classList.add('hidden');
+      document.getElementById('public-section-register').classList.toggle('hidden', tab !== 'register');
+      document.getElementById('public-section-about').classList.toggle('hidden', tab !== 'about');
 
-    function updateAdminUI() {
-      const badge = document.getElementById('adminStatusBadge');
-      const banner = document.getElementById('adminSessionBanner');
-      const lockNotice = document.getElementById('drawAdminLockNotice');
-      const drawControls = document.getElementById('drawAdminControls');
-      const panelLocked = document.getElementById('adminPanelLocked');
-      const panelUnlocked = document.getElementById('adminPanelUnlocked');
-      const botStatus = document.getElementById('botConnectionStatus');
+      const btnReg = document.getElementById('pubTab-register');
+      const btnAbout = document.getElementById('pubTab-about');
 
-      if (isAdminLoggedIn) {
-        badge.textContent = '🔓 مشرف نشط';
-        banner.classList.remove('hidden');
-        lockNotice.classList.add('hidden');
-        drawControls.classList.remove('hidden');
-        panelLocked.classList.add('hidden');
-        panelUnlocked.classList.remove('hidden');
+      if (tab === 'register') {
+        btnReg.className = 'px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition bg-kuraimi-gold text-kuraimi-dark shadow-md cursor-pointer';
+        btnAbout.className = 'px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition bg-white/10 text-white hover:bg-white/20 cursor-pointer';
       } else {
-        badge.textContent = '🔒 دخول المشرف';
-        banner.classList.add('hidden');
-        lockNotice.classList.remove('hidden');
-        drawControls.classList.add('hidden');
-        panelLocked.classList.remove('hidden');
-        panelUnlocked.classList.add('hidden');
-      }
-
-      if (botConfig.token && botConfig.chatId) {
-        botStatus.textContent = 'البوت: مضبوط وجاهز';
-        botStatus.className = 'px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200';
-      } else {
-        botStatus.textContent = 'البوت: غير مضبوط';
-        botStatus.className = 'px-2.5 py-0.5 rounded-full bg-white/10 text-kuraimi-goldLight';
-      }
-
-      document.getElementById('tgBotTokenInput').value = botConfig.token || '';
-      document.getElementById('tgChatIdInput').value = botConfig.chatId || '';
-      document.getElementById('tgNotifyOnReg').checked = Boolean(botConfig.notifyOnReg);
-    }
-
-    function updateStats() {
-      const total = state.participants.length;
-      const winners = state.participants.filter(p => p.isWinner).length;
-      const eligible = state.participants.filter(p => p.isCorrect && !p.isWinner).length;
-
-      document.getElementById('headerTotalCount').textContent = total;
-      document.getElementById('headerWinnersCount').textContent = winners;
-      document.getElementById('eligibleCountBadge').textContent = eligible;
-    }
-
-    function switchTab(tabName) {
-      ['register', 'draw', 'participants', 'admin'].forEach(name => {
-        document.getElementById(`section-${name}`).classList.add('hidden');
-        const btn = document.getElementById(`tabBtn-${name}`);
-        btn.classList.remove('bg-kuraimi-gold', 'text-kuraimi-dark', 'shadow-md');
-        btn.classList.add('bg-white/10', 'text-white');
-      });
-
-      document.getElementById(`section-${tabName}`).classList.remove('hidden');
-      const activeBtn = document.getElementById(`tabBtn-${tabName}`);
-      activeBtn.classList.remove('bg-white/10', 'text-white');
-      activeBtn.classList.add('bg-kuraimi-gold', 'text-kuraimi-dark', 'shadow-md');
-      updateStats();
-    }
-
-    // نافذة تسجيل دخول الإدارة
-    function openAdminModal() {
-      document.getElementById('adminPassInput').value = '';
-      document.getElementById('adminLoginError').classList.add('hidden');
-      const modal = document.getElementById('adminLoginModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      setTimeout(() => document.getElementById('adminPassInput').focus(), 50);
-    }
-
-    function closeAdminModal() {
-      const modal = document.getElementById('adminLoginModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function verifyAdminLogin() {
-      const input = document.getElementById('adminPassInput').value;
-      const errBox = document.getElementById('adminLoginError');
-      if (input === adminPin) {
-        isAdminLoggedIn = true;
-        closeAdminModal();
-        refreshAllUI();
-        alert('تم تسجيل دخول المشرف بنجاح.');
-      } else {
-        errBox.textContent = 'رمز الإدارة غير صحيح.';
-        errBox.classList.remove('hidden');
+        btnAbout.className = 'px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition bg-kuraimi-gold text-kuraimi-dark shadow-md cursor-pointer';
+        btnReg.className = 'px-5 py-2.5 rounded-xl font-bold text-sm sm:text-base transition bg-white/10 text-white hover:bg-white/20 cursor-pointer';
       }
     }
 
-    function logoutAdmin() {
-      isAdminLoggedIn = false;
-      refreshAllUI();
-    }
-
-    function updateAdminPin() {
-      const newPin = document.getElementById('newAdminPinInput').value.trim();
-      if (newPin.length < 4) {
-        alert('يرجى إدخال رمز لا يقل عن 4 خانات.');
+    function openAdminDashboardTab() {
+      if (!isAdminUnlocked) {
+        openAdminLoginModal();
         return;
       }
-      adminPin = newPin;
-      localStorage.setItem(ADMIN_PIN_KEY, adminPin);
-      document.getElementById('newAdminPinInput').value = '';
-      alert('تم تحديث رمز دخول لوحة الإدارة بنجاح.');
+      document.getElementById('public-section-register').classList.add('hidden');
+      document.getElementById('public-section-about').classList.add('hidden');
+      document.getElementById('admin-section-dashboard').classList.remove('hidden');
+      renderAdminDashboard();
     }
 
-    // عرض الأسئلة المعرفية في نموذج التسجيل
-    function renderQuestionsForm() {
-      const container = document.getElementById('dynamicQuestionsContainer');
-      container.innerHTML = state.questions.map((q, qIdx) => `
-        <div class="bg-purple-50/70 border border-purple-200 rounded-2xl p-4 sm:p-5">
-          <label class="block text-sm font-extrabold text-kuraimi-purple mb-2.5">
-            💡 سؤال ${qIdx + 1}: ${escapeHtml(q.question)}
-          </label>
-          <div class="space-y-2 text-sm">
-            ${q.options.map((opt, optIdx) => `
-              <label class="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-purple-100 cursor-pointer hover:border-kuraimi-purple transition">
-                <input type="radio" name="q_${escapeHtml(q.id)}" value="${optIdx}" ${optIdx === 0 ? 'required' : ''}
-                  class="accent-kuraimi-purple w-4 h-4 shrink-0" />
-                <span class="text-slate-800">${escapeHtml(opt)}</span>
+    function lockAdminDashboard() {
+      isAdminUnlocked = false;
+      document.getElementById('headerAdminBtnText').textContent = '🔐 لوحة الإدارة';
+      document.getElementById('navAdminDashboardBtn').classList.add('hidden');
+      switchPublicTab('register');
+    }
+
+    function openAdminLoginModal() {
+      if (isAdminUnlocked) {
+        openAdminDashboardTab();
+        return;
+      }
+      document.getElementById('adminCodeInput').value = '';
+      document.getElementById('adminCodeError').classList.add('hidden');
+      const m = document.getElementById('adminLoginModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+      setTimeout(() => document.getElementById('adminCodeInput').focus(), 50);
+    }
+
+    function closeAdminLoginModal() {
+      const m = document.getElementById('adminLoginModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function submitAdminCode() {
+      const code = document.getElementById('adminCodeInput').value.trim();
+      if (code === ADMIN_SECRET_CODE) {
+        isAdminUnlocked = true;
+        document.getElementById('headerAdminBtnText').textContent = '🔓 لوحة الإدارة (مفتوحة)';
+        document.getElementById('navAdminDashboardBtn').classList.remove('hidden');
+        closeAdminLoginModal();
+        openAdminDashboardTab();
+      } else {
+        document.getElementById('adminCodeError').classList.remove('hidden');
+      }
+    }
+
+    // أسئلة مختلفة لكل متسابق
+    function assignPersonalizedQuestions(forceRandom = false) {
+      const seedPhone = document.getElementById('regPhone')?.value.trim() || '';
+      const pool = [...QUESTION_BANK];
+
+      if (forceRandom || seedPhone.length < 4) {
+        for (let i = pool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
+      } else {
+        let hash = 0;
+        for (let i = 0; i < seedPhone.length; i++) {
+          hash = (hash * 31 + seedPhone.charCodeAt(i)) % 100000;
+        }
+        pool.sort((a, b) => {
+          const scoreA = (a.id.charCodeAt(a.id.length - 1) + hash) % 17;
+          const scoreB = (b.id.charCodeAt(b.id.length - 1) + hash) % 17;
+          return scoreA - scoreB;
+        });
+      }
+
+      activeQuestionsSet = pool.slice(0, 3);
+      const box = document.getElementById('personalizedQuestionsBox');
+      box.innerHTML = activeQuestionsSet.map((item, idx) => `
+        <div class="bg-white rounded-xl p-3.5 border border-purple-100 space-y-2">
+          <div class="text-xs sm:text-sm font-extrabold text-slate-800">سؤال ${idx + 1}: ${escapeHtml(item.q)}</div>
+          <div class="space-y-1.5 text-xs sm:text-sm">
+            ${item.opts.map((opt, oIdx) => `
+              <label class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-purple-50 cursor-pointer">
+                <input type="radio" name="dynQ_${idx}" value="${oIdx}" ${oIdx === 0 ? 'required' : ''} class="accent-kuraimi-purple w-4 h-4" />
+                <span>${escapeHtml(opt)}</span>
               </label>
             `).join('')}
           </div>
@@ -882,474 +731,49 @@
       `).join('');
     }
 
-    function addCustomQuestion() {
-      const qText = document.getElementById('newQuestionText').value.trim();
-      const correctText = document.getElementById('newQuestionCorrect').value.trim();
-      const wrongRaw = document.getElementById('newQuestionWrong').value.trim();
+    document.getElementById('regPhone').addEventListener('change', () => assignPersonalizedQuestions(false));
 
-      if (!qText || !correctText) {
-        alert('يرجى كتابة نص السؤال والإجابة الصحيحة.');
-        return;
+    // التحقق من الروبوتات عبر اختيار صور السيارات
+    function generateCarCaptchaGrid() {
+      selectedCaptchaIds.clear();
+      currentCaptchaDeck = [...CAPTCHA_TILES];
+      for (let i = currentCaptchaDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [currentCaptchaDeck[i], currentCaptchaDeck[j]] = [currentCaptchaDeck[j], currentCaptchaDeck[i]];
       }
 
-      const wrongList = wrongRaw
-        ? wrongRaw.split(',').map(s => s.trim()).filter(Boolean)
-        : ['خيار آخر غير صحيح'];
-
-      const options = [correctText, ...wrongList];
-      state.questions.push({
-        id: 'q_' + Date.now(),
-        question: qText,
-        options,
-        correctIndex: 0
-      });
-
-      document.getElementById('newQuestionText').value = '';
-      document.getElementById('newQuestionCorrect').value = '';
-      document.getElementById('newQuestionWrong').value = '';
-      refreshAllUI();
-      alert('تمت إضافة السؤال إلى المسابقة.');
-    }
-
-    function deleteQuestion(qId) {
-      if (state.questions.length <= 1) {
-        alert('يجب الإبقاء على سؤال واحد على الأقل في المسابقة.');
-        return;
-      }
-      state.questions = state.questions.filter(q => q.id !== qId);
-      refreshAllUI();
-    }
-
-    function renderQuestionsAdminList() {
-      const box = document.getElementById('questionsAdminList');
-      box.innerHTML = state.questions.map((q, idx) => `
-        <div class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs">
-          <div class="truncate font-bold text-slate-700">${idx + 1}. ${escapeHtml(q.question)}</div>
-          <button onclick="deleteQuestion('${escapeHtml(q.id)}')" class="text-red-600 hover:underline font-bold shrink-0 cursor-pointer">حذف</button>
-        </div>
+      const grid = document.getElementById('carCaptchaGrid');
+      grid.innerHTML = currentCaptchaDeck.map(tile => `
+        <button type="button" id="capTile_${tile.id}" onclick="toggleCaptchaTile('${tile.id}')"
+          class="rounded-xl border-2 border-slate-200 bg-white p-2.5 text-center transition hover:border-kuraimi-purple cursor-pointer">
+          ${tile.svg}
+          <div class="text-[11px] font-bold text-slate-600 mt-1">${escapeHtml(tile.label)}</div>
+        </button>
       `).join('');
     }
 
-    // إرسال الإشعارات والملفات إلى بوت تيليجرام
-    async function sendTelegramText(text) {
-      if (!botConfig.token || !botConfig.chatId) return false;
-      try {
-        const res = await fetch(`https://api.telegram.org/bot${encodeURIComponent(botConfig.token)}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: botConfig.chatId,
-            text,
-            parse_mode: 'Markdown'
-          })
-        });
-        const data = await res.json();
-        return Boolean(data.ok);
-      } catch (e) {
-        return false;
-      }
-    }
-
-    async function sendTelegramPhotoBase64(base64DataUrl, caption) {
-      if (!botConfig.token || !botConfig.chatId || !base64DataUrl) return false;
-      try {
-        const blob = await (await fetch(base64DataUrl)).blob();
-        const formData = new FormData();
-        formData.append('chat_id', botConfig.chatId);
-        formData.append('photo', blob, 'id-card.jpg');
-        formData.append('caption', caption);
-        formData.append('parse_mode', 'Markdown');
-
-        const res = await fetch(`https://api.telegram.org/bot${encodeURIComponent(botConfig.token)}/sendPhoto`, {
-          method: 'POST',
-          body: formData
-        });
-        const data = await res.json();
-        return Boolean(data.ok);
-      } catch (e) {
-        return false;
-      }
-    }
-
-    function saveBotConfig() {
-      const token = document.getElementById('tgBotTokenInput').value.trim();
-      const chatId = document.getElementById('tgChatIdInput').value.trim();
-      const notifyOnReg = document.getElementById('tgNotifyOnReg').checked;
-      botConfig = { token, chatId, notifyOnReg };
-      localStorage.setItem(BOT_CONFIG_KEY, JSON.stringify(botConfig));
-      updateAdminUI();
-      alert('تم حفظ إعدادات بوت تيليجرام بنجاح.');
-    }
-
-    async function testTelegramBot() {
-      saveBotConfig();
-      if (!botConfig.token || !botConfig.chatId) {
-        alert('يرجى إدخال Bot Token و Chat ID أولاً.');
-        return;
-      }
-      const ok = await sendTelegramText('✅ تم اختبار الاتصال بنجاح — منظومة *مسابقة محفظة ام فلوس* متصلة بالبوت.');
-      alert(ok ? 'تم إرسال رسالة الاختبار بنجاح إلى البوت.' : 'تعذر الإرسال، تحقق من صحة Token و Chat ID والاتصال بالإنترنت.');
-    }
-
-    // معالجة التسجيل
-    document.getElementById('registrationForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const alertBox = document.getElementById('formAlert');
-      alertBox.classList.add('hidden');
-
-      const name = document.getElementById('fullName').value.trim();
-      const phone = document.getElementById('phoneNumber').value.trim();
-      const email = document.getElementById('emailAddress').value.trim();
-      const gov = document.getElementById('governorate').value;
-      const district = document.getElementById('district').value.trim();
-
-      if (!/^7[01378]\d{7}$/.test(phone)) {
-        showAlert('يرجى إدخال رقم هاتف/محفظة يمني صحيح مكون من 9 أرقام (يبدأ بـ 77، 78، 73، 71، أو 70).', 'error');
-        return;
-      }
-
-      if (state.participants.some(p => p.phone === phone)) {
-        showAlert('عذراً! رقم المحفظة/الهاتف هذا مسجل مسبقاً في المسابقة.', 'error');
-        return;
-      }
-
-      let correctAnswersCount = 0;
-      state.questions.forEach(q => {
-        const chosen = document.querySelector(`input[name="q_${q.id}"]:checked`);
-        if (chosen && parseInt(chosen.value, 10) === q.correctIndex) {
-          correctAnswersCount++;
-        }
-      });
-
-      const isCorrect = correctAnswersCount === state.questions.length;
-      const newParticipant = {
-        id: Date.now(),
-        ticket: generateTicketCode(),
-        name,
-        phone,
-        email,
-        gov,
-        district,
-        score: `${correctAnswersCount}/${state.questions.length}`,
-        isCorrect,
-        isWinner: false,
-        winnerDetails: null,
-        createdAt: new Date().toLocaleString('ar-YE')
-      };
-
-      state.participants.unshift(newParticipant);
-      lastCreatedParticipant = newParticipant;
-      refreshAllUI();
-
-      document.getElementById('ticketEmptyState').classList.add('hidden');
-      document.getElementById('ticketFilledState').classList.remove('hidden');
-      document.getElementById('ticketCodeDisplay').textContent = newParticipant.ticket;
-      document.getElementById('ticketNameDisplay').textContent = newParticipant.name;
-      document.getElementById('ticketGovDisplay').textContent = newParticipant.gov;
-
-      if (isCorrect) {
-        showAlert(`🎉 تم تسجيلك بنجاح! أجبت على جميع الأسئلة (${newParticipant.score}) وتذكرتك (${newParticipant.ticket}) مؤهلة للسحب.`, 'success');
-        launchConfetti(60);
+    function toggleCaptchaTile(id) {
+      const btn = document.getElementById(`capTile_${id}`);
+      if (!btn) return;
+      if (selectedCaptchaIds.has(id)) {
+        selectedCaptchaIds.delete(id);
+        btn.classList.remove('border-kuraimi-purple', 'bg-purple-50', 'ring-2', 'ring-purple-300');
+        btn.classList.add('border-slate-200', 'bg-white');
       } else {
-        showAlert(`⚠️ تم تسجيلك برقم تذكرة (${newParticipant.ticket}) ونتيجة (${newParticipant.score}). يتطلب التأهل الإجابة الصحيحة على جميع الأسئلة.`, 'warning');
-      }
-
-      if (botConfig.notifyOnReg && botConfig.token && botConfig.chatId) {
-        await sendTelegramText(
-          `🎟️ *مشارك جديد في مسابقة محفظة ام فلوس*\n` +
-          `• التذكرة: \`${newParticipant.ticket}\`\n` +
-          `• الاسم: ${newParticipant.name}\n` +
-          `• الرقم: \`${newParticipant.phone}\`\n` +
-          `• البريد: ${newParticipant.email}\n` +
-          `• المحافظة: ${newParticipant.gov}${newParticipant.district ? ' - ' + newParticipant.district : ''}\n` +
-          `• نتيجة الأسئلة: ${newParticipant.score} (${isCorrect ? 'مؤهل' : 'غير مؤهل'})`
-        );
-      }
-
-      this.reset();
-    });
-
-    function showAlert(msg, type) {
-      const box = document.getElementById('formAlert');
-      box.textContent = msg;
-      box.className = 'rounded-xl p-3.5 text-sm font-bold block ';
-      if (type === 'error') box.className += 'bg-red-50 text-red-700 border border-red-200';
-      else if (type === 'warning') box.className += 'bg-amber-50 text-amber-800 border border-amber-200';
-      else box.className += 'bg-emerald-50 text-emerald-800 border border-emerald-200';
-    }
-
-    function renderRecentList() {
-      const container = document.getElementById('recentParticipantsList');
-      if (state.participants.length === 0) {
-        container.innerHTML = `<div class="text-center text-slate-400 text-sm py-6">لا يوجد مسجلون بعد. كن أول المشاركين!</div>`;
-        return;
-      }
-
-      container.innerHTML = state.participants.slice(0, 8).map(p => `
-        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
-          <div>
-            <div class="font-bold text-slate-800 text-sm">${escapeHtml(p.name)}</div>
-            <div class="text-xs text-slate-500">${escapeHtml(p.gov)} • <span dir="ltr" class="font-mono">${maskPhone(p.phone)}</span></div>
-          </div>
-          <span class="font-mono font-bold text-xs px-2.5 py-1 rounded-lg bg-purple-100 text-kuraimi-purple">
-            ${escapeHtml(p.ticket)}
-          </span>
-        </div>
-      `).join('');
-    }
-
-    function renderTable() {
-      const tbody = document.getElementById('participantsTableBody');
-      if (state.participants.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-slate-400">لا توجد بيانات مسجلة حالياً</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = state.participants.map(p => `
-        <tr class="hover:bg-purple-50/40 transition">
-          <td class="py-3 px-4 font-mono font-bold text-kuraimi-purple">${escapeHtml(p.ticket)}</td>
-          <td class="py-3 px-4 font-bold text-slate-800">${escapeHtml(p.name)}</td>
-          <td class="py-3 px-4 text-slate-600 text-xs">
-            <div dir="ltr" class="font-mono">${maskPhone(p.phone)}</div>
-            <div class="text-slate-400">${maskEmail(p.email)}</div>
-          </td>
-          <td class="py-3 px-4 text-slate-600">${escapeHtml(p.gov)}</td>
-          <td class="py-3 px-4 text-xs">
-            <span class="font-mono font-bold">${escapeHtml(p.score || '-')}</span>
-            ${p.isCorrect
-              ? '<span class="mr-1 px-2 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-800">مؤهل ✓</span>'
-              : '<span class="mr-1 px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800">غير مؤهل</span>'}
-          </td>
-          <td class="py-3 px-4">
-            ${p.isWinner
-              ? `<button onclick="openWinnerDetailsModal(${p.id})" class="px-3 py-1 rounded-full text-xs font-black bg-kuraimi-gold text-kuraimi-dark hover:brightness-105 cursor-pointer">🏆 فائز (إدارة الملف)</button>`
-              : (isAdminLoggedIn && p.isCorrect
-                  ? `<button onclick="pickSpecificWinner(${p.id})" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-purple-100 hover:bg-purple-200 text-kuraimi-purple cursor-pointer">اعتماد كفائز</button>`
-                  : '<span class="text-xs text-slate-400">مشارك</span>')}
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    // اعتماد فائز محدد من الإدارة
-    async function pickSpecificWinner(id) {
-      if (!isAdminLoggedIn) {
-        openAdminModal();
-        return;
-      }
-      const target = state.participants.find(p => p.id === id);
-      if (!target) return;
-      target.isWinner = true;
-      latestBatchWinners = [target];
-      refreshAllUI();
-      playWinFanfare();
-      launchConfetti(90);
-      await sendTelegramText(
-        `🏆 *اعتماد فائز جديد — مسابقة محفظة ام فلوس*\n` +
-        `• الفائز: *${target.name}*\n` +
-        `• التذكرة: \`${target.ticket}\`\n` +
-        `• المحافظة: ${target.gov}`
-      );
-      openWinnerDetailsModal(target.id);
-    }
-
-    function playTone(freq, duration, type = 'sine') {
-      if (!document.getElementById('soundToggle')?.checked) return;
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        gain.gain.setValueAtTime(0.12, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + duration);
-      } catch (e) {}
-    }
-
-    function playWinFanfare() {
-      [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
-        setTimeout(() => playTone(freq, 0.35, 'triangle'), idx * 120);
-      });
-    }
-
-    // السحب العشوائي محصور بالإدارة
-    function startRandomDraw() {
-      if (!isAdminLoggedIn) {
-        openAdminModal();
-        return;
-      }
-      if (isDrawing) return;
-
-      const eligible = state.participants.filter(p => p.isCorrect && !p.isWinner);
-      const countToPick = parseInt(document.getElementById('winnersBatchCount').value, 10);
-
-      if (eligible.length === 0) {
-        alert('لا يوجد مشاركون مؤهلون للسحب حالياً! يمكنك إضافة بيانات تجريبية أو تسجيل مشاركين جدد.');
-        return;
-      }
-
-      const actualCount = Math.min(countToPick, eligible.length);
-      isDrawing = true;
-      const btn = document.getElementById('startDrawBtn');
-      btn.disabled = true;
-      btn.classList.add('opacity-60');
-
-      let ticks = 0;
-      const maxTicks = 32;
-      const interval = setInterval(() => {
-        const randomPreview = eligible[Math.floor(Math.random() * eligible.length)];
-        document.getElementById('slotTicket').textContent = randomPreview.ticket;
-        document.getElementById('slotName').textContent = randomPreview.name;
-        document.getElementById('slotDetails').textContent = `${randomPreview.gov} — ${randomPreview.phone.slice(0, 2)}****${randomPreview.phone.slice(-3)}`;
-        playTone(280 + (ticks * 12), 0.06, 'sine');
-        ticks++;
-
-        if (ticks >= maxTicks) {
-          clearInterval(interval);
-          finalizeWinners(eligible, actualCount);
-          isDrawing = false;
-          btn.disabled = false;
-          btn.classList.remove('opacity-60');
-        }
-      }, 85);
-    }
-
-    async function finalizeWinners(eligiblePool, count) {
-      const poolCopy = [...eligiblePool];
-      const picked = [];
-
-      for (let i = 0; i < count && poolCopy.length > 0; i++) {
-        const idx = Math.floor(Math.random() * poolCopy.length);
-        const chosen = poolCopy.splice(idx, 1)[0];
-        chosen.isWinner = true;
-        picked.push(chosen);
-      }
-
-      latestBatchWinners = picked;
-      refreshAllUI();
-      playWinFanfare();
-      launchConfetti(120);
-
-      if (picked.length > 0) {
-        const first = picked[0];
-        document.getElementById('slotTicket').textContent = first.ticket;
-        document.getElementById('slotName').textContent = `🏆 ${first.name}`;
-        document.getElementById('slotDetails').textContent =
-          picked.length > 1
-            ? `تم اختيار ${picked.length} فائزين في هذه السحبة`
-            : `${first.gov} — ${first.phone.slice(0, 2)}****${first.phone.slice(-3)}`;
-      }
-
-      const container = document.getElementById('latestWinnersContainer');
-      const grid = document.getElementById('latestWinnersGrid');
-      container.classList.remove('hidden');
-
-      grid.innerHTML = picked.map((w, i) => `
-        <div class="bg-purple-50 border-2 border-kuraimi-gold rounded-2xl p-4 flex items-center justify-between gap-3">
-          <div>
-            <div class="text-xs font-extrabold text-kuraimi-purple">الفائز #${i + 1}</div>
-            <div class="text-lg font-black text-slate-900">${escapeHtml(w.name)}</div>
-            <div class="text-xs text-slate-600">${escapeHtml(w.gov)} • <span dir="ltr" class="font-mono">${maskPhone(w.phone)}</span></div>
-            <button onclick="openWinnerDetailsModal(${w.id})" class="mt-2 inline-block bg-kuraimi-purple text-white text-xs font-bold px-3 py-1 rounded-lg cursor-pointer">
-              🪪 إكمال البيانات وصورة البطاقة
-            </button>
-          </div>
-          <div class="bg-kuraimi-dark text-kuraimi-gold font-mono font-black px-3 py-2 rounded-xl text-sm shrink-0">
-            ${escapeHtml(w.ticket)}
-          </div>
-        </div>
-      `).join('');
-
-      if (botConfig.token && botConfig.chatId && picked.length > 0) {
-        const lines = picked.map((w, idx) => `${idx + 1}. *${w.name}* (${w.gov}) — تذكرة: \`${w.ticket}\``);
-        await sendTelegramText(`🏆 *نتائج سحب مسابقة محفظة ام فلوس*\n\n${lines.join('\n')}`);
+        selectedCaptchaIds.add(id);
+        btn.classList.remove('border-slate-200', 'bg-white');
+        btn.classList.add('border-kuraimi-purple', 'bg-purple-50', 'ring-2', 'ring-purple-300');
       }
     }
 
-    function renderVerifiedWinners() {
-      const box = document.getElementById('verifiedWinnersList');
-      const winners = state.participants.filter(p => p.isWinner);
-      if (winners.length === 0) {
-        box.innerHTML = `<div class="col-span-full text-center py-6 text-slate-400 text-sm bg-slate-50 rounded-2xl border border-slate-100">لا يوجد فائزون معتمدون بعد.</div>`;
-        return;
-      }
-
-      box.innerHTML = winners.map(w => {
-        const d = w.winnerDetails || {};
-        const hasIdInfo = Boolean(d.idNumber);
-        const hasPhoto = Boolean(d.idPhoto);
-        return `
-          <div class="rounded-2xl border ${hasIdInfo ? 'border-emerald-300 bg-emerald-50/30' : 'border-amber-300 bg-amber-50/40'} p-4 space-y-2.5">
-            <div class="flex items-center justify-between">
-              <div>
-                <div class="font-black text-slate-900 text-base">${escapeHtml(w.name)}</div>
-                <div class="text-xs text-slate-500">${escapeHtml(w.gov)} • تذكرة: <span class="font-mono font-bold text-kuraimi-purple">${escapeHtml(w.ticket)}</span></div>
-              </div>
-              <span class="text-xs font-extrabold px-2.5 py-1 rounded-full ${hasIdInfo ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
-                ${hasIdInfo ? 'مكتمل ✓' : 'بانتظار البيانات'}
-              </span>
-            </div>
-            <div class="text-xs text-slate-700 space-y-1">
-              <div><span class="font-bold">الرقم:</span> <span dir="ltr" class="font-mono">${escapeHtml(d.phone || w.phone)}</span></div>
-              <div><span class="font-bold">البريد:</span> <span class="font-mono">${escapeHtml(d.email || w.email || '-')}</span></div>
-              <div><span class="font-bold">الهوية:</span> ${escapeHtml(d.idType || 'بطاقة شخصية')} — <span class="font-mono">${escapeHtml(d.idNumber || 'لم يُدخل بعد')}</span></div>
-              <div><span class="font-bold">صورة البطاقة:</span> ${hasPhoto ? 'مرفقة ✓' : 'غير مرفقة'}</div>
-            </div>
-            <button onclick="openWinnerDetailsModal(${w.id})" class="w-full py-2 rounded-xl bg-kuraimi-purple hover:bg-kuraimi-dark text-white font-bold text-xs transition cursor-pointer">
-              🪪 استكمال / تعديل بيانات الفائز وصورة البطاقة
-            </button>
-          </div>
-        `;
-      }).join('');
+    function isCaptchaPassed() {
+      const actualCarIds = currentCaptchaDeck.filter(t => t.isCar).map(t => t.id);
+      if (selectedCaptchaIds.size !== actualCarIds.length) return false;
+      return actualCarIds.every(id => selectedCaptchaIds.has(id));
     }
 
-    // نافذة بيانات الفائز وصورة البطاقة
-    function openWinnerDetailsModal(id) {
-      if (!isAdminLoggedIn) {
-        openAdminModal();
-        return;
-      }
-      const winner = state.participants.find(p => p.id === id);
-      if (!winner) return;
-
-      const d = winner.winnerDetails || {};
-      document.getElementById('modalWinnerId').value = winner.id;
-      document.getElementById('modalWinnerName').textContent = winner.name;
-      document.getElementById('modalWinnerTicket').textContent = winner.ticket;
-      document.getElementById('modalWinnerPhone').value = d.phone || winner.phone || '';
-      document.getElementById('modalWinnerEmail').value = d.email || winner.email || '';
-      document.getElementById('modalWinnerIdType').value = d.idType || 'بطاقة شخصية';
-      document.getElementById('modalWinnerIdNumber').value = d.idNumber || '';
-      document.getElementById('modalWinnerNotes').value = d.notes || '';
-      document.getElementById('modalWinnerIdPhoto').value = '';
-
-      currentModalIdPhotoBase64 = d.idPhoto || '';
-      const previewBox = document.getElementById('winnerIdPhotoPreviewBox');
-      const previewImg = document.getElementById('winnerIdPhotoPreviewImg');
-      if (currentModalIdPhotoBase64) {
-        previewImg.src = currentModalIdPhotoBase64;
-        previewBox.classList.remove('hidden');
-      } else {
-        previewImg.src = '';
-        previewBox.classList.add('hidden');
-      }
-
-      const modal = document.getElementById('winnerDetailsModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeWinnerModal() {
-      const modal = document.getElementById('winnerDetailsModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function compressImageFile(file, maxDim = 1100, quality = 0.78) {
+    // ضغط صورة الهوية وتجهيزها
+    function compressIdPhoto(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -1357,6 +781,7 @@
           const img = new Image();
           img.src = ev.target.result;
           img.onload = () => {
+            const maxDim = 1000;
             let { width, height } = img;
             if (width > height && width > maxDim) {
               height *= maxDim / width;
@@ -1369,7 +794,7 @@
             canvas.width = width;
             canvas.height = height;
             canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-            resolve(canvas.toDataURL('image/jpeg', quality));
+            resolve(canvas.toDataURL('image/jpeg', 0.75));
           };
           img.onerror = reject;
         };
@@ -1377,173 +802,421 @@
       });
     }
 
-    document.getElementById('modalWinnerIdPhoto').addEventListener('change', async function() {
+    document.getElementById('regIdPhoto').addEventListener('change', async function() {
       const file = this.files[0];
       if (!file) return;
       try {
-        currentModalIdPhotoBase64 = await compressImageFile(file);
-        const previewImg = document.getElementById('winnerIdPhotoPreviewImg');
-        previewImg.src = currentModalIdPhotoBase64;
-        document.getElementById('winnerIdPhotoPreviewBox').classList.remove('hidden');
+        currentIdPhotoBase64 = await compressIdPhoto(file);
+        document.getElementById('regIdPreviewImg').src = currentIdPhotoBase64;
+        document.getElementById('regIdPreviewWrap').classList.remove('hidden');
       } catch (e) {
-        alert('تعذر معالجة صورة البطاقة، يرجى اختيار صورة أخرى.');
+        showRegAlert('تعذر قراءة صورة الهوية، يرجى اختيار صورة أخرى.', 'error');
       }
     });
 
-    document.getElementById('winnerDetailsForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const id = parseInt(document.getElementById('modalWinnerId').value, 10);
-      const winner = state.participants.find(p => p.id === id);
-      if (!winner) return;
+    function showRegAlert(msg, type) {
+      const box = document.getElementById('regAlertBox');
+      box.textContent = msg;
+      box.className = 'rounded-xl p-3.5 text-sm font-bold block ';
+      if (type === 'error') box.className += 'bg-red-50 text-red-700 border border-red-200';
+      else box.className += 'bg-emerald-50 text-emerald-800 border border-emerald-200';
+    }
 
-      const phone = document.getElementById('modalWinnerPhone').value.trim();
-      const email = document.getElementById('modalWinnerEmail').value.trim();
-      const idType = document.getElementById('modalWinnerIdType').value;
-      const idNumber = document.getElementById('modalWinnerIdNumber').value.trim();
-      const notes = document.getElementById('modalWinnerNotes').value.trim();
+    // إرسال البيانات والهوية إلى بوت تيليجرام
+    async function dispatchRegistrationToBot(record) {
+      if (!botSettings.token || !botSettings.chatId) return;
+      const caption =
+        `🆕 *تسجيل جديد في مسابقة محفظة ام فلوس*\n` +
+        `• التذكرة: \`${record.ticket}\`\n` +
+        `• الاسم: *${record.name}*\n` +
+        `• الرقم: \`${record.phone}\`\n` +
+        `• المحافظة: ${record.gov}\n` +
+        `• البريد: ${record.email}\n` +
+        `• كلمة السر: مؤمنة (\`#${record.passDigest}\`)\n` +
+        `• نتيجة الأسئلة: ${record.score}\n` +
+        `• التحقق البشري (السيارات): ${record.humanVerified ? 'ناجح ✓' : 'غير ناجح'}`;
 
-      winner.phone = phone;
-      winner.email = email;
-      winner.winnerDetails = {
-        phone,
-        email,
-        idType,
-        idNumber,
-        notes,
-        idPhoto: currentModalIdPhotoBase64,
-        updatedAt: new Date().toLocaleString('ar-YE')
-      };
-
-      refreshAllUI();
-      closeWinnerModal();
-
-      const summaryCaption =
-        `🪪 *بيانات فائز معتمد — محفظة ام فلوس*\n` +
-        `• الاسم: *${winner.name}*\n` +
-        `• التذكرة: \`${winner.ticket}\`\n` +
-        `• الرقم: \`${phone}\`\n` +
-        `• البريد: ${email}\n` +
-        `• الهوية (${idType}): \`${idNumber}\`\n` +
-        `• المحافظة: ${winner.gov}` +
-        (notes ? `\n• ملاحظات: ${notes}` : '');
-
-      if (botConfig.token && botConfig.chatId) {
-        if (currentModalIdPhotoBase64) {
-          await sendTelegramPhotoBase64(currentModalIdPhotoBase64, summaryCaption);
+      try {
+        if (record.idPhoto) {
+          const blob = await (await fetch(record.idPhoto)).blob();
+          const formData = new FormData();
+          formData.append('chat_id', botSettings.chatId);
+          formData.append('photo', blob, `id-${record.ticket}.jpg`);
+          formData.append('caption', caption);
+          formData.append('parse_mode', 'Markdown');
+          await fetch(`https://api.telegram.org/bot${encodeURIComponent(botSettings.token)}/sendPhoto`, {
+            method: 'POST',
+            body: formData
+          });
         } else {
-          await sendTelegramText(summaryCaption);
+          await fetch(`https://api.telegram.org/bot${encodeURIComponent(botSettings.token)}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: botSettings.chatId,
+              text: caption,
+              parse_mode: 'Markdown'
+            })
+          });
         }
+      } catch (e) {
+        // يُحفظ السجل محلياً حتى لو واجهت الشبكة تأخيراً
       }
-
-      alert('تم حفظ بيانات الفائز بنجاح.');
-    });
-
-    function copyTicketMessage() {
-      if (!lastCreatedParticipant) return;
-      const msg = `🎟️ تذكرتي في مسابقة محفظة ام فلوس (بنك الكريمي)\nالاسم: ${lastCreatedParticipant.name}\nالمحافظة: ${lastCreatedParticipant.gov}\nرقم التذكرة: ${lastCreatedParticipant.ticket}`;
-      navigator.clipboard?.writeText(msg).then(() => alert('تم نسخ كليشة المشاركة بنجاح!'));
     }
 
-    function shareWhatsApp() {
-      if (!lastCreatedParticipant) return;
-      const msg = `🎟️ شاركت في مسابقة محفظة ام فلوس (بنك الكريمي) وحصلت على تذكرة السحب رقم: *${lastCreatedParticipant.ticket}*`;
-      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
-    }
+    // معالجة نموذج التسجيل العام
+    document.getElementById('contestRegisterForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      document.getElementById('regAlertBox').classList.add('hidden');
 
-    function copyWinnersAnnouncement() {
-      if (latestBatchWinners.length === 0) return;
-      const lines = latestBatchWinners.map((w, idx) =>
-        `${idx + 1}. *${w.name}* — ${w.gov} (تذكرة: \`${w.ticket}\` | المحفظة: ${w.phone.slice(0, 2)}****${w.phone.slice(-3)})`
-      );
-      const text = `🏆 *الفائزون في سحب مسابقة محفظة ام فلوس — بنك الكريمي*\n\n${lines.join('\n')}`;
-      navigator.clipboard?.writeText(text).then(() => alert('تم نسخ إعلان الفائزين بنجاح!'));
-    }
+      const name = document.getElementById('regFullName').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      const gov = document.getElementById('regGov').value;
+      const email = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value;
 
-    function loadDemoParticipants() {
-      if (!isAdminLoggedIn) {
-        openAdminModal();
+      if (!/^7[01378]\d{7}$/.test(phone)) {
+        showRegAlert('يرجى إدخال رقم هاتف/محفظة صحيح مكون من 9 أرقام (يبدأ بـ 77، 78، 73، 71، أو 70).', 'error');
         return;
       }
-      const sampleNames = [
-        'أحمد علي محمد', 'فاطمة حسن صالح', 'خالد عبدالله سعيد', 'مريم يحيى قاسم',
-        'طارق منصور غالب', 'هدى محمد أمين', 'سامي عبده أحمد', 'سارة حسين ناصر',
-        'نبيل خالد عمر', 'أسماء علي سالم', 'وليد حسن يحيى', 'نادية محمد صالح',
-        'عادل سعيد عبدالله', 'رشا أحمد محمد', 'ماجد قاسم علي', 'ليلى سالم حسن',
-        'جمال عمر عبدالله', 'هناء يحيى محمد', 'زياد صالح أحمد', 'منى علي سعيد'
-      ];
-      const sampleGovs = ['أمانة العاصمة', 'عدن', 'تعز', 'إب', 'الحديدة', 'حضرموت', 'ذمار', 'مأرب'];
 
-      let added = 0;
-      sampleNames.forEach((name, i) => {
-        const phone = `77${String(1000000 + i * 13791).slice(0, 7)}`;
-        if (!state.participants.some(p => p.phone === phone)) {
-          state.participants.unshift({
-            id: Date.now() + i,
-            ticket: generateTicketCode(),
-            name,
-            phone,
-            email: `user${i + 1}@example.com`,
-            gov: sampleGovs[i % sampleGovs.length],
-            district: '',
-            score: `${state.questions.length}/${state.questions.length}`,
-            isCorrect: i % 5 !== 0,
-            isWinner: false,
-            winnerDetails: null,
-            createdAt: new Date().toLocaleString('ar-YE')
-          });
-          added++;
+      if (contestants.some(c => c.phone === phone)) {
+        showRegAlert('هذا الرقم مسجل مسبقاً في المسابقة.', 'error');
+        return;
+      }
+
+      if (!currentIdPhotoBase64) {
+        showRegAlert('يرجى إرفاق صورة الهوية للتحقق من عدم التلاعب.', 'error');
+        return;
+      }
+
+      if (!isCaptchaPassed()) {
+        showRegAlert('يرجى تحديد صور السيارات الصحيحة فقط لإثبات أنك لست روبوتاً.', 'error');
+        generateCarCaptchaGrid();
+        return;
+      }
+
+      let correctCount = 0;
+      activeQuestionsSet.forEach((q, idx) => {
+        const checked = document.querySelector(`input[name="dynQ_${idx}"]:checked`);
+        if (checked && parseInt(checked.value, 10) === q.ans) {
+          correctCount++;
         }
       });
 
-      refreshAllUI();
-      alert(`تمت إضافة ${added} مشاركاً تجريبياً بنجاح.`);
+      const passDigest = await hashPassword(password);
+      const record = {
+        id: Date.now(),
+        ticket: generateTicket(),
+        name,
+        phone,
+        gov,
+        email,
+        passDigest,
+        idPhoto: currentIdPhotoBase64,
+        score: `${correctCount}/${activeQuestionsSet.length}`,
+        eligible: correctCount === activeQuestionsSet.length,
+        humanVerified: true,
+        isWinner: false,
+        createdAt: new Date().toLocaleString('ar-YE')
+      };
+
+      contestants.unshift(record);
+      saveContestants();
+
+      const submitBtn = document.getElementById('regSubmitBtn');
+      submitBtn.disabled = true;
+      await dispatchRegistrationToBot(record);
+      submitBtn.disabled = false;
+
+      // عرض رسالة الشكر المخصصة باسم المتسابق
+      const tyBox = document.getElementById('personalizedThankYouBox');
+      document.getElementById('thankYouTitle').textContent = `شكراً لك يا ${record.name} 🌟`;
+      document.getElementById('thankYouBody').textContent =
+        `نشكرك على مشاركتك في مسابقة محفظة ام فلوس. تم استلام بياناتك وصورة الهوية ونتيجة أسئلتك (${record.score})، وستتولى الإدارة مراجعتها وإجراء السحب واختيار الفائز ومراسلته.`;
+      document.getElementById('thankYouMeta').textContent =
+        `رقم التذكرة: ${record.ticket}  |  المحافظة: ${record.gov}  |  الحالة: ${record.eligible ? 'مؤهل للسحب' : 'مسجل للمراجعة'}`;
+      tyBox.classList.remove('hidden');
+      tyBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      this.reset();
+      currentIdPhotoBase64 = '';
+      document.getElementById('regIdPreviewWrap').classList.add('hidden');
+      assignPersonalizedQuestions(true);
+      generateCarCaptchaGrid();
+    });
+
+    // لوحة الإدارة: عرض الإحصائيات والجدول والسحب والمراسلة
+    function renderAdminDashboard() {
+      document.getElementById('adminTotalCount').textContent = contestants.length;
+      document.getElementById('adminEligibleCount').textContent = contestants.filter(c => c.eligible && !c.isWinner).length;
+      document.getElementById('adminWinnersCount').textContent = contestants.filter(c => c.isWinner).length;
+      document.getElementById('adminIdsCount').textContent = contestants.filter(c => Boolean(c.idPhoto)).length;
+
+      document.getElementById('cfgBotToken').value = botSettings.token || '';
+      document.getElementById('cfgBotChatId').value = botSettings.chatId || '';
+
+      const tbody = document.getElementById('adminContestantsTableBody');
+      if (contestants.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-slate-400">لا يوجد متسابقون مسجلون حالياً</td></tr>`;
+      } else {
+        tbody.innerHTML = contestants.map(c => `
+          <tr class="hover:bg-purple-50/40">
+            <td class="py-3 px-3 font-mono font-bold text-kuraimi-purple">${escapeHtml(c.ticket)}</td>
+            <td class="py-3 px-3">
+              <div class="font-bold text-slate-900">${escapeHtml(c.name)}</div>
+              <div class="text-xs text-slate-500 font-mono" dir="ltr">${escapeHtml(c.phone)} • ${escapeHtml(c.email)}</div>
+            </td>
+            <td class="py-3 px-3 text-slate-700">${escapeHtml(c.gov)}</td>
+            <td class="py-3 px-3 text-xs">
+              <div class="font-bold">${escapeHtml(c.score)} ${c.eligible ? '<span class="text-emerald-700">(مؤهل)</span>' : '<span class="text-amber-700">(غير مكتمل)</span>'}</div>
+              <div class="text-slate-500">${c.humanVerified ? 'إنسان ✓' : '-'}</div>
+            </td>
+            <td class="py-3 px-3">
+              ${c.idPhoto
+                ? `<button onclick="openIdViewer(${c.id})" class="text-xs font-bold bg-purple-100 hover:bg-purple-200 text-kuraimi-purple px-2.5 py-1 rounded-lg cursor-pointer">عرض الهوية</button>`
+                : '<span class="text-xs text-slate-400">لا توجد</span>'}
+            </td>
+            <td class="py-3 px-3">
+              ${c.isWinner
+                ? `<button onclick="selectWinnerForMessaging(${c.id})" class="text-xs font-black bg-kuraimi-gold text-kuraimi-dark px-3 py-1 rounded-full cursor-pointer">🏆 فائز (مراسلة)</button>`
+                : `<button onclick="markContestantAsWinner(${c.id})" class="text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded-lg cursor-pointer">اختيار كفائز</button>`}
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      const winSelect = document.getElementById('messageWinnerSelect');
+      const winners = contestants.filter(c => c.isWinner);
+      if (winners.length === 0) {
+        winSelect.innerHTML = `<option value="">لا يوجد فائزون بعد</option>`;
+        document.getElementById('winnerMessageBody').value = '';
+      } else {
+        const prevVal = winSelect.value;
+        winSelect.innerHTML = winners.map(w => `<option value="${w.id}">${escapeHtml(w.name)} (${escapeHtml(w.ticket)})</option>`).join('');
+        if (prevVal && winners.some(w => String(w.id) === String(prevVal))) {
+          winSelect.value = prevVal;
+        }
+        fillWinnerMessageTemplate();
+      }
     }
 
-    function exportToCSV() {
-      if (state.participants.length === 0) {
-        alert('لا توجد بيانات لتصديرها.');
+    function openIdViewer(id) {
+      const person = contestants.find(c => c.id === id);
+      if (!person || !person.idPhoto) return;
+      document.getElementById('idViewerTitle').textContent = `هوية المتسابق: ${person.name} (${person.ticket})`;
+      document.getElementById('idViewerImage').src = person.idPhoto;
+      const m = document.getElementById('idViewerModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeIdViewerModal() {
+      const m = document.getElementById('idViewerModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    async function markContestantAsWinner(id) {
+      const person = contestants.find(c => c.id === id);
+      if (!person) return;
+      person.isWinner = true;
+      saveContestants();
+      renderAdminDashboard();
+      selectWinnerForMessaging(person.id);
+      launchConfetti(90);
+
+      if (botSettings.token && botSettings.chatId) {
+        try {
+          await fetch(`https://api.telegram.org/bot${encodeURIComponent(botSettings.token)}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: botSettings.chatId,
+              text: `🏆 *تم اختيار فائز من لوحة الإدارة*\n• الاسم: *${person.name}*\n• التذكرة: \`${person.ticket}\`\n• الرقم: \`${person.phone}\`\n• المحافظة: ${person.gov}`,
+              parse_mode: 'Markdown'
+            })
+          });
+        } catch (e) {}
+      }
+    }
+
+    function runAdminDraw() {
+      if (isSpinning) return;
+      const pool = contestants.filter(c => c.eligible && !c.isWinner);
+      if (pool.length === 0) {
+        alert('لا يوجد متسابقون مؤهلون لم يسبق اختيارهم كفائزين.');
         return;
       }
-      const headers = ['رقم التذكرة', 'الاسم الكامل', 'رقم المحفظة', 'البريد الإلكتروني', 'المحافظة', 'النتيجة', 'مؤهل', 'فائز', 'رقم الهوية', 'تاريخ التسجيل'];
-      const rows = state.participants.map(p => [
-        p.ticket,
-        p.name,
-        p.phone,
-        p.email || '',
-        p.gov,
-        p.score || '',
-        p.isCorrect ? 'نعم' : 'لا',
-        p.isWinner ? 'نعم' : 'لا',
-        p.winnerDetails?.idNumber || '',
-        p.createdAt || ''
-      ]);
 
-      const csvContent = '\uFEFF' + [headers, ...rows]
-        .map(row => row.map(cell => `"${String(cell ?? '').replace(/"/g, '""')}"`).join(','))
-        .join('\n');
+      isSpinning = true;
+      const btn = document.getElementById('runDrawSpinBtn');
+      btn.disabled = true;
 
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      let step = 0;
+      const timer = setInterval(() => {
+        const rand = pool[Math.floor(Math.random() * pool.length)];
+        document.getElementById('drawTicketLabel').textContent = rand.ticket;
+        document.getElementById('drawNameLabel').textContent = rand.name;
+        document.getElementById('drawInfoLabel').textContent = `${rand.gov} — ${rand.phone}`;
+        step++;
+        if (step >= 25) {
+          clearInterval(timer);
+          const chosen = pool[Math.floor(Math.random() * pool.length)];
+          chosen.isWinner = true;
+          saveContestants();
+          isSpinning = false;
+          btn.disabled = false;
+          document.getElementById('drawTicketLabel').textContent = chosen.ticket;
+          document.getElementById('drawNameLabel').textContent = `🏆 ${chosen.name}`;
+          document.getElementById('drawInfoLabel').textContent = `تم اختياره كفائز — ${chosen.gov} (${chosen.phone})`;
+          renderAdminDashboard();
+          selectWinnerForMessaging(chosen.id);
+          launchConfetti(110);
+        }
+      }, 80);
+    }
+
+    function selectWinnerForMessaging(id) {
+      const sel = document.getElementById('messageWinnerSelect');
+      sel.value = String(id);
+      fillWinnerMessageTemplate();
+    }
+
+    function fillWinnerMessageTemplate() {
+      const id = parseInt(document.getElementById('messageWinnerSelect').value, 10);
+      const winner = contestants.find(c => c.id === id);
+      if (!winner) {
+        document.getElementById('winnerMessageBody').value = '';
+        return;
+      }
+      document.getElementById('winnerMessageBody').value =
+        `مبروك يا ${winner.name}! 🎉\n` +
+        `لقد تم اختيارك كفائز في مسابقة محفظة ام فلوس برقم التذكرة (${winner.ticket}).\n` +
+        `يرجى التواصل معنا وتأكيد بياناتك (${winner.phone} - ${winner.gov}) لاستكمال إجراءات استلام الجائزة.`;
+    }
+
+    async function sendMessageViaTelegramBot() {
+      const targetChat = (document.getElementById('winnerTelegramChatId').value.trim() || botSettings.chatId);
+      const text = document.getElementById('winnerMessageBody').value.trim();
+      if (!botSettings.token || !targetChat || !text) {
+        alert('تأكد من توفر Bot Token ومعرف المراسلة ونص الرسالة.');
+        return;
+      }
+      try {
+        const res = await fetch(`https://api.telegram.org/bot${encodeURIComponent(botSettings.token)}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: targetChat, text })
+        });
+        const data = await res.json();
+        alert(data.ok ? 'تم إرسال الرسالة عبر البوت بنجاح.' : 'تعذر الإرسال، تحقق من معرف المستلم أو صلاحيات البوت.');
+      } catch (e) {
+        alert('حدث خطأ أثناء الاتصال بواجهة البوت.');
+      }
+    }
+
+    function sendMessageViaWhatsApp() {
+      const id = parseInt(document.getElementById('messageWinnerSelect').value, 10);
+      const winner = contestants.find(c => c.id === id);
+      const text = document.getElementById('winnerMessageBody').value.trim();
+      if (!winner || !text) return;
+      const intlPhone = winner.phone.startsWith('967') ? winner.phone : '967' + winner.phone;
+      window.open(`https://wa.me/${intlPhone}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    }
+
+    function openWinnerEmailDraft() {
+      const id = parseInt(document.getElementById('messageWinnerSelect').value, 10);
+      const winner = contestants.find(c => c.id === id);
+      const text = document.getElementById('winnerMessageBody').value.trim();
+      if (!winner || !winner.email) return;
+      const subject = encodeURIComponent(`تهنئة الفوز في مسابقة محفظة ام فلوس (${winner.ticket})`);
+      window.location.href = `mailto:${encodeURIComponent(winner.email)}?subject=${subject}&body=${encodeURIComponent(text)}`;
+    }
+
+    function copyWinnerMessageText() {
+      const text = document.getElementById('winnerMessageBody').value.trim();
+      if (!text) return;
+      navigator.clipboard?.writeText(text).then(() => alert('تم نسخ نص الرسالة.'));
+    }
+
+    function saveBotSettings() {
+      botSettings = {
+        token: document.getElementById('cfgBotToken').value.trim(),
+        chatId: document.getElementById('cfgBotChatId').value.trim()
+      };
+      localStorage.setItem(STORAGE_BOT_KEY, JSON.stringify(botSettings));
+      alert('تم حفظ إعدادات البوت.');
+    }
+
+    async function testBotSettings() {
+      saveBotSettings();
+      if (!botSettings.token || !botSettings.chatId) {
+        alert('أدخل Token و Chat ID أولاً.');
+        return;
+      }
+      try {
+        const res = await fetch(`https://api.telegram.org/bot${encodeURIComponent(botSettings.token)}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: botSettings.chatId, text: '✅ تم اختبار اتصال البوت بنجاح — لوحة إدارة مسابقة ام فلوس.' })
+        });
+        const data = await res.json();
+        alert(data.ok ? 'نجح الاتصال بالبوت.' : 'فشل الاتصال بالبوت، راجع الرموز.');
+      } catch (e) {
+        alert('تعذر الوصول إلى خادم تيليجرام.');
+      }
+    }
+
+    function loadDemoContestants() {
+      const demo = [
+        { name: 'أحمد علي محمد', phone: '771234501', gov: 'صنعاء', email: 'ahmed1@example.com' },
+        { name: 'فاطمة حسن صالح', phone: '771234502', gov: 'عدن', email: 'fatima2@example.com' },
+        { name: 'خالد عبدالله سعيد', phone: '771234503', gov: 'تعز', email: 'khaled3@example.com' },
+        { name: 'مريم يحيى قاسم', phone: '771234504', gov: 'إب', email: 'mariam4@example.com' }
+      ];
+      demo.forEach((d, idx) => {
+        if (!contestants.some(c => c.phone === d.phone)) {
+          contestants.unshift({
+            id: Date.now() + idx,
+            ticket: generateTicket(),
+            name: d.name,
+            phone: d.phone,
+            gov: d.gov,
+            email: d.email,
+            passDigest: 'demo_hash',
+            idPhoto: '',
+            score: '3/3',
+            eligible: true,
+            humanVerified: true,
+            isWinner: false,
+            createdAt: new Date().toLocaleString('ar-YE')
+          });
+        }
+      });
+      saveContestants();
+      renderAdminDashboard();
+    }
+
+    function exportContestantsCSV() {
+      if (contestants.length === 0) return;
+      const headers = ['التذكرة', 'الاسم', 'الرقم', 'المحافظة', 'البريد', 'النتيجة', 'مؤهل', 'فائز', 'التاريخ'];
+      const rows = contestants.map(c => [c.ticket, c.name, c.phone, c.gov, c.email, c.score, c.eligible ? 'نعم' : 'لا', c.isWinner ? 'نعم' : 'لا', c.createdAt]);
+      const csv = '\uFEFF' + [headers, ...rows].map(r => r.map(x => `"${String(x ?? '').replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `mfloos-contest-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.download = `mfloos-contestants-${new Date().toISOString().slice(0, 10)}.csv`;
       a.click();
       URL.revokeObjectURL(url);
     }
 
-    function clearAllData() {
-      if (!isAdminLoggedIn) {
-        openAdminModal();
-        return;
-      }
-      if (!confirm('هل أنت متأكد من مسح جميع بيانات المشاركين والفائزين؟')) return;
-      state.participants = [];
-      lastCreatedParticipant = null;
-      latestBatchWinners = [];
-      refreshAllUI();
-      document.getElementById('latestWinnersContainer').classList.add('hidden');
-      document.getElementById('ticketEmptyState').classList.remove('hidden');
-      document.getElementById('ticketFilledState').classList.add('hidden');
+    function clearAllContestants() {
+      if (!confirm('هل تريد مسح جميع المتسابقين؟')) return;
+      contestants = [];
+      saveContestants();
+      renderAdminDashboard();
     }
 
     function launchConfetti(count = 80) {
@@ -1551,7 +1224,6 @@
       const ctx = canvas.getContext('2d');
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-
       const colors = ['#D4AF37', '#F3D977', '#4A148C', '#9C27B0', '#10B981'];
       const pieces = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
@@ -1564,7 +1236,6 @@
         vRot: -6 + Math.random() * 12,
         color: colors[Math.floor(Math.random() * colors.length)]
       }));
-
       let frames = 0;
       function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1580,13 +1251,14 @@
           ctx.restore();
         });
         frames++;
-        if (frames < 140) requestAnimationFrame(draw);
+        if (frames < 130) requestAnimationFrame(draw);
         else ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
       draw();
     }
 
-    refreshAllUI();
+    assignPersonalizedQuestions(true);
+    generateCarCaptchaGrid();
   </script>
 </body>
 </html>
