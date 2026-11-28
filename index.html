@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شبكة الهرم نت - تسجيل الدخول</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>الهرم نت | البوابة الذكية والاستهلاك</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0b0f19;
-            --card-bg: rgba(23, 31, 50, 0.85);
-            --gold: #f59e0b;
-            --gold-hover: #d97706;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --jaib-color: #e11d48;
-            --kuraimi-color: #2563eb;
+            --bg-primary: #060913;
+            --bg-card: rgba(15, 23, 42, 0.78);
+            --bg-card-elevated: rgba(30, 41, 59, 0.7);
+            --accent-gold: #fbbf24;
+            --accent-gold-dark: #d97706;
+            --accent-cyan: #22d3ee;
+            --accent-emerald: #10b981;
+            --accent-rose: #f43f5e;
+            --accent-blue: #3b82f6;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-glass: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -26,596 +29,727 @@
         }
 
         body {
-            background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(37, 99, 235, 0.12) 0%, transparent 40%);
-            color: var(--text-main);
+            background-color: var(--bg-primary);
+            background-image:
+                radial-gradient(circle at 10% 15%, rgba(251, 191, 36, 0.14) 0%, transparent 38%),
+                radial-gradient(circle at 90% 20%, rgba(34, 211, 238, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 50% 95%, rgba(59, 130, 246, 0.14) 0%, transparent 45%);
+            color: var(--text-primary);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 16px;
         }
 
-        .container {
+        .app-shell {
             width: 100%;
-            max-width: 430px;
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            max-width: 460px;
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-glass);
+            border-radius: 26px;
+            padding: 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12);
         }
 
-        /* الشعار والعنوان */
-        .header {
+        /* شريط الحالة العلوي */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.28);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 8px #10b981;
+        }
+
+        /* الهوية البصرية */
+        .brand-header {
             text-align: center;
             margin-bottom: 20px;
         }
 
-        .logo-icon {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, var(--gold), #b45309);
-            border-radius: 16px;
-            display: inline-flex;
+        .pyramid-badge {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 12px;
+            border-radius: 22px;
+            background: linear-gradient(145deg, var(--accent-gold), var(--accent-gold-dark));
+            display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+            box-shadow: 0 12px 28px rgba(251, 191, 36, 0.28);
         }
 
-        .logo-icon svg {
-            width: 36px;
-            height: 36px;
-            fill: #fff;
+        .pyramid-badge svg {
+            width: 40px;
+            height: 40px;
+            fill: #090d16;
         }
 
-        .header h1 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--gold);
-            letter-spacing: 0.5px;
+        .brand-title {
+            font-size: 1.75rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #fde68a, var(--accent-gold), #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .header p {
+        .brand-subtitle {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
+            margin-top: 2px;
         }
 
-        /* شريط الأخبار */
-        .marquee-box {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.25);
-            border-radius: 10px;
+        /* شريط الإعلانات */
+        .ticker {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.22);
+            border-radius: 14px;
             padding: 8px 12px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             font-size: 0.8rem;
-            color: #fcd34d;
-            overflow: hidden;
-            white-space: nowrap;
+            color: #fde68a;
         }
 
-        /* التبويبات الرئيسية */
-        .tabs {
+        /* التبديل بين الشاشات الرئيسية */
+        .mode-switch {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 8px;
-            background: rgba(11, 15, 25, 0.6);
+            background: rgba(6, 9, 19, 0.75);
             padding: 6px;
-            border-radius: 12px;
+            border-radius: 16px;
+            border: 1px solid var(--border-glass);
             margin-bottom: 20px;
         }
 
-        .tab-btn {
-            background: transparent;
+        .mode-btn {
             border: none;
-            color: var(--text-muted);
-            padding: 10px 5px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 700;
+            background: transparent;
+            color: var(--text-secondary);
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 800;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
 
-        .tab-btn.active {
-            background: var(--gold);
-            color: #000;
+        .mode-btn.active {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+            color: #090d16;
+            box-shadow: 0 6px 18px rgba(251, 191, 36, 0.25);
         }
 
-        .tab-content {
+        .screen {
             display: none;
-            animation: fadeIn 0.3s ease;
+            animation: fadeSlide 0.3s ease;
         }
 
-        .tab-content.active {
+        .screen.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* نموذج تسجيل الدخول */
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group label {
+        /* حقول الإدخال والأزرار */
+        .field-label {
             display: block;
             font-size: 0.85rem;
-            margin-bottom: 6px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 700;
         }
 
-        .input-field {
+        .modern-input {
             width: 100%;
-            padding: 13px 15px;
-            background: rgba(11, 15, 25, 0.8);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            padding: 14px 16px;
+            background: rgba(6, 9, 19, 0.85);
+            border: 1px solid var(--border-glass);
+            border-radius: 15px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            font-weight: 700;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             outline: none;
-            transition: border 0.3s;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            margin-bottom: 14px;
         }
 
-        .input-field:focus {
-            border-color: var(--gold);
+        .modern-input:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15);
         }
 
-        .btn-primary {
+        .btn-gold {
             width: 100%;
-            padding: 13px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+            padding: 14px;
             border: none;
-            border-radius: 12px;
-            color: #000;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
+            color: #090d16;
             font-size: 1rem;
-            font-weight: 800;
+            font-weight: 900;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .btn-primary:hover {
+        .btn-gold:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+            box-shadow: 0 10px 24px rgba(251, 191, 36, 0.32);
         }
 
-        /* قسم المشاهدة المجانية */
-        .free-media-card {
-            margin-top: 20px;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.05));
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 14px;
+        /* بطاقة المسلسلات المجانية */
+        .series-banner {
+            margin-top: 18px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(34, 211, 238, 0.08));
+            border: 1px solid rgba(16, 185, 129, 0.32);
+            border-radius: 18px;
             padding: 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .free-media-info h3 {
-            font-size: 0.95rem;
-            color: #34d399;
+        .series-text h3 {
+            font-size: 0.96rem;
+            font-weight: 800;
+            color: #6ee7b7;
             margin-bottom: 3px;
         }
 
-        .free-media-info p {
+        .series-text p {
             font-size: 0.78rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
-        .btn-free {
-            background: #10b981;
-            color: #000;
+        .btn-series {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #04130d;
             border: none;
-            padding: 9px 14px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 800;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 900;
             cursor: pointer;
             white-space: nowrap;
-            transition: background 0.2s;
         }
 
-        .btn-free:hover {
-            background: #059669;
-            color: #fff;
+        /* قسم الشراء عبر جيب والكريمي */
+        .wallets-box {
+            margin-top: 18px;
+            background: var(--bg-card-elevated);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            padding: 15px;
         }
 
-        /* قسم الشراء عبر المنصات */
-        .payment-section {
-            margin-top: 15px;
-        }
-
-        .section-title {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        .wallets-title {
+            font-size: 0.84rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
             text-align: center;
-            margin-bottom: 10px;
         }
 
-        .payment-buttons {
+        .package-select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(6, 9, 19, 0.85);
+            border: 1px solid var(--border-glass);
+            color: var(--text-primary);
+            font-size: 0.86rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        .wallet-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
 
-        .pay-btn {
+        .wallet-btn {
             padding: 11px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.05);
+            border-radius: 13px;
+            border: 1px solid var(--border-glass);
+            background: rgba(6, 9, 19, 0.65);
             color: #fff;
-            font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.86rem;
+            font-weight: 800;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
             transition: all 0.2s;
         }
 
-        .pay-btn.jaib:hover {
-            background: rgba(225, 29, 72, 0.2);
-            border-color: var(--jaib-color);
+        .wallet-btn.jaib:hover {
+            border-color: var(--accent-rose);
+            background: rgba(244, 63, 94, 0.16);
         }
 
-        .pay-btn.kuraimi:hover {
-            background: rgba(37, 99, 235, 0.2);
-            border-color: var(--kuraimi-color);
+        .wallet-btn.kuraimi:hover {
+            border-color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.16);
         }
 
-        /* معاينة الرصيد */
-        .balance-box {
-            background: rgba(11, 15, 25, 0.7);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 15px;
-            margin-top: 15px;
-            display: none;
+        /* صفحة الاستهلاك بعد تعبئة الكرت */
+        .usage-card {
+            background: var(--bg-card-elevated);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 14px;
         }
 
-        .balance-row {
+        .usage-top {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px dashed var(--border-color);
-            font-size: 0.88rem;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
-        .balance-row:last-child {
+        .card-badge {
+            background: rgba(34, 211, 238, 0.14);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 12px;
+            background: rgba(6, 9, 19, 0.9);
+            border-radius: 999px;
+            overflow: hidden;
+            margin: 10px 0 8px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .progress-fill {
+            width: 62%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold));
+            border-radius: 999px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .stat-box {
+            background: rgba(6, 9, 19, 0.7);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 13px;
+        }
+
+        .stat-label {
+            font-size: 0.76rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.02rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+        }
+
+        .info-list {
+            background: rgba(6, 9, 19, 0.65);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+            font-size: 0.82rem;
+        }
+
+        .info-row:last-child {
             border-bottom: none;
         }
 
-        .balance-val {
-            font-weight: 700;
-            color: var(--gold);
+        .info-row span:first-child {
+            color: var(--text-secondary);
         }
 
-        /* قائمة الأسعار */
-        .price-grid {
+        .info-row span:last-child {
+            font-weight: 800;
+        }
+
+        .action-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
 
-        .price-card {
-            background: rgba(11, 15, 25, 0.7);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-        }
-
-        .price-card .amount {
-            font-size: 1.1rem;
+        .btn-outline {
+            padding: 11px;
+            border-radius: 14px;
+            border: 1px solid var(--border-glass);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+            font-size: 0.84rem;
             font-weight: 800;
-            color: var(--gold);
+            cursor: pointer;
         }
 
-        .price-card .details {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 4px;
+        .btn-danger-soft {
+            padding: 11px;
+            border-radius: 14px;
+            border: 1px solid rgba(244, 63, 94, 0.35);
+            background: rgba(244, 63, 94, 0.14);
+            color: #fda4af;
+            font-size: 0.84rem;
+            font-weight: 800;
+            cursor: pointer;
         }
 
-        /* النوافذ المنبثقة (Modal) */
-        .modal-overlay {
+        /* النوافذ المنبثقة */
+        .modal-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(5px);
+            background: rgba(2, 6, 23, 0.78);
+            backdrop-filter: blur(6px);
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 15px;
-            z-index: 100;
+            padding: 16px;
+            z-index: 200;
         }
 
-        .modal-box {
-            background: #171f32;
-            border: 1px solid var(--border-color);
-            border-radius: 18px;
-            padding: 22px;
+        .modal-card {
             width: 100%;
-            max-width: 380px;
+            max-width: 390px;
+            background: #0f172a;
+            border: 1px solid var(--border-glass);
+            border-radius: 22px;
+            padding: 22px;
             text-align: center;
         }
 
-        .modal-box h3 {
-            margin-bottom: 10px;
-            color: var(--gold);
+        .modal-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--accent-gold);
         }
 
-        .account-copy-box {
-            background: #0b0f19;
-            padding: 12px;
-            border-radius: 10px;
-            margin: 12px 0;
+        .modal-card p {
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .copy-strip {
+            margin: 14px 0;
+            background: #060913;
+            border: 1px dashed var(--accent-gold);
+            border-radius: 12px;
+            padding: 11px 14px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            border: 1px dashed var(--gold);
+            justify-content: space-between;
         }
 
-        .copy-btn {
-            background: var(--gold);
-            color: #000;
+        .copy-strip strong {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .copy-chip {
+            background: var(--accent-gold);
+            color: #090d16;
             border: none;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .modal-close {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
         }
 
-        .close-modal {
-            margin-top: 15px;
-            background: transparent;
-            border: 1px solid var(--text-muted);
-            color: var(--text-muted);
-            padding: 8px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .footer {
-            margin-top: 20px;
+        .footer-note {
+            margin-top: 18px;
             text-align: center;
             font-size: 0.78rem;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- الهيدر -->
-        <div class="header">
-            <div class="logo-icon">
-                <!-- أيقونة هرم وواي فاي -->
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2L2 19h20L12 2zm0 4.8L17.5 16h-11L12 6.8z"/>
-                </svg>
-            </div>
-            <h1>شبكة الهرم نت</h1>
-            <p>سرعة فائقة • تغطية شاملة • استقرار دائم</p>
+    <div class="app-shell">
+        <div class="top-bar">
+            <span>الهرم نت • الجيل الخامس</span>
+            <span class="status-pill"><span class="status-dot"></span> البوابة متصلة</span>
         </div>
 
-        <!-- شريط التنبيهات -->
-        <div class="marquee-box">
+        <div class="brand-header">
+            <div class="pyramid-badge">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2L1.5 19.5h21L12 2zm0 5.4l6.2 10.6H5.8L12 7.4z"/>
+                </svg>
+            </div>
+            <h1 class="brand-title">الهرم نت</h1>
+            <p class="brand-subtitle">إنترنت عالي السرعة • استهلاك ذكي • ترفيه مجاني</p>
+        </div>
+
+        <div class="ticker">
             <marquee direction="right" scrollamount="4">
-                أهلاً بكم في شبكة الهرم نت اللاسلكية — يمكنك الآن شراء الكروت إلكترونياً عبر محفظة جيب وبنك الكريمي على مدار 24 ساعة — استمتع بمشاهدة المسلسلات مجاناً!
+                مرحباً بك في الهرم نت — اشحن رصيدك فوراً عبر جيب أو الكريمي، وتابع استهلاك كرتك لحظة بلحظة، واستمتع بمشاهدة المسلسلات مجاناً دون خصم من الرصيد.
             </marquee>
         </div>
 
-        <!-- التبويبات -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('login', this)">تسجيل الدخول</button>
-            <button class="tab-btn" onclick="switchTab('balance', this)">معاينة الرصيد</button>
-            <button class="tab-btn" onclick="switchTab('prices', this)">الباقات</button>
+        <!-- التبديل بين شاشة الدخول وصفحة الاستهلاك -->
+        <div class="mode-switch">
+            <button type="button" id="btnScreenLogin" class="mode-btn active" onclick="showScreen('login')">تعبئة كرت ودخول</button>
+            <button type="button" id="btnScreenUsage" class="mode-btn" onclick="showScreen('usage')">صفحة الاستهلاك</button>
         </div>
 
-        <!-- 1. تبويب تسجيل الدخول -->
-        <div id="tab-login" class="tab-content active">
-            <form name="login" action="$(link-login-only)" method="post" onsubmit="return handleDemoLogin(event)">
+        <!-- 1. شاشة تسجيل الدخول والشراء -->
+        <div id="screen-login" class="screen active">
+            <form name="login" action="$(link-login-only)" method="post" onsubmit="return handleCardSubmit(event)">
                 <input type="hidden" name="dst" value="$(link-orig)" />
                 <input type="hidden" name="popup" value="true" />
-                
-                <div class="input-group">
-                    <label>أدخل رقم الكرت</label>
-                    <input type="text" id="cardNumber" name="username" class="input-field" placeholder="مثال: 8849201" required autocomplete="off">
-                </div>
 
-                <button type="submit" class="btn-primary">اتصال بالإنترنت</button>
+                <label class="field-label" for="cardCode">أدخل رقم الكرت لتفعيل الاتصال وعرض الاستهلاك</label>
+                <input type="text" id="cardCode" name="username" class="modern-input" placeholder="مثال: 9045128" required autocomplete="off">
+                <button type="submit" class="btn-gold">تفعيل الكرت والدخول</button>
             </form>
 
-            <!-- بوابة المسلسلات المجانية -->
-            <div class="free-media-card">
-                <div class="free-media-info">
-                    <h3>🎬 سينما الهرم المجانية</h3>
-                    <p>شاهد أحدث المسلسلات والأفلام بدون رصيد</p>
+            <!-- اشتراك مجاني للمسلسلات -->
+            <div class="series-banner">
+                <div class="series-text">
+                    <h3>🎬 اشتراك المسلسلات المجاني</h3>
+                    <p>دخول فوري لمكتبة المسلسلات بدون رصيد</p>
                 </div>
-                <button type="button" class="btn-free" onclick="openModal('freeModal')">دخول مجاني</button>
+                <button type="button" class="btn-series" onclick="openSeriesModal()">مشاهدة مجانية</button>
             </div>
 
-            <!-- الشراء عبر المحافظ -->
-            <div class="payment-section">
-                <div class="section-title">شراء كرت إلكتروني عبر المحافظ</div>
-                <div class="payment-buttons">
-                    <button type="button" class="pay-btn jaib" onclick="openPayModal('jaib')">
-                        <span>🔴</span> محفظة جيب
-                    </button>
-                    <button type="button" class="pay-btn kuraimi" onclick="openPayModal('kuraimi')">
-                        <span>🔵</span> بنك الكريمي
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. تبويب معاينة الرصيد -->
-        <div id="tab-balance" class="tab-content">
-            <div class="input-group">
-                <label>أدخل رقم الكرت للاستعلام عن الرصيد</label>
-                <input type="text" id="checkCardInput" class="input-field" placeholder="أدخل رقم الكرت هنا...">
-            </div>
-            <button type="button" class="btn-primary" onclick="checkBalance()">استعلام الآن</button>
-
-            <div id="balanceResult" class="balance-box">
-                <div class="balance-row">
-                    <span>حالة الكرت:</span>
-                    <span class="balance-val" style="color: #34d399;">نشط حالياً</span>
-                </div>
-                <div class="balance-row">
-                    <span>الرصيد المتبقي:</span>
-                    <span class="balance-val">1.45 جيجابايت</span>
-                </div>
-                <div class="balance-row">
-                    <span>الوقت المتبقي:</span>
-                    <span class="balance-val">4 أيام و 12 ساعة</span>
-                </div>
-                <div class="balance-row">
-                    <span>صلاحية الكرت:</span>
-                    <span class="balance-val">تنتهي 2026/12/05</span>
+            <!-- شراء عبر جيب والكريمي -->
+            <div class="wallets-box">
+                <div class="wallets-title">شراء كرت جديد عبر جيب أو الكريمي</div>
+                <select id="selectedPackage" class="package-select">
+                    <option value="باقة 100 ريال (500 ميجا - يومان)">باقة 100 ريال — 500 ميجا • يومان</option>
+                    <option value="باقة 200 ريال (1.2 جيجا - 4 أيام)">باقة 200 ريال — 1.2 جيجا • 4 أيام</option>
+                    <option value="باقة 500 ريال (3.5 جيجا - 10 أيام)">باقة 500 ريال — 3.5 جيجا • 10 أيام</option>
+                    <option value="باقة 1000 ريال (8 جيجا - 30 يوماً)">باقة 1000 ريال — 8 جيجا • 30 يوماً</option>
+                </select>
+                <div class="wallet-grid">
+                    <button type="button" class="wallet-btn jaib" onclick="openWalletModal('jaib')">🔴 الدفع عبر جيب</button>
+                    <button type="button" class="wallet-btn kuraimi" onclick="openWalletModal('kuraimi')">🔵 الدفع عبر الكريمي</button>
                 </div>
             </div>
         </div>
 
-        <!-- 3. تبويب الأسعار -->
-        <div id="tab-prices" class="tab-content">
-            <div class="price-grid">
-                <div class="price-card">
-                    <div class="amount">100 ريال</div>
-                    <div class="details">400 ميجا • يومين</div>
+        <!-- 2. صفحة الاستهلاك بعد تعبئة الكرت -->
+        <div id="screen-usage" class="screen">
+            <div class="usage-card">
+                <div class="usage-top">
+                    <div>
+                        <div style="font-size: 0.78rem; color: var(--text-secondary);">رقم الكرت المفعل</div>
+                        <div id="activeCardDisplay" style="font-size: 1.1rem; font-weight: 900; color: #fff;">#9045128</div>
+                    </div>
+                    <span class="card-badge">الباقة نشطة</span>
                 </div>
-                <div class="price-card">
-                    <div class="amount">200 ريال</div>
-                    <div class="details">1 جيجا • 4 أيام</div>
+
+                <div class="progress-track">
+                    <div id="dataProgressBar" class="progress-fill"></div>
                 </div>
-                <div class="price-card">
-                    <div class="amount">500 ريال</div>
-                    <div class="details">3 جيجا • 10 أيام</div>
+                <div class="progress-meta">
+                    <span id="usedDataText">المستهلك: 1.86 جيجابايت</span>
+                    <span id="remainDataText">المتبقي: 1.14 جيجابايت</span>
                 </div>
-                <div class="price-card">
-                    <div class="amount">1000 ريال</div>
-                    <div class="details">7 جيجا • شهر كامل</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-label">الوقت المتبقي</div>
+                    <div id="remainTimeText" class="stat-value">5 أيام و 08 ساعات</div>
                 </div>
+                <div class="stat-box">
+                    <div class="stat-label">حالة المسلسلات</div>
+                    <div class="stat-value" style="color: #34d399;">مجاني مفعل</div>
+                </div>
+            </div>
+
+            <div class="info-list">
+                <div class="info-row">
+                    <span>إجمالي الباقة</span>
+                    <span id="totalPackageText">3.00 جيجابايت</span>
+                </div>
+                <div class="info-row">
+                    <span>عنوان IP الجهاز</span>
+                    <span>10.10.24.118</span>
+                </div>
+                <div class="info-row">
+                    <span>تاريخ انتهاء الصلاحية</span>
+                    <span>2026/12/04</span>
+                </div>
+            </div>
+
+            <div class="action-row">
+                <button type="button" class="btn-outline" onclick="openSeriesModal()">🎬 مكتبة المسلسلات</button>
+                <button type="button" class="btn-danger-soft" onclick="resetToLogin()">تسجيل خروج</button>
             </div>
         </div>
 
-        <div class="footer">
-            الدعم الفني والصيانة: <strong style="color: var(--gold);">770000000</strong>
-        </div>
-    </div>
-
-    <!-- نافذة الدفع (جيب / الكريمي) -->
-    <div id="payModal" class="modal-overlay">
-        <div class="modal-box">
-            <h3 id="payModalTitle">الشراء عبر المحفظة</h3>
-            <p id="payModalDesc" style="font-size: 0.85rem; color: var(--text-muted);"></p>
-            
-            <div class="account-copy-box">
-                <span id="accountNumber" style="font-weight: 800; letter-spacing: 1px;">771234567</span>
-                <button class="copy-btn" onclick="copyAccount()">نسخ الرقم</button>
-            </div>
-
-            <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 10px;">
-                بعد التحويل، أرسل إشعار العملية إلى واتساب الدعم الفني لاستلام الكرت فوراً.
-            </p>
-            <button class="btn-primary" onclick="alert('سيتم تحويلك إلى واتساب المبيعات...')">إرسال الإشعار واتساب</button>
-            <button class="close-modal" onclick="closeModal('payModal')">إغلاق</button>
+        <div class="footer-note">
+            الدعم الفني لشبكة الهرم نت: <strong style="color: var(--accent-gold);">770000000</strong>
         </div>
     </div>
 
-    <!-- نافذة المشاهدة المجانية -->
-    <div id="freeModal" class="modal-overlay">
-        <div class="modal-box">
-            <h3>🎬 بوابة الترفيه المجانية</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
-                تم تفعيل وضع التصفح المحلي المجاني. يمكنك الدخول الآن إلى استراحة المسلسلات والأفلام دون الحاجة لرصيد.
+    <!-- نافذة الدفع عبر جيب / الكريمي -->
+    <div id="walletModal" class="modal-backdrop">
+        <div class="modal-card">
+            <h3 id="walletTitle">إتمام الشراء</h3>
+            <p id="walletSubtitle"></p>
+            <div class="copy-strip">
+                <strong id="walletNumber">777000111</strong>
+                <button type="button" class="copy-chip" onclick="copyWalletNumber()">نسخ</button>
+            </div>
+            <p id="selectedPkgNote" style="font-size: 0.8rem; color: #fde68a; margin-bottom: 12px;"></p>
+            <button type="button" class="btn-gold" onclick="alert('سيتم فتح واتساب المبيعات لإرسال سند التحويل واستلام الكرت.')">تأكيد عبر واتساب</button>
+            <button type="button" class="modal-close" onclick="closeModal('walletModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة اشتراك المسلسلات المجاني -->
+    <div id="seriesModal" class="modal-backdrop">
+        <div class="modal-card">
+            <h3>🎬 اشتراك المسلسلات المجاني</h3>
+            <p>
+                اشتراك مجاني مخصص لمشتركي الهرم نت لمشاهدة المسلسلات والأفلام عبر السيرفر المحلي دون استهلاك رصيد الكرت.
             </p>
-            <!-- في المايكروتك الفعلي يتم توجيه الرابط إلى IP السيرفر المحلي مثل http://10.10.10.2 -->
-            <button class="btn-free" style="width: 100%; padding: 12px; font-size: 0.95rem;" onclick="alert('جاري الدخول إلى سيرفر المسلسلات المحلي (بدون استهلاك رصيد)...')">
-                الانتقال إلى مكتبة المسلسلات الآن
+            <button type="button" class="btn-series" style="width: 100%; margin-top: 14px; padding: 12px;" onclick="alert('جاري فتح بوابة المسلسلات المجانية (وضع التصفح المحلي بدون خصم رصيد).')">
+                الدخول إلى المسلسلات الآن
             </button>
-            <button class="close-modal" onclick="closeModal('freeModal')">رجوع</button>
+            <button type="button" class="modal-close" onclick="closeModal('seriesModal')">إغلاق</button>
         </div>
     </div>
 
     <script>
-        // التبديل بين التبويبات
-        function switchTab(tabName, btn) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-' + tabName).classList.add('active');
-            btn.classList.add('active');
+        function showScreen(screenName) {
+            document.getElementById('screen-login').classList.toggle('active', screenName === 'login');
+            document.getElementById('screen-usage').classList.toggle('active', screenName === 'usage');
+            document.getElementById('btnScreenLogin').classList.toggle('active', screenName === 'login');
+            document.getElementById('btnScreenUsage').classList.toggle('active', screenName === 'usage');
         }
 
-        // محاكاة تسجيل الدخول للمعاينة على GitHub
-        function handleDemoLogin(e) {
-            // إذا كان الملف يعمل خارج المايكروتك (مثل GitHub Pages)
+        function handleCardSubmit(event) {
+            const cardInput = document.getElementById('cardCode').value.trim();
+            if (!cardInput) return false;
+
+            // عند المعاينة على GitHub Pages أو ملف محلي ننتقل مباشرة لصفحة الاستهلاك
             if (window.location.hostname.includes('github.io') || window.location.protocol === 'file:') {
-                e.preventDefault();
-                const card = document.getElementById('cardNumber').value;
-                alert('معاينة GitHub:\nتم إرسال رقم الكرت (' + card + ') بنجاح!\nعند رفعه للمايكروتك سيتصل بالإنترنت مباشرة.');
+                event.preventDefault();
+                document.getElementById('activeCardDisplay').textContent = '#' + cardInput;
+                showScreen('usage');
                 return false;
             }
             return true;
         }
 
-        // محاكاة معاينة الرصيد
-        function checkBalance() {
-            const val = document.getElementById('checkCardInput').value.trim();
-            if (!val) {
-                alert('يرجى إدخال رقم الكرت أولاً');
-                return;
-            }
-            document.getElementById('balanceResult').style.display = 'block';
+        function resetToLogin() {
+            document.getElementById('cardCode').value = '';
+            showScreen('login');
         }
 
-        // فتح نافذة الدفع
-        function openPayModal(platform) {
-            const title = document.getElementById('payModalTitle');
-            const desc = document.getElementById('payModalDesc');
-            const acc = document.getElementById('accountNumber');
+        function openWalletModal(type) {
+            const title = document.getElementById('walletTitle');
+            const subtitle = document.getElementById('walletSubtitle');
+            const num = document.getElementById('walletNumber');
+            const pkg = document.getElementById('selectedPackage').value;
 
-            if (platform === 'jaib') {
-                title.innerText = 'الشراء عبر محفظة جيب (Jaib)';
+            if (type === 'jaib') {
+                title.textContent = 'الدفع عبر محفظة جيب (Jaib)';
                 title.style.color = '#fb7185';
-                desc.innerText = 'حوّل قيمة الباقة إلى رقم محفظة جيب الخاص بشبكة الهرم نت:';
-                acc.innerText = '777000111';
+                subtitle.textContent = 'حوّل قيمة الباقة إلى رقم محفظة جيب التالي:';
+                num.textContent = '777000111';
             } else {
-                title.innerText = 'الشراء عبر بنك الكريمي';
+                title.textContent = 'الدفع عبر بنك الكريمي';
                 title.style.color = '#60a5fa';
-                desc.innerText = 'قم بالإيداع إلى حساب حاسب / الكريمي الخاص بشبكة الهرم نت:';
-                acc.innerText = '3001234567';
+                subtitle.textContent = 'أودع قيمة الباقة إلى حساب الكريمي التالي:';
+                num.textContent = '3001234567';
             }
-            document.getElementById('payModal').style.display = 'flex';
+
+            document.getElementById('selectedPkgNote').textContent = 'الباقة المختارة: ' + pkg;
+            document.getElementById('walletModal').style.display = 'flex';
         }
 
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
+        function openSeriesModal() {
+            document.getElementById('seriesModal').style.display = 'flex';
         }
 
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
         }
 
-        function copyAccount() {
-            const text = document.getElementById('accountNumber').innerText;
-            navigator.clipboard.writeText(text);
-            alert('تم نسخ الرقم: ' + text);
+        function copyWalletNumber() {
+            const val = document.getElementById('walletNumber').textContent;
+            navigator.clipboard.writeText(val);
+            alert('تم نسخ الرقم: ' + val);
         }
     </script>
 </body>
