@@ -8,13 +8,13 @@
     <style>
         :root[data-theme="dark"] {
             --bg-body: #060913;
-            --bg-gradient:
+            --bg-glow:
                 radial-gradient(circle at 15% 12%, rgba(250, 204, 21, 0.16) 0%, transparent 40%),
                 radial-gradient(circle at 85% 18%, rgba(56, 189, 248, 0.15) 0%, transparent 42%),
                 radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.12) 0%, transparent 45%);
-            --surface: rgba(15, 23, 42, 0.85);
-            --card: rgba(23, 35, 62, 0.82);
-            --card-soft: rgba(8, 13, 26, 0.75);
+            --surface: rgba(15, 23, 42, 0.88);
+            --card: rgba(23, 35, 62, 0.84);
+            --card-soft: rgba(8, 13, 26, 0.78);
             --text: #f8fafc;
             --muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.11);
@@ -23,13 +23,13 @@
 
         :root[data-theme="light"] {
             --bg-body: #f1f5f9;
-            --bg-gradient:
+            --bg-glow:
                 radial-gradient(circle at 15% 12%, rgba(245, 158, 11, 0.18) 0%, transparent 42%),
                 radial-gradient(circle at 85% 18%, rgba(14, 165, 233, 0.15) 0%, transparent 42%),
                 radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.12) 0%, transparent 45%);
-            --surface: rgba(255, 255, 255, 0.92);
-            --card: rgba(248, 250, 252, 0.96);
-            --card-soft: rgba(226, 232, 240, 0.65);
+            --surface: rgba(255, 255, 255, 0.94);
+            --card: rgba(248, 250, 252, 0.97);
+            --card-soft: rgba(226, 232, 240, 0.68);
             --text: #0f172a;
             --muted: #475569;
             --border: rgba(15, 23, 42, 0.1);
@@ -42,7 +42,7 @@
             --cyan: #06b6d4;
             --emerald: #10b981;
             --rose: #f43f5e;
-            --whatsapp: #22c55e;
+            --wa: #22c55e;
         }
 
         * {
@@ -55,7 +55,7 @@
 
         body {
             background-color: var(--bg-body);
-            background-image: var(--bg-gradient);
+            background-image: var(--bg-glow);
             color: var(--text);
             min-height: 100vh;
             padding: 16px;
@@ -64,7 +64,7 @@
             align-items: flex-start;
         }
 
-        .portal-box {
+        .portal-shell {
             width: 100%;
             max-width: 470px;
             background: var(--surface);
@@ -76,7 +76,6 @@
             box-shadow: var(--shadow);
         }
 
-        /* شريط التحكم العلوي */
         .top-bar {
             display: flex;
             align-items: center;
@@ -85,7 +84,7 @@
             margin-bottom: 14px;
         }
 
-        .brand-tag {
+        .net-tag {
             background: rgba(245, 158, 11, 0.14);
             color: var(--gold);
             border: 1px solid rgba(245, 158, 11, 0.32);
@@ -95,7 +94,7 @@
             font-weight: 800;
         }
 
-        .theme-btn {
+        .theme-switch {
             background: var(--card);
             color: var(--text);
             border: 1px solid var(--border);
@@ -109,8 +108,7 @@
             gap: 6px;
         }
 
-        /* إشعار قابل للإزالة في صفحة التسجيل */
-        .dismissible-notice {
+        .notice-banner {
             background: linear-gradient(135deg, rgba(6, 182, 212, 0.16), rgba(245, 158, 11, 0.14));
             border: 1px solid rgba(6, 182, 212, 0.35);
             border-radius: 16px;
@@ -122,7 +120,7 @@
             gap: 10px;
         }
 
-        .dismissible-notice strong {
+        .notice-banner strong {
             display: block;
             font-size: 0.86rem;
             font-weight: 900;
@@ -130,42 +128,31 @@
             margin-bottom: 2px;
         }
 
-        .dismissible-notice p {
+        .notice-banner p {
             font-size: 0.79rem;
-            color: var(--text);
             line-height: 1.5;
         }
 
-        .close-notice-btn {
+        .notice-close {
             background: var(--card-soft);
             color: var(--text);
             border: 1px solid var(--border);
             width: 26px;
             height: 26px;
             border-radius: 50%;
-            font-size: 0.82rem;
             font-weight: 900;
             cursor: pointer;
             flex-shrink: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .close-notice-btn:hover {
-            border-color: var(--rose);
-            color: var(--rose);
-        }
-
-        /* الهيدر */
-        .header {
+        .brand-header {
             text-align: center;
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border);
             margin-bottom: 18px;
         }
 
-        .logo-pyramid {
+        .logo-box {
             width: 66px;
             height: 66px;
             margin: 0 auto 10px;
@@ -177,13 +164,13 @@
             box-shadow: 0 10px 26px rgba(245, 158, 11, 0.28);
         }
 
-        .logo-pyramid svg {
+        .logo-box svg {
             width: 36px;
             height: 36px;
             fill: #090d16;
         }
 
-        .title {
+        .brand-name {
             font-size: 1.75rem;
             font-weight: 900;
             background: linear-gradient(90deg, var(--gold), var(--cyan), var(--emerald));
@@ -191,13 +178,13 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .subtitle {
+        .brand-sub {
             font-size: 0.84rem;
             color: var(--muted);
             margin-top: 2px;
         }
 
-        .online-pill {
+        .live-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -211,7 +198,7 @@
             font-weight: 800;
         }
 
-        .dot {
+        .pulse-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
@@ -219,8 +206,7 @@
             box-shadow: 0 0 8px #10b981;
         }
 
-        /* بطاقة تسجيل الدخول */
-        .card-panel {
+        .glass-card {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 20px;
@@ -228,20 +214,26 @@
             margin-bottom: 14px;
         }
 
-        .panel-title {
+        .card-heading {
             font-size: 0.98rem;
             font-weight: 900;
             color: var(--gold);
             margin-bottom: 6px;
         }
 
-        .panel-desc {
+        .card-caption {
             font-size: 0.8rem;
             color: var(--muted);
             margin-bottom: 12px;
         }
 
-        .input-box {
+        .section-label {
+            font-size: 0.94rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .code-input {
             width: 100%;
             padding: 14px 16px;
             border-radius: 15px;
@@ -256,21 +248,8 @@
             margin-bottom: 12px;
         }
 
-        .input-box:focus {
+        .code-input:focus {
             border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.16);
-        }
-
-        .btn-gold {
-            width: 100%;
-            padding: 13px;
-            border: none;
-            border-radius: 15px;
-            background: linear-gradient(135deg, var(--gold-bright), var(--gold));
-            color: #090d16;
-            font-size: 0.98rem;
-            font-weight: 900;
-            cursor: pointer;
         }
 
         .pkg-select {
@@ -286,6 +265,18 @@
             outline: none;
         }
 
+        .btn-gold {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+            color: #090d16;
+            font-size: 0.98rem;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
         .btn-jaib {
             width: 100%;
             padding: 12px;
@@ -296,11 +287,6 @@
             font-size: 0.9rem;
             font-weight: 800;
             cursor: pointer;
-        }
-
-        .btn-jaib:hover {
-            border-color: var(--rose);
-            background: rgba(244, 63, 94, 0.22);
         }
 
         .btn-quran {
@@ -316,7 +302,6 @@
             margin-bottom: 14px;
         }
 
-        /* صفحة الاستهلاك بعد تعبئة الكرت */
         .reminder-box {
             background: rgba(245, 158, 11, 0.1);
             border: 1px solid rgba(245, 158, 11, 0.28);
@@ -325,11 +310,10 @@
             font-size: 0.82rem;
             line-height: 1.65;
             text-align: center;
-            color: var(--text);
             margin-bottom: 14px;
         }
 
-        .account-row {
+        .account-card {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 18px;
@@ -340,7 +324,18 @@
             margin-bottom: 14px;
         }
 
-        .active-badge {
+        .mini-muted {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .card-code-val {
+            font-size: 1.15rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .status-active {
             background: rgba(16, 185, 129, 0.15);
             color: #10b981;
             border: 1px solid rgba(16, 185, 129, 0.35);
@@ -350,7 +345,7 @@
             font-weight: 800;
         }
 
-        .percent-box {
+        .percent-card {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 18px;
@@ -359,7 +354,7 @@
             margin-bottom: 14px;
         }
 
-        .percent-num {
+        .percent-big {
             font-size: 2.05rem;
             font-weight: 900;
             background: linear-gradient(90deg, var(--emerald), var(--cyan));
@@ -368,7 +363,7 @@
             line-height: 1.15;
         }
 
-        .bar-track {
+        .progress-rail {
             width: 100%;
             height: 11px;
             border-radius: 999px;
@@ -377,8 +372,7 @@
             margin-top: 12px;
         }
 
-        .bar-fill {
-            width: 91%;
+        .progress-bar {
             height: 100%;
             border-radius: 999px;
             background: linear-gradient(90deg, var(--emerald), var(--cyan), var(--gold));
@@ -391,39 +385,37 @@
             margin-bottom: 14px;
         }
 
-        .stat-box {
+        .stat-tile {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 13px;
         }
 
-        .stat-box.wide {
+        .stat-tile.span-2 {
             grid-column: span 2;
             text-align: center;
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(6, 182, 212, 0.08));
             border-color: rgba(245, 158, 11, 0.35);
         }
 
-        .stat-val {
+        .stat-num {
             font-size: 0.94rem;
             font-weight: 900;
-            color: var(--text);
         }
 
-        .stat-box.wide .stat-val {
+        .stat-tile.span-2 .stat-num {
             font-size: 1.25rem;
             color: var(--gold);
         }
 
-        .stat-lbl {
+        .stat-caption {
             font-size: 0.76rem;
             color: var(--muted);
             margin-top: 3px;
         }
 
-        /* بطاقة المسلسلات والرياضة المباشرة داخل صفحة الاستهلاك */
-        .media-live-card {
+        .live-media-card {
             background: linear-gradient(135deg, rgba(6, 182, 212, 0.16), rgba(245, 158, 11, 0.14));
             border: 1px solid rgba(6, 182, 212, 0.38);
             border-radius: 18px;
@@ -435,19 +427,19 @@
             margin-bottom: 14px;
         }
 
-        .media-live-card h3 {
+        .live-media-card h3 {
             font-size: 0.94rem;
             font-weight: 900;
             color: var(--cyan);
             margin-bottom: 2px;
         }
 
-        .media-live-card p {
+        .live-media-card p {
             font-size: 0.77rem;
             color: var(--muted);
         }
 
-        .btn-live {
+        .btn-cyan {
             background: linear-gradient(135deg, var(--cyan), #0284c7);
             color: #04131a;
             border: none;
@@ -459,8 +451,7 @@
             white-space: nowrap;
         }
 
-        /* طلب الكروت عبر واتساب */
-        .btn-whatsapp {
+        .btn-wa {
             width: 100%;
             padding: 12px;
             border-radius: 14px;
@@ -473,11 +464,7 @@
             margin-bottom: 14px;
         }
 
-        .btn-whatsapp:hover {
-            background: rgba(34, 197, 94, 0.25);
-        }
-
-        .tip-box {
+        .tip-card {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 16px;
@@ -485,14 +472,14 @@
             margin-bottom: 14px;
         }
 
-        .tip-box strong {
+        .tip-card strong {
             display: block;
             font-size: 0.82rem;
             color: var(--gold);
             margin-bottom: 3px;
         }
 
-        .tip-box span {
+        .tip-card span {
             font-size: 0.8rem;
             color: var(--muted);
             line-height: 1.5;
@@ -511,14 +498,14 @@
             margin-bottom: 16px;
         }
 
-        .quick-grid {
+        .quick-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-bottom: 16px;
         }
 
-        .q-btn {
+        .quick-btn {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 14px;
@@ -529,12 +516,7 @@
             cursor: pointer;
         }
 
-        .q-btn:hover {
-            border-color: var(--gold);
-        }
-
-        /* النوافذ المنبثقة */
-        .modal-bg {
+        .modal-backdrop {
             position: fixed;
             inset: 0;
             background: rgba(2, 6, 23, 0.78);
@@ -546,7 +528,7 @@
             z-index: 400;
         }
 
-        .modal-card {
+        .modal-box {
             width: 100%;
             max-width: 390px;
             background: var(--surface);
@@ -557,16 +539,22 @@
             text-align: center;
         }
 
-        .modal-card h3 {
+        .modal-box h3 {
             color: var(--gold);
             margin-bottom: 8px;
             font-size: 1.05rem;
         }
 
-        .modal-card p {
+        .modal-box p {
             color: var(--muted);
             font-size: 0.84rem;
             line-height: 1.65;
+        }
+
+        .highlight-txt {
+            color: var(--gold) !important;
+            font-size: 0.8rem !important;
+            margin-bottom: 10px;
         }
 
         .copy-box {
@@ -591,6 +579,12 @@
             cursor: pointer;
         }
 
+        .full-btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 11px;
+        }
+
         .modal-close {
             margin-top: 12px;
             width: 100%;
@@ -603,7 +597,7 @@
             cursor: pointer;
         }
 
-        .footer {
+        .portal-footer {
             text-align: center;
             font-size: 0.72rem;
             color: var(--muted);
@@ -614,276 +608,309 @@
     </style>
 </head>
 <body>
-
-    <div class="portal-box">
-        <!-- شريط التحكم العلوي -->
+    <div class="portal-shell">
         <div class="top-bar">
-            <span class="brand-tag">الهرم نت • شبكة لاسلكية</span>
-            <button type="button" class="theme-btn" onclick="toggleTheme()">
+            <span class="net-tag">الهرم نت • شبكة لاسلكية</span>
+            <button type="button" class="theme-switch" onclick="PortalApp.toggleTheme()">
                 <span id="themeIcon">☀️</span>
                 <span id="themeLabel">الوضع النهاري</span>
             </button>
         </div>
 
-        <!-- الهيدر -->
-        <div class="header">
-            <div class="logo-pyramid">
+        <header class="brand-header">
+            <div class="logo-box">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 2L1.5 19.5h21L12 2zm0 5.4l6.2 10.6H5.8L12 7.4z"/>
                 </svg>
             </div>
-            <div class="title">الهرم نت</div>
-            <div class="subtitle">شبكة الإنترنت اللاسلكي</div>
-            <div id="onlineBadge" class="online-pill" style="display: none;">
-                <span class="dot"></span> متصل الآن
+            <h1 class="brand-name">الهرم نت</h1>
+            <p class="brand-sub">شبكة الإنترنت اللاسلكي</p>
+            <div id="liveBadge" class="live-badge" style="display: none;">
+                <span class="pulse-dot"></span> متصل الآن
             </div>
-        </div>
+        </header>
 
-        <!-- 1. صفحة تسجيل الدخول -->
-        <div id="loginScreen">
-            <!-- إشعار قابل للإزالة في صفحة التسجيل -->
-            <div id="seriesNotice" class="dismissible-notice">
+        <section id="loginView">
+            <div id="promoNotice" class="notice-banner">
                 <div>
                     <strong>🎬⚽ متابعة المسلسلات والرياضة المباشرة</strong>
-                    <p>متوفرة لمشتركي الهرم نت داخل صفحة الاستهلاك فور تعبئة كرت الإنترنت.</p>
+                    <p>تتوفر داخل صفحة الاستهلاك فور تعبئة كرت الإنترنت.</p>
                 </div>
-                <button type="button" class="close-notice-btn" title="إغلاق الإشعار" onclick="dismissNotice()">✕</button>
+                <button type="button" class="notice-close" onclick="PortalApp.closeNotice()">✕</button>
             </div>
 
-            <div class="card-panel">
-                <div class="panel-title">تسجيل الدخول وتعبئة الكرت</div>
-                <div class="panel-desc">أدخل رقم كرت الشبكة للدخول والانتقال مباشرة إلى صفحة الاستهلاك.</div>
-
-                <form name="login" action="$(link-login-only)" method="post" onsubmit="return handleLogin(event)">
+            <div class="glass-card">
+                <h2 class="card-heading">تسجيل الدخول وتعبئة الكرت</h2>
+                <p class="card-caption">أدخل رقم الكرت للدخول والانتقال مباشرة إلى صفحة الاستهلاك.</p>
+                <form name="login" action="$(link-login-only)" method="post" onsubmit="return PortalApp.loginSubmit(event)">
                     <input type="hidden" name="dst" value="$(link-orig)" />
                     <input type="hidden" name="popup" value="true" />
-                    <input type="text" id="cardInput" name="username" class="input-box" placeholder="أدخل رقم الكرت" required autocomplete="off">
+                    <input type="text" id="cardNumberInput" name="username" class="code-input" placeholder="أدخل رقم الكرت" required autocomplete="off">
                     <button type="submit" class="btn-gold">تفعيل الكرت والدخول</button>
                 </form>
             </div>
 
-            <!-- الشراء عبر محفظة جيب في صفحة التسجيل -->
-            <div class="card-panel">
-                <div class="panel-title">شراء كرت عبر محفظة جيب</div>
-                <select id="jaibPkg" class="pkg-select">
+            <div class="glass-card">
+                <h2 class="card-heading">شراء كرت عبر محفظة جيب</h2>
+                <select id="packageSelect" class="pkg-select">
                     <option value="باقة 100 ريال — 500 ميجا">باقة 100 ريال — 500 ميجا</option>
                     <option value="باقة 200 ريال — 1.2 جيجابايت">باقة 200 ريال — 1.2 جيجابايت</option>
                     <option value="باقة 500 ريال — 3.5 جيجابايت">باقة 500 ريال — 3.5 جيجابايت</option>
                     <option value="باقة 1000 ريال — 8 جيجابايت">باقة 1000 ريال — 8 جيجابايت</option>
                 </select>
-                <button type="button" class="btn-jaib" onclick="openJaibModal()">🔴 الدفع عبر محفظة جيب</button>
+                <button type="button" class="btn-jaib" onclick="PortalApp.openJaib()">🔴 الدفع عبر محفظة جيب</button>
             </div>
 
-            <!-- القرآن الكريم في صفحة التسجيل -->
-            <button type="button" class="btn-quran" onclick="openModal('quranModal')">📖 القرآن الكريم</button>
-        </div>
+            <button type="button" class="btn-quran" onclick="PortalApp.openModal('quranModal')">📖 القرآن الكريم</button>
+        </section>
 
-        <!-- 2. صفحة الاستهلاك بعد تعبئة الكرت -->
-        <div id="usageScreen" style="display: none;">
-            <div class="panel-title" style="color: var(--text);">تفاصيل الحساب</div>
+        <section id="usageView" style="display: none;">
+            <div class="section-label">تفاصيل الحساب</div>
 
             <div class="reminder-box">
                 عزيزي المستخدم تذكر إن الله فوق كل شيء رقيب ... فأجعل أستخدامك للإنترنت فيما يرضيه ... وتستفيد
             </div>
 
-            <div class="account-row">
+            <div class="account-card">
                 <div>
-                    <div style="font-size: 0.76rem; color: var(--muted);">رقم الكرت</div>
-                    <div id="cardDisplay" style="font-size: 1.15rem; font-weight: 900; letter-spacing: 1px;">2988****</div>
+                    <span class="mini-muted">رقم الكرت</span>
+                    <div id="activeCardMasked" class="card-code-val">2988****</div>
                 </div>
-                <span class="active-badge">نشط</span>
+                <span class="status-active">نشط</span>
             </div>
 
-            <div class="percent-box">
-                <div class="percent-num">91%</div>
-                <div style="font-size: 0.8rem; color: var(--muted); margin-top: 3px;">النسبة المتبقية من رصيد التحميل</div>
-                <div class="bar-track">
-                    <div class="bar-fill"></div>
+            <div class="percent-card">
+                <div id="remainPercentVal" class="percent-big">91%</div>
+                <div class="mini-muted">النسبة المتبقية من رصيد التحميل</div>
+                <div class="progress-rail">
+                    <div id="remainPercentBar" class="progress-bar" style="width: 91%;"></div>
                 </div>
             </div>
 
             <div class="stats-grid">
-                <div class="stat-box">
-                    <div class="stat-val">23m8s</div>
-                    <div class="stat-lbl">وقت الجلسة</div>
+                <div class="stat-tile">
+                    <div id="sessionTimeVal" class="stat-num">23m8s</div>
+                    <div class="stat-caption">وقت الجلسة</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-val">1 يوم 2 ساعة 21 دقيقة 6 ثانية</div>
-                    <div class="stat-lbl">الباقي من الصلاحية</div>
+                <div class="stat-tile">
+                    <div id="validityLeftVal" class="stat-num">1 يوم 2 ساعة 21 دقيقة 6 ثانية</div>
+                    <div class="stat-caption">الباقي من الصلاحية</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-val">27.2 MiB</div>
-                    <div class="stat-lbl">التحميل المستخدم</div>
+                <div class="stat-tile">
+                    <div id="downloadUsedVal" class="stat-num">27.2 MiB</div>
+                    <div class="stat-caption">التحميل المستخدم</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-val">6.6 MiB</div>
-                    <div class="stat-lbl">الرفع المستخدم</div>
+                <div class="stat-tile">
+                    <div id="uploadUsedVal" class="stat-num">6.6 MiB</div>
+                    <div class="stat-caption">الرفع المستخدم</div>
                 </div>
-                <div class="stat-box wide">
-                    <div class="stat-val">357 ميجابايت</div>
-                    <div class="stat-lbl">الباقي من الرصيد</div>
+                <div class="stat-tile span-2">
+                    <div id="balanceLeftVal" class="stat-num">357 ميجابايت</div>
+                    <div class="stat-caption">الباقي من الرصيد</div>
                 </div>
             </div>
 
-            <!-- متابعة المسلسلات والرياضة المباشرة في صفحة الاستهلاك -->
-            <div class="media-live-card">
+            <div class="live-media-card">
                 <div>
                     <h3>🎬⚽ متابعة المسلسلات والرياضة المباشرة</h3>
                     <p>بث مباشر للمباريات وأحدث المسلسلات للمشتركين</p>
                 </div>
-                <button type="button" class="btn-live" onclick="openModal('liveMediaModal')">متابعة الآن</button>
+                <button type="button" class="btn-cyan" onclick="PortalApp.openModal('mediaModal')">متابعة الآن</button>
             </div>
 
-            <!-- طلب الكروت عبر واتساب -->
-            <button type="button" class="btn-whatsapp" onclick="openModal('whatsappModal')">💬 طلب كروت عبر واتساب</button>
+            <button type="button" class="btn-wa" onclick="PortalApp.openModal('waModal')">💬 طلب كروت عبر واتساب</button>
 
-            <div class="tip-box">
+            <div class="tip-card">
                 <strong>نصيحة سريعة</strong>
                 <span>ننصح بالاحتفاظ بالكرت حتى ينتهي فلسنا مسؤولين عن نسيان الرمز</span>
             </div>
 
-            <button type="button" class="btn-logout" onclick="logoutSession()">تسجيل الخروج</button>
+            <button type="button" class="btn-logout" onclick="PortalApp.logout()">تسجيل الخروج</button>
 
-            <div class="panel-title" style="color: var(--text);">خدمات سريعة</div>
-            <div class="quick-grid">
-                <button type="button" class="q-btn" onclick="openModal('pricesModal')">الأسعار</button>
-                <button type="button" class="q-btn" onclick="openModal('notesModal')">الملاحظات</button>
-                <button type="button" class="q-btn" onclick="openModal('quranModal')">القرآن</button>
+            <div class="section-label">خدمات سريعة</div>
+            <div class="quick-row">
+                <button type="button" class="quick-btn" onclick="PortalApp.openModal('pricesModal')">الأسعار</button>
+                <button type="button" class="quick-btn" onclick="PortalApp.openModal('notesModal')">الملاحظات</button>
+                <button type="button" class="quick-btn" onclick="PortalApp.openModal('quranModal')">القرآن</button>
             </div>
-        </div>
+        </section>
 
-        <div class="footer">
+        <footer class="portal-footer">
             Al-Haram Net • Developed &amp; Powered By ABDO ALWASEA ZAHER © 2023
-        </div>
+        </footer>
     </div>
 
-    <!-- نافذة محفظة جيب -->
-    <div id="jaibModal" class="modal-bg">
-        <div class="modal-card">
+    <div id="jaibModal" class="modal-backdrop">
+        <div class="modal-box">
             <h3>🔴 الشراء عبر محفظة جيب</h3>
             <p>حوّل قيمة الباقة إلى رقم محفظة جيب الخاص بشبكة الهرم نت:</p>
             <div class="copy-box">
-                <strong id="jaibAccNum">777000111</strong>
-                <button type="button" class="copy-btn" onclick="copyText('jaibAccNum')">نسخ</button>
+                <strong id="jaibAccountCode">777000111</strong>
+                <button type="button" class="copy-btn" onclick="PortalApp.copyCode('jaibAccountCode')">نسخ</button>
             </div>
-            <p id="jaibChosenPkg" style="font-size: 0.8rem; color: var(--gold); margin-bottom: 10px;"></p>
-            <button type="button" class="btn-gold" onclick="alert('سيتم تحويلك إلى واتساب لإرسال إشعار الدفع عبر جيب.')">إرسال إشعار واتساب</button>
-            <button type="button" class="modal-close" onclick="closeModal('jaibModal')">إغلاق</button>
+            <p id="jaibPackageSummary" class="highlight-txt"></p>
+            <button type="button" class="btn-gold" onclick="PortalApp.sendJaibWhatsApp()">إرسال إشعار واتساب</button>
+            <button type="button" class="modal-close" onclick="PortalApp.closeModal('jaibModal')">إغلاق</button>
         </div>
     </div>
 
-    <!-- نافذة متابعة المسلسلات والرياضة المباشرة -->
-    <div id="liveMediaModal" class="modal-bg">
-        <div class="modal-card">
+    <div id="mediaModal" class="modal-backdrop">
+        <div class="modal-box">
             <h3>🎬⚽ المسلسلات والرياضة المباشرة</h3>
-            <p>اختر القسم الذي ترغب في متابعته الآن عبر بوابة الهرم نت:</p>
-            <button type="button" class="btn-live" style="width: 100%; margin-top: 12px; padding: 11px;" onclick="alert('جاري فتح البث الرياضي المباشر...')">⚽ البث الرياضي المباشر</button>
-            <button type="button" class="btn-gold" style="width: 100%; margin-top: 8px; padding: 11px;" onclick="alert('جاري فتح مكتبة المسلسلات...')">🎬 مكتبة المسلسلات</button>
-            <button type="button" class="modal-close" onclick="closeModal('liveMediaModal')">إغلاق</button>
+            <p>اختر القسم الذي ترغب في متابعته الآن:</p>
+            <button type="button" class="btn-cyan full-btn" onclick="PortalApp.openStream('sports')">⚽ البث الرياضي المباشر</button>
+            <button type="button" class="btn-gold full-btn" onclick="PortalApp.openStream('series')">🎬 مكتبة المسلسلات</button>
+            <button type="button" class="modal-close" onclick="PortalApp.closeModal('mediaModal')">إغلاق</button>
         </div>
     </div>
 
-    <!-- نافذة طلب الكروت عبر واتساب -->
-    <div id="whatsappModal" class="modal-bg">
-        <div class="modal-card">
+    <div id="waModal" class="modal-backdrop">
+        <div class="modal-box">
             <h3>💬 طلب كروت عبر واتساب</h3>
-            <p>اطلب كرتك مباشرة عبر واتساب الدعم والمبيعات لشبكة الهرم نت:</p>
+            <p>تواصل مباشرة مع مبيعات ودعم شبكة الهرم نت لطلب الكروت:</p>
             <div class="copy-box">
-                <strong id="waPhoneNum">+967770000000</strong>
-                <button type="button" class="copy-btn" onclick="copyText('waPhoneNum')">نسخ</button>
+                <strong id="waNumberCode">+967770000000</strong>
+                <button type="button" class="copy-btn" onclick="PortalApp.copyCode('waNumberCode')">نسخ</button>
             </div>
-            <button type="button" class="btn-whatsapp" style="margin-bottom: 0;" onclick="window.open('https://wa.me/967770000000?text=' + encodeURIComponent('مرحباً شبكة الهرم نت، أرغب في طلب كرت إنترنت.'), '_blank')">فتح محادثة واتساب</button>
-            <button type="button" class="modal-close" onclick="closeModal('whatsappModal')">إغلاق</button>
+            <button type="button" class="btn-wa full-btn" onclick="PortalApp.openWhatsAppOrder()">فتح واتساب لطلب كرت</button>
+            <button type="button" class="modal-close" onclick="PortalApp.closeModal('waModal')">إغلاق</button>
         </div>
     </div>
 
-    <!-- نافذة الأسعار -->
-    <div id="pricesModal" class="modal-bg">
-        <div class="modal-card">
+    <div id="pricesModal" class="modal-backdrop">
+        <div class="modal-box">
             <h3>الأسعار</h3>
             <p>100 ريال: 500 ميجا<br>200 ريال: 1.2 جيجابايت<br>500 ريال: 3.5 جيجابايت<br>1000 ريال: 8 جيجابايت</p>
-            <button type="button" class="modal-close" onclick="closeModal('pricesModal')">إغلاق</button>
+            <button type="button" class="modal-close" onclick="PortalApp.closeModal('pricesModal')">إغلاق</button>
         </div>
     </div>
 
-    <!-- نافذة الملاحظات -->
-    <div id="notesModal" class="modal-bg">
-        <div class="modal-card">
+    <div id="notesModal" class="modal-backdrop">
+        <div class="modal-box">
             <h3>الملاحظات</h3>
             <p>ننصح بالاحتفاظ بالكرت حتى ينتهي رصيده، ونسعد بخدمتك في أي وقت.</p>
-            <button type="button" class="modal-close" onclick="closeModal('notesModal')">إغلاق</button>
+            <button type="button" class="modal-close" onclick="PortalApp.closeModal('notesModal')">إغلاق</button>
         </div>
     </div>
 
-    <!-- نافذة القرآن الكريم -->
-    <div id="quranModal" class="modal-bg">
-        <div class="modal-card">
+    <div id="quranModal" class="modal-backdrop">
+        <div class="modal-box">
             <h3>📖 القرآن الكريم</h3>
             <p>﴿ وَإِذَا قُرِئَ الْقُرْآنُ فَاسْتَمِعُوا لَهُ وَأَنصِتُوا لَعَلَّكُمْ تُرْحَمُونَ ﴾</p>
-            <button type="button" class="modal-close" onclick="closeModal('quranModal')">إغلاق</button>
+            <button type="button" class="modal-close" onclick="PortalApp.closeModal('quranModal')">إغلاق</button>
         </div>
     </div>
 
     <script>
-        function toggleTheme() {
-            const root = document.documentElement;
-            const current = root.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            root.setAttribute('data-theme', next);
-            document.getElementById('themeIcon').textContent = next === 'dark' ? '☀️' : '🌙';
-            document.getElementById('themeLabel').textContent = next === 'dark' ? 'الوضع النهاري' : 'الوضع الليلي';
-        }
+        const PortalApp = {
+            config: {
+                jaibAccount: "777000111",
+                whatsappNumber: "967770000000",
+                sportsUrl: "#sports-live",
+                seriesUrl: "#series-library"
+            },
 
-        function dismissNotice() {
-            document.getElementById('seriesNotice').style.display = 'none';
-        }
+            demoUsage: {
+                percent: 91,
+                sessionTime: "23m8s",
+                validityLeft: "1 يوم 2 ساعة 21 دقيقة 6 ثانية",
+                downloadUsed: "27.2 MiB",
+                uploadUsed: "6.6 MiB",
+                balanceLeft: "357 ميجابايت"
+            },
 
-        function handleLogin(e) {
-            const val = document.getElementById('cardInput').value.trim();
-            if (!val) return false;
+            toggleTheme() {
+                const root = document.documentElement;
+                const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                root.setAttribute("data-theme", next);
+                document.getElementById("themeIcon").textContent = next === "dark" ? "☀️" : "🌙";
+                document.getElementById("themeLabel").textContent = next === "dark" ? "الوضع النهاري" : "الوضع الليلي";
+            },
 
-            if (window.location.hostname.includes('github.io') || window.location.protocol === 'file:') {
-                e.preventDefault();
-                const masked = val.length > 4 ? val.slice(0, 4) + '****' : val;
-                document.getElementById('cardDisplay').textContent = masked;
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('usageScreen').style.display = 'block';
-                document.getElementById('onlineBadge').style.display = 'inline-flex';
-                return false;
+            closeNotice() {
+                const notice = document.getElementById("promoNotice");
+                if (notice) notice.style.display = "none";
+            },
+
+            loginSubmit(event) {
+                const input = document.getElementById("cardNumberInput");
+                const code = input.value.trim();
+                if (!code) return false;
+
+                if (window.location.hostname.includes("github.io") || window.location.protocol === "file:") {
+                    event.preventDefault();
+                    const masked = code.length > 4 ? code.slice(0, 4) + "****" : code;
+                    document.getElementById("activeCardMasked").textContent = masked;
+                    this.renderUsageStats();
+                    document.getElementById("loginView").style.display = "none";
+                    document.getElementById("usageView").style.display = "block";
+                    document.getElementById("liveBadge").style.display = "inline-flex";
+                    return false;
+                }
+                return true;
+            },
+
+            renderUsageStats() {
+                document.getElementById("remainPercentVal").textContent = this.demoUsage.percent + "%";
+                document.getElementById("remainPercentBar").style.width = this.demoUsage.percent + "%";
+                document.getElementById("sessionTimeVal").textContent = this.demoUsage.sessionTime;
+                document.getElementById("validityLeftVal").textContent = this.demoUsage.validityLeft;
+                document.getElementById("downloadUsedVal").textContent = this.demoUsage.downloadUsed;
+                document.getElementById("uploadUsedVal").textContent = this.demoUsage.uploadUsed;
+                document.getElementById("balanceLeftVal").textContent = this.demoUsage.balanceLeft;
+            },
+
+            logout() {
+                if (window.location.hostname.includes("github.io") || window.location.protocol === "file:") {
+                    document.getElementById("usageView").style.display = "none";
+                    document.getElementById("liveBadge").style.display = "none";
+                    document.getElementById("loginView").style.display = "block";
+                    document.getElementById("cardNumberInput").value = "";
+                } else {
+                    window.location.href = "$(link-logout)";
+                }
+            },
+
+            openJaib() {
+                const pkg = document.getElementById("packageSelect").value;
+                document.getElementById("jaibAccountCode").textContent = this.config.jaibAccount;
+                document.getElementById("jaibPackageSummary").textContent = "الباقة المختارة: " + pkg;
+                this.openModal("jaibModal");
+            },
+
+            sendJaibWhatsApp() {
+                const pkg = document.getElementById("packageSelect").value;
+                const msg = `مرحباً الهرم نت، قمت بالتحويل عبر محفظة جيب لـ: ${pkg}`;
+                window.open(`https://wa.me/${this.config.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+            },
+
+            openWhatsAppOrder() {
+                const msg = "مرحباً الهرم نت، أرغب في طلب كرت إنترنت.";
+                window.open(`https://wa.me/${this.config.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+            },
+
+            openStream(type) {
+                if (type === "sports") {
+                    alert("جاري فتح بوابة البث الرياضي المباشر...");
+                } else {
+                    alert("جاري فتح مكتبة المسلسلات...");
+                }
+            },
+
+            openModal(id) {
+                document.getElementById(id).style.display = "flex";
+            },
+
+            closeModal(id) {
+                document.getElementById(id).style.display = "none";
+            },
+
+            copyCode(elementId) {
+                const text = document.getElementById(elementId).textContent;
+                navigator.clipboard.writeText(text);
+                alert("تم النسخ: " + text);
             }
-            return true;
-        }
-
-        function logoutSession() {
-            if (window.location.hostname.includes('github.io') || window.location.protocol === 'file:') {
-                document.getElementById('usageScreen').style.display = 'none';
-                document.getElementById('onlineBadge').style.display = 'none';
-                document.getElementById('loginScreen').style.display = 'block';
-                document.getElementById('cardInput').value = '';
-            } else {
-                window.location.href = '$(link-logout)';
-            }
-        }
-
-        function openJaibModal() {
-            const pkg = document.getElementById('jaibPkg').value;
-            document.getElementById('jaibChosenPkg').textContent = 'الباقة المختارة: ' + pkg;
-            document.getElementById('jaibModal').style.display = 'flex';
-        }
-
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
-
-        function copyText(elementId) {
-            const txt = document.getElementById(elementId).textContent;
-            navigator.clipboard.writeText(txt);
-            alert('تم النسخ: ' + txt);
-        }
+        };
     </script>
 </body>
 </html>
