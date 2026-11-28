@@ -1,24 +1,48 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الهرم نت | البوابة الذكية والاستهلاك</title>
+    <title>الهرم نت | شبكة الإنترنت اللاسلكي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root[data-theme="dark"] {
+            --bg-body: #060913;
+            --bg-gradient:
+                radial-gradient(circle at 15% 12%, rgba(250, 204, 21, 0.16) 0%, transparent 40%),
+                radial-gradient(circle at 85% 18%, rgba(56, 189, 248, 0.15) 0%, transparent 42%),
+                radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.12) 0%, transparent 45%);
+            --surface: rgba(15, 23, 42, 0.85);
+            --card: rgba(23, 35, 62, 0.82);
+            --card-soft: rgba(8, 13, 26, 0.75);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.11);
+            --shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+        }
+
+        :root[data-theme="light"] {
+            --bg-body: #f1f5f9;
+            --bg-gradient:
+                radial-gradient(circle at 15% 12%, rgba(245, 158, 11, 0.18) 0%, transparent 42%),
+                radial-gradient(circle at 85% 18%, rgba(14, 165, 233, 0.15) 0%, transparent 42%),
+                radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.12) 0%, transparent 45%);
+            --surface: rgba(255, 255, 255, 0.92);
+            --card: rgba(248, 250, 252, 0.96);
+            --card-soft: rgba(226, 232, 240, 0.65);
+            --text: #0f172a;
+            --muted: #475569;
+            --border: rgba(15, 23, 42, 0.1);
+            --shadow: 0 20px 45px rgba(15, 37, 64, 0.12);
+        }
+
         :root {
-            --bg-primary: #060913;
-            --bg-card: rgba(15, 23, 42, 0.78);
-            --bg-card-elevated: rgba(30, 41, 59, 0.7);
-            --accent-gold: #fbbf24;
-            --accent-gold-dark: #d97706;
-            --accent-cyan: #22d3ee;
-            --accent-emerald: #10b981;
-            --accent-rose: #f43f5e;
-            --accent-blue: #3b82f6;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border-glass: rgba(255, 255, 255, 0.1);
+            --gold: #f59e0b;
+            --gold-bright: #fbbf24;
+            --cyan: #06b6d4;
+            --emerald: #10b981;
+            --rose: #f43f5e;
+            --whatsapp: #22c55e;
         }
 
         * {
@@ -26,349 +50,338 @@
             margin: 0;
             padding: 0;
             font-family: 'Cairo', sans-serif;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
 
         body {
-            background-color: var(--bg-primary);
-            background-image:
-                radial-gradient(circle at 10% 15%, rgba(251, 191, 36, 0.14) 0%, transparent 38%),
-                radial-gradient(circle at 90% 20%, rgba(34, 211, 238, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 50% 95%, rgba(59, 130, 246, 0.14) 0%, transparent 45%);
-            color: var(--text-primary);
+            background-color: var(--bg-body);
+            background-image: var(--bg-gradient);
+            color: var(--text);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
 
-        .app-shell {
+        .portal-box {
             width: 100%;
-            max-width: 460px;
-            background: var(--bg-card);
+            max-width: 470px;
+            background: var(--surface);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
-            border: 1px solid var(--border-glass);
+            border: 1px solid var(--border);
             border-radius: 26px;
-            padding: 24px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            padding: 20px;
+            box-shadow: var(--shadow);
         }
 
-        /* شريط الحالة العلوي */
+        /* شريط التحكم العلوي */
         .top-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 18px;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
+            gap: 10px;
+            margin-bottom: 14px;
         }
 
-        .status-pill {
+        .brand-tag {
+            background: rgba(245, 158, 11, 0.14);
+            color: var(--gold);
+            border: 1px solid rgba(245, 158, 11, 0.32);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        .theme-btn {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(16, 185, 129, 0.12);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.28);
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-weight: 700;
         }
 
-        .status-dot {
-            width: 7px;
-            height: 7px;
+        /* إشعار قابل للإزالة في صفحة التسجيل */
+        .dismissible-notice {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.16), rgba(245, 158, 11, 0.14));
+            border: 1px solid rgba(6, 182, 212, 0.35);
+            border-radius: 16px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .dismissible-notice strong {
+            display: block;
+            font-size: 0.86rem;
+            font-weight: 900;
+            color: var(--cyan);
+            margin-bottom: 2px;
+        }
+
+        .dismissible-notice p {
+            font-size: 0.79rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .close-notice-btn {
+            background: var(--card-soft);
+            color: var(--text);
+            border: 1px solid var(--border);
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            font-size: 0.82rem;
+            font-weight: 900;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-notice-btn:hover {
+            border-color: var(--rose);
+            color: var(--rose);
+        }
+
+        /* الهيدر */
+        .header {
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 18px;
+        }
+
+        .logo-pyramid {
+            width: 66px;
+            height: 66px;
+            margin: 0 auto 10px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold), #ea580c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 26px rgba(245, 158, 11, 0.28);
+        }
+
+        .logo-pyramid svg {
+            width: 36px;
+            height: 36px;
+            fill: #090d16;
+        }
+
+        .title {
+            font-size: 1.75rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--gold), var(--cyan), var(--emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 0.84rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .online-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            background: rgba(16, 185, 129, 0.14);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: #10b981;
             box-shadow: 0 0 8px #10b981;
         }
 
-        /* الهوية البصرية */
-        .brand-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .pyramid-badge {
-            width: 72px;
-            height: 72px;
-            margin: 0 auto 12px;
-            border-radius: 22px;
-            background: linear-gradient(145deg, var(--accent-gold), var(--accent-gold-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 12px 28px rgba(251, 191, 36, 0.28);
-        }
-
-        .pyramid-badge svg {
-            width: 40px;
-            height: 40px;
-            fill: #090d16;
-        }
-
-        .brand-title {
-            font-size: 1.75rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, #fde68a, var(--accent-gold), #38bdf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .brand-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-top: 2px;
-        }
-
-        /* شريط الإعلانات */
-        .ticker {
-            background: rgba(251, 191, 36, 0.08);
-            border: 1px solid rgba(251, 191, 36, 0.22);
-            border-radius: 14px;
-            padding: 8px 12px;
-            margin-bottom: 18px;
-            font-size: 0.8rem;
-            color: #fde68a;
-        }
-
-        /* التبديل بين الشاشات الرئيسية */
-        .mode-switch {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            background: rgba(6, 9, 19, 0.75);
-            padding: 6px;
-            border-radius: 16px;
-            border: 1px solid var(--border-glass);
-            margin-bottom: 20px;
-        }
-
-        .mode-btn {
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            padding: 10px;
-            border-radius: 12px;
-            font-size: 0.88rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-
-        .mode-btn.active {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
-            color: #090d16;
-            box-shadow: 0 6px 18px rgba(251, 191, 36, 0.25);
-        }
-
-        .screen {
-            display: none;
-            animation: fadeSlide 0.3s ease;
-        }
-
-        .screen.active {
-            display: block;
-        }
-
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* حقول الإدخال والأزرار */
-        .field-label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .modern-input {
-            width: 100%;
-            padding: 14px 16px;
-            background: rgba(6, 9, 19, 0.85);
-            border: 1px solid var(--border-glass);
-            border-radius: 15px;
-            color: #fff;
-            font-size: 1.05rem;
-            font-weight: 700;
-            text-align: center;
-            letter-spacing: 1.5px;
-            outline: none;
-            transition: border-color 0.25s, box-shadow 0.25s;
-            margin-bottom: 14px;
-        }
-
-        .modern-input:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.15);
-        }
-
-        .btn-gold {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 15px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dark));
-            color: #090d16;
-            font-size: 1rem;
-            font-weight: 900;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 24px rgba(251, 191, 36, 0.32);
-        }
-
-        /* بطاقة المسلسلات المجانية */
-        .series-banner {
-            margin-top: 18px;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(34, 211, 238, 0.08));
-            border: 1px solid rgba(16, 185, 129, 0.32);
-            border-radius: 18px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .series-text h3 {
-            font-size: 0.96rem;
-            font-weight: 800;
-            color: #6ee7b7;
-            margin-bottom: 3px;
-        }
-
-        .series-text p {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-        }
-
-        .btn-series {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: #04130d;
-            border: none;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.82rem;
-            font-weight: 900;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        /* قسم الشراء عبر جيب والكريمي */
-        .wallets-box {
-            margin-top: 18px;
-            background: var(--bg-card-elevated);
-            border: 1px solid var(--border-glass);
-            border-radius: 18px;
-            padding: 15px;
-        }
-
-        .wallets-title {
-            font-size: 0.84rem;
-            font-weight: 800;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .package-select {
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 12px;
-            background: rgba(6, 9, 19, 0.85);
-            border: 1px solid var(--border-glass);
-            color: var(--text-primary);
-            font-size: 0.86rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            outline: none;
-        }
-
-        .wallet-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .wallet-btn {
-            padding: 11px;
-            border-radius: 13px;
-            border: 1px solid var(--border-glass);
-            background: rgba(6, 9, 19, 0.65);
-            color: #fff;
-            font-size: 0.86rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .wallet-btn.jaib:hover {
-            border-color: var(--accent-rose);
-            background: rgba(244, 63, 94, 0.16);
-        }
-
-        .wallet-btn.kuraimi:hover {
-            border-color: var(--accent-blue);
-            background: rgba(59, 130, 246, 0.16);
-        }
-
-        /* صفحة الاستهلاك بعد تعبئة الكرت */
-        .usage-card {
-            background: var(--bg-card-elevated);
-            border: 1px solid var(--border-glass);
+        /* بطاقة تسجيل الدخول */
+        .card-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 20px;
             padding: 18px;
             margin-bottom: 14px;
         }
 
-        .usage-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .panel-title {
+            font-size: 0.98rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .panel-desc {
+            font-size: 0.8rem;
+            color: var(--muted);
             margin-bottom: 12px;
         }
 
-        .card-badge {
-            background: rgba(34, 211, 238, 0.14);
-            color: var(--accent-cyan);
-            border: 1px solid rgba(34, 211, 238, 0.3);
-            padding: 4px 10px;
+        .input-box {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            background: var(--card-soft);
+            color: var(--text);
+            font-size: 1.06rem;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 1.5px;
+            outline: none;
+            margin-bottom: 12px;
+        }
+
+        .input-box:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.16);
+        }
+
+        .btn-gold {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+            color: #090d16;
+            font-size: 0.98rem;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .pkg-select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--card-soft);
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        .btn-jaib {
+            width: 100%;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(244, 63, 94, 0.4);
+            background: rgba(244, 63, 94, 0.14);
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .btn-jaib:hover {
+            border-color: var(--rose);
+            background: rgba(244, 63, 94, 0.22);
+        }
+
+        .btn-quran {
+            width: 100%;
+            padding: 12px;
+            border-radius: 15px;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--text);
+            font-size: 0.92rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-bottom: 14px;
+        }
+
+        /* صفحة الاستهلاك بعد تعبئة الكرت */
+        .reminder-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.28);
+            border-radius: 16px;
+            padding: 12px 14px;
+            font-size: 0.82rem;
+            line-height: 1.65;
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .account-row {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .active-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 4px 12px;
             border-radius: 999px;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 800;
         }
 
-        .progress-track {
+        .percent-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .percent-num {
+            font-size: 2.05rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--emerald), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.15;
+        }
+
+        .bar-track {
             width: 100%;
-            height: 12px;
-            background: rgba(6, 9, 19, 0.9);
+            height: 11px;
             border-radius: 999px;
+            background: var(--card-soft);
             overflow: hidden;
-            margin: 10px 0 8px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 12px;
         }
 
-        .progress-fill {
-            width: 62%;
+        .bar-fill {
+            width: 91%;
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-gold));
             border-radius: 999px;
-            transition: width 0.4s ease;
-        }
-
-        .progress-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
+            background: linear-gradient(90deg, var(--emerald), var(--cyan), var(--gold));
         }
 
         .stats-grid {
@@ -379,82 +392,149 @@
         }
 
         .stat-box {
-            background: rgba(6, 9, 19, 0.7);
-            border: 1px solid var(--border-glass);
+            background: var(--card);
+            border: 1px solid var(--border);
             border-radius: 16px;
             padding: 13px;
         }
 
-        .stat-label {
-            font-size: 0.76rem;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
+        .stat-box.wide {
+            grid-column: span 2;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(6, 182, 212, 0.08));
+            border-color: rgba(245, 158, 11, 0.35);
         }
 
-        .stat-value {
-            font-size: 1.02rem;
+        .stat-val {
+            font-size: 0.94rem;
             font-weight: 900;
-            color: var(--accent-gold);
+            color: var(--text);
         }
 
-        .info-list {
-            background: rgba(6, 9, 19, 0.65);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 10px 14px;
+        .stat-box.wide .stat-val {
+            font-size: 1.25rem;
+            color: var(--gold);
+        }
+
+        .stat-lbl {
+            font-size: 0.76rem;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        /* بطاقة المسلسلات والرياضة المباشرة داخل صفحة الاستهلاك */
+        .media-live-card {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.16), rgba(245, 158, 11, 0.14));
+            border: 1px solid rgba(6, 182, 212, 0.38);
+            border-radius: 18px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
             margin-bottom: 14px;
         }
 
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 7px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+        .media-live-card h3 {
+            font-size: 0.94rem;
+            font-weight: 900;
+            color: var(--cyan);
+            margin-bottom: 2px;
+        }
+
+        .media-live-card p {
+            font-size: 0.77rem;
+            color: var(--muted);
+        }
+
+        .btn-live {
+            background: linear-gradient(135deg, var(--cyan), #0284c7);
+            color: #04131a;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* طلب الكروت عبر واتساب */
+        .btn-whatsapp {
+            width: 100%;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(34, 197, 94, 0.45);
+            background: rgba(34, 197, 94, 0.16);
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-bottom: 14px;
+        }
+
+        .btn-whatsapp:hover {
+            background: rgba(34, 197, 94, 0.25);
+        }
+
+        .tip-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 13px 15px;
+            margin-bottom: 14px;
+        }
+
+        .tip-box strong {
+            display: block;
             font-size: 0.82rem;
+            color: var(--gold);
+            margin-bottom: 3px;
         }
 
-        .info-row:last-child {
-            border-bottom: none;
+        .tip-box span {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
-        .info-row span:first-child {
-            color: var(--text-secondary);
-        }
-
-        .info-row span:last-child {
-            font-weight: 800;
-        }
-
-        .action-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .btn-outline {
-            padding: 11px;
+        .btn-logout {
+            width: 100%;
+            padding: 12px;
             border-radius: 14px;
-            border: 1px solid var(--border-glass);
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-primary);
-            font-size: 0.84rem;
-            font-weight: 800;
-            cursor: pointer;
-        }
-
-        .btn-danger-soft {
-            padding: 11px;
-            border-radius: 14px;
-            border: 1px solid rgba(244, 63, 94, 0.35);
+            border: 1px solid rgba(244, 63, 94, 0.38);
             background: rgba(244, 63, 94, 0.14);
-            color: #fda4af;
-            font-size: 0.84rem;
+            color: #f43f5e;
+            font-size: 0.9rem;
+            font-weight: 900;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .q-btn {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 11px 8px;
+            color: var(--text);
+            font-size: 0.82rem;
             font-weight: 800;
             cursor: pointer;
+        }
+
+        .q-btn:hover {
+            border-color: var(--gold);
         }
 
         /* النوافذ المنبثقة */
-        .modal-backdrop {
+        .modal-bg {
             position: fixed;
             inset: 0;
             background: rgba(2, 6, 23, 0.78);
@@ -463,53 +543,48 @@
             align-items: center;
             justify-content: center;
             padding: 16px;
-            z-index: 200;
+            z-index: 400;
         }
 
         .modal-card {
             width: 100%;
             max-width: 390px;
-            background: #0f172a;
-            border: 1px solid var(--border-glass);
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
             border-radius: 22px;
-            padding: 22px;
+            padding: 20px;
             text-align: center;
         }
 
         .modal-card h3 {
-            font-size: 1.1rem;
+            color: var(--gold);
             margin-bottom: 8px;
-            color: var(--accent-gold);
+            font-size: 1.05rem;
         }
 
         .modal-card p {
+            color: var(--muted);
             font-size: 0.84rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
-        .copy-strip {
-            margin: 14px 0;
-            background: #060913;
-            border: 1px dashed var(--accent-gold);
+        .copy-box {
+            margin: 12px 0;
+            padding: 10px 14px;
             border-radius: 12px;
-            padding: 11px 14px;
+            background: var(--card-soft);
+            border: 1px dashed var(--gold);
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .copy-strip strong {
-            font-size: 1rem;
-            letter-spacing: 1px;
-            color: #fff;
-        }
-
-        .copy-chip {
-            background: var(--accent-gold);
+        .copy-btn {
+            background: var(--gold);
             color: #090d16;
             border: none;
-            padding: 6px 12px;
+            padding: 5px 12px;
             border-radius: 8px;
             font-size: 0.78rem;
             font-weight: 900;
@@ -517,239 +592,297 @@
         }
 
         .modal-close {
-            margin-top: 10px;
+            margin-top: 12px;
             width: 100%;
             padding: 10px;
             border-radius: 12px;
-            border: 1px solid var(--border-glass);
+            border: 1px solid var(--border);
             background: transparent;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
+            color: var(--muted);
             font-weight: 700;
             cursor: pointer;
         }
 
-        .footer-note {
-            margin-top: 18px;
+        .footer {
             text-align: center;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
+            font-size: 0.72rem;
+            color: var(--muted);
+            padding-top: 10px;
+            border-top: 1px solid var(--border);
+            direction: ltr;
         }
     </style>
 </head>
 <body>
 
-    <div class="app-shell">
+    <div class="portal-box">
+        <!-- شريط التحكم العلوي -->
         <div class="top-bar">
-            <span>الهرم نت • الجيل الخامس</span>
-            <span class="status-pill"><span class="status-dot"></span> البوابة متصلة</span>
+            <span class="brand-tag">الهرم نت • شبكة لاسلكية</span>
+            <button type="button" class="theme-btn" onclick="toggleTheme()">
+                <span id="themeIcon">☀️</span>
+                <span id="themeLabel">الوضع النهاري</span>
+            </button>
         </div>
 
-        <div class="brand-header">
-            <div class="pyramid-badge">
+        <!-- الهيدر -->
+        <div class="header">
+            <div class="logo-pyramid">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 2L1.5 19.5h21L12 2zm0 5.4l6.2 10.6H5.8L12 7.4z"/>
                 </svg>
             </div>
-            <h1 class="brand-title">الهرم نت</h1>
-            <p class="brand-subtitle">إنترنت عالي السرعة • استهلاك ذكي • ترفيه مجاني</p>
+            <div class="title">الهرم نت</div>
+            <div class="subtitle">شبكة الإنترنت اللاسلكي</div>
+            <div id="onlineBadge" class="online-pill" style="display: none;">
+                <span class="dot"></span> متصل الآن
+            </div>
         </div>
 
-        <div class="ticker">
-            <marquee direction="right" scrollamount="4">
-                مرحباً بك في الهرم نت — اشحن رصيدك فوراً عبر جيب أو الكريمي، وتابع استهلاك كرتك لحظة بلحظة، واستمتع بمشاهدة المسلسلات مجاناً دون خصم من الرصيد.
-            </marquee>
-        </div>
-
-        <!-- التبديل بين شاشة الدخول وصفحة الاستهلاك -->
-        <div class="mode-switch">
-            <button type="button" id="btnScreenLogin" class="mode-btn active" onclick="showScreen('login')">تعبئة كرت ودخول</button>
-            <button type="button" id="btnScreenUsage" class="mode-btn" onclick="showScreen('usage')">صفحة الاستهلاك</button>
-        </div>
-
-        <!-- 1. شاشة تسجيل الدخول والشراء -->
-        <div id="screen-login" class="screen active">
-            <form name="login" action="$(link-login-only)" method="post" onsubmit="return handleCardSubmit(event)">
-                <input type="hidden" name="dst" value="$(link-orig)" />
-                <input type="hidden" name="popup" value="true" />
-
-                <label class="field-label" for="cardCode">أدخل رقم الكرت لتفعيل الاتصال وعرض الاستهلاك</label>
-                <input type="text" id="cardCode" name="username" class="modern-input" placeholder="مثال: 9045128" required autocomplete="off">
-                <button type="submit" class="btn-gold">تفعيل الكرت والدخول</button>
-            </form>
-
-            <!-- اشتراك مجاني للمسلسلات -->
-            <div class="series-banner">
-                <div class="series-text">
-                    <h3>🎬 اشتراك المسلسلات المجاني</h3>
-                    <p>دخول فوري لمكتبة المسلسلات بدون رصيد</p>
+        <!-- 1. صفحة تسجيل الدخول -->
+        <div id="loginScreen">
+            <!-- إشعار قابل للإزالة في صفحة التسجيل -->
+            <div id="seriesNotice" class="dismissible-notice">
+                <div>
+                    <strong>🎬⚽ متابعة المسلسلات والرياضة المباشرة</strong>
+                    <p>متوفرة لمشتركي الهرم نت داخل صفحة الاستهلاك فور تعبئة كرت الإنترنت.</p>
                 </div>
-                <button type="button" class="btn-series" onclick="openSeriesModal()">مشاهدة مجانية</button>
+                <button type="button" class="close-notice-btn" title="إغلاق الإشعار" onclick="dismissNotice()">✕</button>
             </div>
 
-            <!-- شراء عبر جيب والكريمي -->
-            <div class="wallets-box">
-                <div class="wallets-title">شراء كرت جديد عبر جيب أو الكريمي</div>
-                <select id="selectedPackage" class="package-select">
-                    <option value="باقة 100 ريال (500 ميجا - يومان)">باقة 100 ريال — 500 ميجا • يومان</option>
-                    <option value="باقة 200 ريال (1.2 جيجا - 4 أيام)">باقة 200 ريال — 1.2 جيجا • 4 أيام</option>
-                    <option value="باقة 500 ريال (3.5 جيجا - 10 أيام)">باقة 500 ريال — 3.5 جيجا • 10 أيام</option>
-                    <option value="باقة 1000 ريال (8 جيجا - 30 يوماً)">باقة 1000 ريال — 8 جيجا • 30 يوماً</option>
+            <div class="card-panel">
+                <div class="panel-title">تسجيل الدخول وتعبئة الكرت</div>
+                <div class="panel-desc">أدخل رقم كرت الشبكة للدخول والانتقال مباشرة إلى صفحة الاستهلاك.</div>
+
+                <form name="login" action="$(link-login-only)" method="post" onsubmit="return handleLogin(event)">
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+                    <input type="text" id="cardInput" name="username" class="input-box" placeholder="أدخل رقم الكرت" required autocomplete="off">
+                    <button type="submit" class="btn-gold">تفعيل الكرت والدخول</button>
+                </form>
+            </div>
+
+            <!-- الشراء عبر محفظة جيب في صفحة التسجيل -->
+            <div class="card-panel">
+                <div class="panel-title">شراء كرت عبر محفظة جيب</div>
+                <select id="jaibPkg" class="pkg-select">
+                    <option value="باقة 100 ريال — 500 ميجا">باقة 100 ريال — 500 ميجا</option>
+                    <option value="باقة 200 ريال — 1.2 جيجابايت">باقة 200 ريال — 1.2 جيجابايت</option>
+                    <option value="باقة 500 ريال — 3.5 جيجابايت">باقة 500 ريال — 3.5 جيجابايت</option>
+                    <option value="باقة 1000 ريال — 8 جيجابايت">باقة 1000 ريال — 8 جيجابايت</option>
                 </select>
-                <div class="wallet-grid">
-                    <button type="button" class="wallet-btn jaib" onclick="openWalletModal('jaib')">🔴 الدفع عبر جيب</button>
-                    <button type="button" class="wallet-btn kuraimi" onclick="openWalletModal('kuraimi')">🔵 الدفع عبر الكريمي</button>
-                </div>
+                <button type="button" class="btn-jaib" onclick="openJaibModal()">🔴 الدفع عبر محفظة جيب</button>
             </div>
+
+            <!-- القرآن الكريم في صفحة التسجيل -->
+            <button type="button" class="btn-quran" onclick="openModal('quranModal')">📖 القرآن الكريم</button>
         </div>
 
         <!-- 2. صفحة الاستهلاك بعد تعبئة الكرت -->
-        <div id="screen-usage" class="screen">
-            <div class="usage-card">
-                <div class="usage-top">
-                    <div>
-                        <div style="font-size: 0.78rem; color: var(--text-secondary);">رقم الكرت المفعل</div>
-                        <div id="activeCardDisplay" style="font-size: 1.1rem; font-weight: 900; color: #fff;">#9045128</div>
-                    </div>
-                    <span class="card-badge">الباقة نشطة</span>
-                </div>
+        <div id="usageScreen" style="display: none;">
+            <div class="panel-title" style="color: var(--text);">تفاصيل الحساب</div>
 
-                <div class="progress-track">
-                    <div id="dataProgressBar" class="progress-fill"></div>
+            <div class="reminder-box">
+                عزيزي المستخدم تذكر إن الله فوق كل شيء رقيب ... فأجعل أستخدامك للإنترنت فيما يرضيه ... وتستفيد
+            </div>
+
+            <div class="account-row">
+                <div>
+                    <div style="font-size: 0.76rem; color: var(--muted);">رقم الكرت</div>
+                    <div id="cardDisplay" style="font-size: 1.15rem; font-weight: 900; letter-spacing: 1px;">2988****</div>
                 </div>
-                <div class="progress-meta">
-                    <span id="usedDataText">المستهلك: 1.86 جيجابايت</span>
-                    <span id="remainDataText">المتبقي: 1.14 جيجابايت</span>
+                <span class="active-badge">نشط</span>
+            </div>
+
+            <div class="percent-box">
+                <div class="percent-num">91%</div>
+                <div style="font-size: 0.8rem; color: var(--muted); margin-top: 3px;">النسبة المتبقية من رصيد التحميل</div>
+                <div class="bar-track">
+                    <div class="bar-fill"></div>
                 </div>
             </div>
 
             <div class="stats-grid">
                 <div class="stat-box">
-                    <div class="stat-label">الوقت المتبقي</div>
-                    <div id="remainTimeText" class="stat-value">5 أيام و 08 ساعات</div>
+                    <div class="stat-val">23m8s</div>
+                    <div class="stat-lbl">وقت الجلسة</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-label">حالة المسلسلات</div>
-                    <div class="stat-value" style="color: #34d399;">مجاني مفعل</div>
+                    <div class="stat-val">1 يوم 2 ساعة 21 دقيقة 6 ثانية</div>
+                    <div class="stat-lbl">الباقي من الصلاحية</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val">27.2 MiB</div>
+                    <div class="stat-lbl">التحميل المستخدم</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val">6.6 MiB</div>
+                    <div class="stat-lbl">الرفع المستخدم</div>
+                </div>
+                <div class="stat-box wide">
+                    <div class="stat-val">357 ميجابايت</div>
+                    <div class="stat-lbl">الباقي من الرصيد</div>
                 </div>
             </div>
 
-            <div class="info-list">
-                <div class="info-row">
-                    <span>إجمالي الباقة</span>
-                    <span id="totalPackageText">3.00 جيجابايت</span>
+            <!-- متابعة المسلسلات والرياضة المباشرة في صفحة الاستهلاك -->
+            <div class="media-live-card">
+                <div>
+                    <h3>🎬⚽ متابعة المسلسلات والرياضة المباشرة</h3>
+                    <p>بث مباشر للمباريات وأحدث المسلسلات للمشتركين</p>
                 </div>
-                <div class="info-row">
-                    <span>عنوان IP الجهاز</span>
-                    <span>10.10.24.118</span>
-                </div>
-                <div class="info-row">
-                    <span>تاريخ انتهاء الصلاحية</span>
-                    <span>2026/12/04</span>
-                </div>
+                <button type="button" class="btn-live" onclick="openModal('liveMediaModal')">متابعة الآن</button>
             </div>
 
-            <div class="action-row">
-                <button type="button" class="btn-outline" onclick="openSeriesModal()">🎬 مكتبة المسلسلات</button>
-                <button type="button" class="btn-danger-soft" onclick="resetToLogin()">تسجيل خروج</button>
+            <!-- طلب الكروت عبر واتساب -->
+            <button type="button" class="btn-whatsapp" onclick="openModal('whatsappModal')">💬 طلب كروت عبر واتساب</button>
+
+            <div class="tip-box">
+                <strong>نصيحة سريعة</strong>
+                <span>ننصح بالاحتفاظ بالكرت حتى ينتهي فلسنا مسؤولين عن نسيان الرمز</span>
+            </div>
+
+            <button type="button" class="btn-logout" onclick="logoutSession()">تسجيل الخروج</button>
+
+            <div class="panel-title" style="color: var(--text);">خدمات سريعة</div>
+            <div class="quick-grid">
+                <button type="button" class="q-btn" onclick="openModal('pricesModal')">الأسعار</button>
+                <button type="button" class="q-btn" onclick="openModal('notesModal')">الملاحظات</button>
+                <button type="button" class="q-btn" onclick="openModal('quranModal')">القرآن</button>
             </div>
         </div>
 
-        <div class="footer-note">
-            الدعم الفني لشبكة الهرم نت: <strong style="color: var(--accent-gold);">770000000</strong>
+        <div class="footer">
+            Al-Haram Net • Developed &amp; Powered By ABDO ALWASEA ZAHER © 2023
         </div>
     </div>
 
-    <!-- نافذة الدفع عبر جيب / الكريمي -->
-    <div id="walletModal" class="modal-backdrop">
+    <!-- نافذة محفظة جيب -->
+    <div id="jaibModal" class="modal-bg">
         <div class="modal-card">
-            <h3 id="walletTitle">إتمام الشراء</h3>
-            <p id="walletSubtitle"></p>
-            <div class="copy-strip">
-                <strong id="walletNumber">777000111</strong>
-                <button type="button" class="copy-chip" onclick="copyWalletNumber()">نسخ</button>
+            <h3>🔴 الشراء عبر محفظة جيب</h3>
+            <p>حوّل قيمة الباقة إلى رقم محفظة جيب الخاص بشبكة الهرم نت:</p>
+            <div class="copy-box">
+                <strong id="jaibAccNum">777000111</strong>
+                <button type="button" class="copy-btn" onclick="copyText('jaibAccNum')">نسخ</button>
             </div>
-            <p id="selectedPkgNote" style="font-size: 0.8rem; color: #fde68a; margin-bottom: 12px;"></p>
-            <button type="button" class="btn-gold" onclick="alert('سيتم فتح واتساب المبيعات لإرسال سند التحويل واستلام الكرت.')">تأكيد عبر واتساب</button>
-            <button type="button" class="modal-close" onclick="closeModal('walletModal')">إغلاق</button>
+            <p id="jaibChosenPkg" style="font-size: 0.8rem; color: var(--gold); margin-bottom: 10px;"></p>
+            <button type="button" class="btn-gold" onclick="alert('سيتم تحويلك إلى واتساب لإرسال إشعار الدفع عبر جيب.')">إرسال إشعار واتساب</button>
+            <button type="button" class="modal-close" onclick="closeModal('jaibModal')">إغلاق</button>
         </div>
     </div>
 
-    <!-- نافذة اشتراك المسلسلات المجاني -->
-    <div id="seriesModal" class="modal-backdrop">
+    <!-- نافذة متابعة المسلسلات والرياضة المباشرة -->
+    <div id="liveMediaModal" class="modal-bg">
         <div class="modal-card">
-            <h3>🎬 اشتراك المسلسلات المجاني</h3>
-            <p>
-                اشتراك مجاني مخصص لمشتركي الهرم نت لمشاهدة المسلسلات والأفلام عبر السيرفر المحلي دون استهلاك رصيد الكرت.
-            </p>
-            <button type="button" class="btn-series" style="width: 100%; margin-top: 14px; padding: 12px;" onclick="alert('جاري فتح بوابة المسلسلات المجانية (وضع التصفح المحلي بدون خصم رصيد).')">
-                الدخول إلى المسلسلات الآن
-            </button>
-            <button type="button" class="modal-close" onclick="closeModal('seriesModal')">إغلاق</button>
+            <h3>🎬⚽ المسلسلات والرياضة المباشرة</h3>
+            <p>اختر القسم الذي ترغب في متابعته الآن عبر بوابة الهرم نت:</p>
+            <button type="button" class="btn-live" style="width: 100%; margin-top: 12px; padding: 11px;" onclick="alert('جاري فتح البث الرياضي المباشر...')">⚽ البث الرياضي المباشر</button>
+            <button type="button" class="btn-gold" style="width: 100%; margin-top: 8px; padding: 11px;" onclick="alert('جاري فتح مكتبة المسلسلات...')">🎬 مكتبة المسلسلات</button>
+            <button type="button" class="modal-close" onclick="closeModal('liveMediaModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة طلب الكروت عبر واتساب -->
+    <div id="whatsappModal" class="modal-bg">
+        <div class="modal-card">
+            <h3>💬 طلب كروت عبر واتساب</h3>
+            <p>اطلب كرتك مباشرة عبر واتساب الدعم والمبيعات لشبكة الهرم نت:</p>
+            <div class="copy-box">
+                <strong id="waPhoneNum">+967770000000</strong>
+                <button type="button" class="copy-btn" onclick="copyText('waPhoneNum')">نسخ</button>
+            </div>
+            <button type="button" class="btn-whatsapp" style="margin-bottom: 0;" onclick="window.open('https://wa.me/967770000000?text=' + encodeURIComponent('مرحباً شبكة الهرم نت، أرغب في طلب كرت إنترنت.'), '_blank')">فتح محادثة واتساب</button>
+            <button type="button" class="modal-close" onclick="closeModal('whatsappModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة الأسعار -->
+    <div id="pricesModal" class="modal-bg">
+        <div class="modal-card">
+            <h3>الأسعار</h3>
+            <p>100 ريال: 500 ميجا<br>200 ريال: 1.2 جيجابايت<br>500 ريال: 3.5 جيجابايت<br>1000 ريال: 8 جيجابايت</p>
+            <button type="button" class="modal-close" onclick="closeModal('pricesModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة الملاحظات -->
+    <div id="notesModal" class="modal-bg">
+        <div class="modal-card">
+            <h3>الملاحظات</h3>
+            <p>ننصح بالاحتفاظ بالكرت حتى ينتهي رصيده، ونسعد بخدمتك في أي وقت.</p>
+            <button type="button" class="modal-close" onclick="closeModal('notesModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة القرآن الكريم -->
+    <div id="quranModal" class="modal-bg">
+        <div class="modal-card">
+            <h3>📖 القرآن الكريم</h3>
+            <p>﴿ وَإِذَا قُرِئَ الْقُرْآنُ فَاسْتَمِعُوا لَهُ وَأَنصِتُوا لَعَلَّكُمْ تُرْحَمُونَ ﴾</p>
+            <button type="button" class="modal-close" onclick="closeModal('quranModal')">إغلاق</button>
         </div>
     </div>
 
     <script>
-        function showScreen(screenName) {
-            document.getElementById('screen-login').classList.toggle('active', screenName === 'login');
-            document.getElementById('screen-usage').classList.toggle('active', screenName === 'usage');
-            document.getElementById('btnScreenLogin').classList.toggle('active', screenName === 'login');
-            document.getElementById('btnScreenUsage').classList.toggle('active', screenName === 'usage');
+        function toggleTheme() {
+            const root = document.documentElement;
+            const current = root.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            document.getElementById('themeIcon').textContent = next === 'dark' ? '☀️' : '🌙';
+            document.getElementById('themeLabel').textContent = next === 'dark' ? 'الوضع النهاري' : 'الوضع الليلي';
         }
 
-        function handleCardSubmit(event) {
-            const cardInput = document.getElementById('cardCode').value.trim();
-            if (!cardInput) return false;
+        function dismissNotice() {
+            document.getElementById('seriesNotice').style.display = 'none';
+        }
 
-            // عند المعاينة على GitHub Pages أو ملف محلي ننتقل مباشرة لصفحة الاستهلاك
+        function handleLogin(e) {
+            const val = document.getElementById('cardInput').value.trim();
+            if (!val) return false;
+
             if (window.location.hostname.includes('github.io') || window.location.protocol === 'file:') {
-                event.preventDefault();
-                document.getElementById('activeCardDisplay').textContent = '#' + cardInput;
-                showScreen('usage');
+                e.preventDefault();
+                const masked = val.length > 4 ? val.slice(0, 4) + '****' : val;
+                document.getElementById('cardDisplay').textContent = masked;
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('usageScreen').style.display = 'block';
+                document.getElementById('onlineBadge').style.display = 'inline-flex';
                 return false;
             }
             return true;
         }
 
-        function resetToLogin() {
-            document.getElementById('cardCode').value = '';
-            showScreen('login');
-        }
-
-        function openWalletModal(type) {
-            const title = document.getElementById('walletTitle');
-            const subtitle = document.getElementById('walletSubtitle');
-            const num = document.getElementById('walletNumber');
-            const pkg = document.getElementById('selectedPackage').value;
-
-            if (type === 'jaib') {
-                title.textContent = 'الدفع عبر محفظة جيب (Jaib)';
-                title.style.color = '#fb7185';
-                subtitle.textContent = 'حوّل قيمة الباقة إلى رقم محفظة جيب التالي:';
-                num.textContent = '777000111';
+        function logoutSession() {
+            if (window.location.hostname.includes('github.io') || window.location.protocol === 'file:') {
+                document.getElementById('usageScreen').style.display = 'none';
+                document.getElementById('onlineBadge').style.display = 'none';
+                document.getElementById('loginScreen').style.display = 'block';
+                document.getElementById('cardInput').value = '';
             } else {
-                title.textContent = 'الدفع عبر بنك الكريمي';
-                title.style.color = '#60a5fa';
-                subtitle.textContent = 'أودع قيمة الباقة إلى حساب الكريمي التالي:';
-                num.textContent = '3001234567';
+                window.location.href = '$(link-logout)';
             }
-
-            document.getElementById('selectedPkgNote').textContent = 'الباقة المختارة: ' + pkg;
-            document.getElementById('walletModal').style.display = 'flex';
         }
 
-        function openSeriesModal() {
-            document.getElementById('seriesModal').style.display = 'flex';
+        function openJaibModal() {
+            const pkg = document.getElementById('jaibPkg').value;
+            document.getElementById('jaibChosenPkg').textContent = 'الباقة المختارة: ' + pkg;
+            document.getElementById('jaibModal').style.display = 'flex';
+        }
+
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
         }
 
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
         }
 
-        function copyWalletNumber() {
-            const val = document.getElementById('walletNumber').textContent;
-            navigator.clipboard.writeText(val);
-            alert('تم نسخ الرقم: ' + val);
+        function copyText(elementId) {
+            const txt = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(txt);
+            alert('تم النسخ: ' + txt);
         }
     </script>
 </body>
