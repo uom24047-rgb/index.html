@@ -3,45 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الهرم نت | شبكة الإنترنت اللاسلكي</title>
+    <title>الهرم نت | بوابة الشبكة اللاسلكية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* الثيم الليلي: نيلي ملكي ومرجاني دافئ */
         :root[data-theme="dark"] {
-            --bg-body: #060913;
-            --bg-glow:
-                radial-gradient(circle at 15% 12%, rgba(250, 204, 21, 0.16) 0%, transparent 40%),
-                radial-gradient(circle at 85% 18%, rgba(56, 189, 248, 0.15) 0%, transparent 42%),
-                radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.12) 0%, transparent 45%);
-            --surface: rgba(15, 23, 42, 0.88);
-            --card: rgba(23, 35, 62, 0.84);
-            --card-soft: rgba(8, 13, 26, 0.78);
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --border: rgba(255, 255, 255, 0.11);
-            --shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+            --bg-canvas: #090714;
+            --bg-aura:
+                radial-gradient(circle at 85% 8%, rgba(251, 113, 133, 0.16) 0%, transparent 40%),
+                radial-gradient(circle at 12% 18%, rgba(129, 140, 248, 0.18) 0%, transparent 42%),
+                radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.12) 0%, transparent 48%);
+            --panel-bg: #120f24;
+            --tile-bg: #1b1734;
+            --input-bg: #0c0a19;
+            --ink-main: #f5f3ff;
+            --ink-sub: #a5a1c2;
+            --line: rgba(167, 139, 250, 0.16);
+            --card-shadow: 0 24px 64px rgba(3, 2, 12, 0.78);
         }
 
+        /* الثيم النهاري: أبيض لؤلؤي مع بنفسجي ومرجاني */
         :root[data-theme="light"] {
-            --bg-body: #f1f5f9;
-            --bg-glow:
-                radial-gradient(circle at 15% 12%, rgba(245, 158, 11, 0.18) 0%, transparent 42%),
-                radial-gradient(circle at 85% 18%, rgba(14, 165, 233, 0.15) 0%, transparent 42%),
-                radial-gradient(circle at 50% 95%, rgba(16, 185, 129, 0.12) 0%, transparent 45%);
-            --surface: rgba(255, 255, 255, 0.94);
-            --card: rgba(248, 250, 252, 0.97);
-            --card-soft: rgba(226, 232, 240, 0.68);
-            --text: #0f172a;
-            --muted: #475569;
-            --border: rgba(15, 23, 42, 0.1);
-            --shadow: 0 20px 45px rgba(15, 37, 64, 0.12);
+            --bg-canvas: #f5f3ff;
+            --bg-aura:
+                radial-gradient(circle at 85% 8%, rgba(244, 63, 94, 0.12) 0%, transparent 42%),
+                radial-gradient(circle at 12% 18%, rgba(99, 102, 241, 0.14) 0%, transparent 42%),
+                radial-gradient(circle at 50% 100%, rgba(14, 165, 233, 0.1) 0%, transparent 48%);
+            --panel-bg: #ffffff;
+            --tile-bg: #f8f7ff;
+            --input-bg: #efeafd;
+            --ink-main: #18122b;
+            --ink-sub: #5c5470;
+            --line: rgba(99, 102, 241, 0.15);
+            --card-shadow: 0 20px 48px rgba(44, 29, 92, 0.1);
         }
 
         :root {
-            --gold: #f59e0b;
-            --gold-bright: #fbbf24;
-            --cyan: #06b6d4;
-            --emerald: #10b981;
-            --rose: #f43f5e;
+            --indigo: #6366f1;
+            --indigo-glow: #818cf8;
+            --coral: #fb7185;
+            --coral-deep: #e11d48;
+            --sky: #38bdf8;
+            --mint: #2dd4bf;
             --wa: #22c55e;
         }
 
@@ -54,64 +57,107 @@
         }
 
         body {
-            background-color: var(--bg-body);
-            background-image: var(--bg-glow);
-            color: var(--text);
+            background-color: var(--bg-canvas);
+            background-image: var(--bg-aura);
+            color: var(--ink-main);
             min-height: 100vh;
-            padding: 16px;
+            padding: 18px 14px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
         }
 
-        .portal-shell {
+        .main-frame {
             width: 100%;
-            max-width: 470px;
-            background: var(--surface);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid var(--border);
-            border-radius: 26px;
+            max-width: 460px;
+            background: var(--panel-bg);
+            border: 1px solid var(--line);
+            border-radius: 28px;
             padding: 20px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--card-shadow);
         }
 
-        .top-bar {
+        /* شريط العنوان وتبديل الثيم */
+        .top-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 10px;
-            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 16px;
         }
 
-        .net-tag {
-            background: rgba(245, 158, 11, 0.14);
-            color: var(--gold);
-            border: 1px solid rgba(245, 158, 11, 0.32);
-            padding: 5px 12px;
-            border-radius: 999px;
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .brand-mark {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--indigo), var(--coral));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .brand-titles h1 {
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--ink-main);
+            line-height: 1.15;
+        }
+
+        .brand-titles span {
             font-size: 0.78rem;
-            font-weight: 800;
+            color: var(--ink-sub);
+            font-weight: 600;
         }
 
-        .theme-switch {
-            background: var(--card);
-            color: var(--text);
-            border: 1px solid var(--border);
-            padding: 5px 12px;
-            border-radius: 999px;
-            font-size: 0.8rem;
+        .theme-btn {
+            background: var(--tile-bg);
+            color: var(--ink-main);
+            border: 1px solid var(--line);
+            padding: 7px 12px;
+            border-radius: 14px;
+            font-size: 0.78rem;
             font-weight: 800;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
-        .notice-banner {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.16), rgba(245, 158, 11, 0.14));
-            border: 1px solid rgba(6, 182, 212, 0.35);
-            border-radius: 16px;
+        .theme-btn:hover {
+            border-color: var(--coral);
+        }
+
+        .live-status-strip {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(45, 212, 191, 0.12);
+            border: 1px solid rgba(45, 212, 191, 0.32);
+            color: var(--mint);
+            border-radius: 14px;
+            padding: 8px 14px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        /* إشعار قابل للإزالة في صفحة تسجيل الدخول */
+        .dismiss-banner {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(251, 113, 133, 0.14));
+            border: 1px solid rgba(129, 140, 248, 0.35);
+            border-radius: 18px;
             padding: 12px 14px;
             margin-bottom: 16px;
             display: flex;
@@ -120,752 +166,693 @@
             gap: 10px;
         }
 
-        .notice-banner strong {
+        .dismiss-banner strong {
             display: block;
-            font-size: 0.86rem;
+            font-size: 0.85rem;
             font-weight: 900;
-            color: var(--cyan);
+            color: var(--coral);
             margin-bottom: 2px;
         }
 
-        .notice-banner p {
-            font-size: 0.79rem;
+        .dismiss-banner p {
+            font-size: 0.78rem;
+            color: var(--ink-main);
             line-height: 1.5;
         }
 
-        .notice-close {
-            background: var(--card-soft);
-            color: var(--text);
-            border: 1px solid var(--border);
+        .btn-x {
             width: 26px;
             height: 26px;
-            border-radius: 50%;
+            border-radius: 9px;
+            border: 1px solid var(--line);
+            background: var(--tile-bg);
+            color: var(--ink-main);
             font-weight: 900;
             cursor: pointer;
             flex-shrink: 0;
         }
 
-        .brand-header {
-            text-align: center;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 18px;
-        }
-
-        .logo-box {
-            width: 66px;
-            height: 66px;
-            margin: 0 auto 10px;
+        /* بطاقات الأقسام */
+        .section-card {
+            background: var(--tile-bg);
+            border: 1px solid var(--line);
             border-radius: 20px;
-            background: linear-gradient(135deg, var(--gold-bright), var(--gold), #ea580c);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 26px rgba(245, 158, 11, 0.28);
-        }
-
-        .logo-box svg {
-            width: 36px;
-            height: 36px;
-            fill: #090d16;
-        }
-
-        .brand-name {
-            font-size: 1.75rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, var(--gold), var(--cyan), var(--emerald));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .brand-sub {
-            font-size: 0.84rem;
-            color: var(--muted);
-            margin-top: 2px;
-        }
-
-        .live-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 10px;
-            background: rgba(16, 185, 129, 0.14);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            padding: 4px 14px;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 800;
-        }
-
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #10b981;
-            box-shadow: 0 0 8px #10b981;
-        }
-
-        .glass-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 18px;
+            padding: 16px;
             margin-bottom: 14px;
         }
 
-        .card-heading {
-            font-size: 0.98rem;
-            font-weight: 900;
-            color: var(--gold);
-            margin-bottom: 6px;
-        }
-
-        .card-caption {
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
-
-        .section-label {
+        .card-head {
             font-size: 0.94rem;
             font-weight: 900;
-            margin-bottom: 10px;
+            color: var(--indigo-glow);
+            margin-bottom: 4px;
         }
 
-        .code-input {
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: 15px;
-            border: 1px solid var(--border);
-            background: var(--card-soft);
-            color: var(--text);
-            font-size: 1.06rem;
-            font-weight: 900;
-            text-align: center;
-            letter-spacing: 1.5px;
-            outline: none;
+        .card-note {
+            font-size: 0.78rem;
+            color: var(--ink-sub);
             margin-bottom: 12px;
         }
 
-        .code-input:focus {
-            border-color: var(--gold);
-        }
-
-        .pkg-select {
+        .card-field {
             width: 100%;
-            padding: 10px 12px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--card-soft);
-            color: var(--text);
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+            padding: 13px 15px;
+            border-radius: 15px;
+            border: 1px solid var(--line);
+            background: var(--input-bg);
+            color: var(--ink-main);
+            font-size: 1.05rem;
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 2px;
             outline: none;
+            margin-bottom: 11px;
         }
 
-        .btn-gold {
+        .card-field:focus {
+            border-color: var(--indigo);
+        }
+
+        .btn-connect {
             width: 100%;
             padding: 13px;
             border: none;
             border-radius: 15px;
-            background: linear-gradient(135deg, var(--gold-bright), var(--gold));
-            color: #090d16;
-            font-size: 0.98rem;
+            background: linear-gradient(135deg, var(--indigo), #4f46e5);
+            color: #fff;
+            font-size: 0.96rem;
             font-weight: 900;
             cursor: pointer;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.28);
+        }
+
+        .pkg-box {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 13px;
+            border: 1px solid var(--line);
+            background: var(--input-bg);
+            color: var(--ink-main);
+            font-size: 0.84rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            outline: none;
         }
 
         .btn-jaib {
             width: 100%;
             padding: 12px;
             border-radius: 14px;
-            border: 1px solid rgba(244, 63, 94, 0.4);
-            background: rgba(244, 63, 94, 0.14);
-            color: var(--text);
-            font-size: 0.9rem;
+            border: 1px solid rgba(251, 113, 133, 0.42);
+            background: rgba(251, 113, 133, 0.14);
+            color: var(--ink-main);
+            font-size: 0.88rem;
             font-weight: 800;
             cursor: pointer;
         }
 
-        .btn-quran {
+        .btn-whatsapp-order {
             width: 100%;
             padding: 12px;
             border-radius: 15px;
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            background: rgba(16, 185, 129, 0.12);
-            color: var(--text);
-            font-size: 0.92rem;
-            font-weight: 800;
+            border: 1px solid rgba(34, 197, 94, 0.45);
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--ink-main);
+            font-size: 0.9rem;
+            font-weight: 900;
             cursor: pointer;
             margin-bottom: 14px;
         }
 
-        .reminder-box {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.28);
-            border-radius: 16px;
-            padding: 12px 14px;
-            font-size: 0.82rem;
-            line-height: 1.65;
-            text-align: center;
-            margin-bottom: 14px;
-        }
-
-        .account-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 14px;
-        }
-
-        .mini-muted {
-            font-size: 0.78rem;
-            color: var(--muted);
-        }
-
-        .card-code-val {
-            font-size: 1.15rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        .status-active {
-            background: rgba(16, 185, 129, 0.15);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.35);
-            padding: 4px 12px;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 800;
-        }
-
-        .percent-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 16px;
-            text-align: center;
-            margin-bottom: 14px;
-        }
-
-        .percent-big {
-            font-size: 2.05rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, var(--emerald), var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.15;
-        }
-
-        .progress-rail {
-            width: 100%;
-            height: 11px;
-            border-radius: 999px;
-            background: var(--card-soft);
-            overflow: hidden;
-            margin-top: 12px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            border-radius: 999px;
-            background: linear-gradient(90deg, var(--emerald), var(--cyan), var(--gold));
-        }
-
-        .stats-grid {
+        /* قائمة خيارات صفحة تسجيل الدخول: نقاط البيع - الأسعار - الملاحظات - القرآن الكريم */
+        .login-menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 14px;
         }
 
-        .stat-tile {
-            background: var(--card);
-            border: 1px solid var(--border);
+        .menu-item-btn {
+            background: var(--tile-bg);
+            border: 1px solid var(--line);
             border-radius: 16px;
-            padding: 13px;
+            padding: 12px 10px;
+            color: var(--ink-main);
+            font-size: 0.84rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
-        .stat-tile.span-2 {
+        .menu-item-btn.span-full {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.14), rgba(45, 212, 191, 0.12));
+            border-color: rgba(129, 140, 248, 0.35);
+        }
+
+        .menu-item-btn:hover {
+            border-color: var(--coral);
+        }
+
+        /* ==================== صفحة الاستهلاك ==================== */
+        .reminder-note {
+            background: rgba(251, 113, 133, 0.1);
+            border: 1px solid rgba(251, 113, 133, 0.3);
+            border-radius: 16px;
+            padding: 11px 14px;
+            font-size: 0.8rem;
+            line-height: 1.65;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .card-summary-row {
+            background: var(--tile-bg);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 13px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .active-tag {
+            background: rgba(45, 212, 191, 0.16);
+            color: var(--mint);
+            border: 1px solid rgba(45, 212, 191, 0.35);
+            padding: 3px 11px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        .percent-box {
+            background: var(--tile-bg);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .percent-val {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--coral);
+            line-height: 1.15;
+        }
+
+        .bar-outer {
+            width: 100%;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--input-bg);
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .bar-inner {
+            width: 91%;
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--indigo-glow), var(--coral));
+        }
+
+        .usage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .usage-cell {
+            background: var(--tile-bg);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 12px;
+        }
+
+        .usage-cell.wide-cell {
             grid-column: span 2;
             text-align: center;
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(6, 182, 212, 0.08));
-            border-color: rgba(245, 158, 11, 0.35);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(251, 113, 133, 0.12));
+            border-color: rgba(129, 140, 248, 0.35);
         }
 
-        .stat-num {
-            font-size: 0.94rem;
+        .cell-val {
+            font-size: 0.92rem;
             font-weight: 900;
         }
 
-        .stat-tile.span-2 .stat-num {
-            font-size: 1.25rem;
-            color: var(--gold);
+        .usage-cell.wide-cell .cell-val {
+            font-size: 1.22rem;
+            color: var(--coral);
         }
 
-        .stat-caption {
-            font-size: 0.76rem;
-            color: var(--muted);
-            margin-top: 3px;
+        .cell-lbl {
+            font-size: 0.75rem;
+            color: var(--ink-sub);
+            margin-top: 2px;
         }
 
-        .live-media-card {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.16), rgba(245, 158, 11, 0.14));
-            border: 1px solid rgba(6, 182, 212, 0.38);
+        .live-stream-box {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(99, 102, 241, 0.16));
+            border: 1px solid rgba(56, 189, 248, 0.35);
             border-radius: 18px;
-            padding: 15px;
+            padding: 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 10px;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
-        .live-media-card h3 {
-            font-size: 0.94rem;
+        .live-stream-box h3 {
+            font-size: 0.92rem;
             font-weight: 900;
-            color: var(--cyan);
+            color: var(--sky);
             margin-bottom: 2px;
         }
 
-        .live-media-card p {
-            font-size: 0.77rem;
-            color: var(--muted);
+        .live-stream-box p {
+            font-size: 0.75rem;
+            color: var(--ink-sub);
         }
 
-        .btn-cyan {
-            background: linear-gradient(135deg, var(--cyan), #0284c7);
-            color: #04131a;
+        .btn-watch {
+            background: linear-gradient(135deg, var(--coral), var(--coral-deep));
+            color: #fff;
             border: none;
-            padding: 9px 14px;
+            padding: 9px 13px;
             border-radius: 12px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 900;
             cursor: pointer;
             white-space: nowrap;
         }
 
-        .btn-wa {
-            width: 100%;
-            padding: 12px;
-            border-radius: 14px;
-            border: 1px solid rgba(34, 197, 94, 0.45);
-            background: rgba(34, 197, 94, 0.16);
-            color: var(--text);
-            font-size: 0.9rem;
-            font-weight: 800;
-            cursor: pointer;
-            margin-bottom: 14px;
-        }
-
-        .tip-card {
-            background: var(--card);
-            border: 1px solid var(--border);
+        .advice-box {
+            background: var(--tile-bg);
+            border: 1px solid var(--line);
             border-radius: 16px;
-            padding: 13px 15px;
-            margin-bottom: 14px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
         }
 
-        .tip-card strong {
+        .advice-box strong {
             display: block;
-            font-size: 0.82rem;
-            color: var(--gold);
-            margin-bottom: 3px;
+            font-size: 0.8rem;
+            color: var(--indigo-glow);
+            margin-bottom: 2px;
         }
 
-        .tip-card span {
-            font-size: 0.8rem;
-            color: var(--muted);
-            line-height: 1.5;
+        .advice-box span {
+            font-size: 0.78rem;
+            color: var(--ink-sub);
         }
 
         .btn-logout {
             width: 100%;
             padding: 12px;
-            border-radius: 14px;
-            border: 1px solid rgba(244, 63, 94, 0.38);
+            border-radius: 15px;
+            border: 1px solid rgba(244, 63, 94, 0.4);
             background: rgba(244, 63, 94, 0.14);
-            color: #f43f5e;
+            color: var(--coral);
             font-size: 0.9rem;
             font-weight: 900;
             cursor: pointer;
-            margin-bottom: 16px;
+            margin-bottom: 10px;
         }
 
-        .quick-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .quick-btn {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 11px 8px;
-            color: var(--text);
-            font-size: 0.82rem;
-            font-weight: 800;
-            cursor: pointer;
-        }
-
+        /* النوافذ المنبثقة */
         .modal-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(2, 6, 23, 0.78);
-            backdrop-filter: blur(6px);
+            background: rgba(5, 3, 14, 0.8);
+            backdrop-filter: blur(7px);
             display: none;
             align-items: center;
             justify-content: center;
             padding: 16px;
-            z-index: 400;
+            z-index: 600;
         }
 
-        .modal-box {
+        .modal-panel {
             width: 100%;
             max-width: 390px;
-            background: var(--surface);
-            color: var(--text);
-            border: 1px solid var(--border);
-            border-radius: 22px;
+            background: var(--panel-bg);
+            color: var(--ink-main);
+            border: 1px solid var(--line);
+            border-radius: 24px;
             padding: 20px;
             text-align: center;
         }
 
-        .modal-box h3 {
-            color: var(--gold);
-            margin-bottom: 8px;
+        .modal-panel h3 {
+            color: var(--coral);
             font-size: 1.05rem;
+            margin-bottom: 8px;
         }
 
-        .modal-box p {
-            color: var(--muted);
+        .modal-panel p {
+            color: var(--ink-sub);
             font-size: 0.84rem;
             line-height: 1.65;
         }
 
-        .highlight-txt {
-            color: var(--gold) !important;
-            font-size: 0.8rem !important;
-            margin-bottom: 10px;
-        }
-
-        .copy-box {
+        .copy-bar {
             margin: 12px 0;
             padding: 10px 14px;
             border-radius: 12px;
-            background: var(--card-soft);
-            border: 1px dashed var(--gold);
+            background: var(--input-bg);
+            border: 1px dashed var(--indigo-glow);
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .copy-btn {
-            background: var(--gold);
-            color: #090d16;
+        .btn-copy {
+            background: var(--indigo);
+            color: #fff;
             border: none;
             padding: 5px 12px;
             border-radius: 8px;
             font-size: 0.78rem;
-            font-weight: 900;
+            font-weight: 800;
             cursor: pointer;
         }
 
-        .full-btn {
-            width: 100%;
-            margin-top: 10px;
-            padding: 11px;
+        .pos-stack {
+            text-align: right;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pos-card {
+            background: var(--tile-bg);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 9px 12px;
+            font-size: 0.82rem;
+        }
+
+        .pos-card strong {
+            display: block;
+            color: var(--indigo-glow);
         }
 
         .modal-close {
             margin-top: 12px;
             width: 100%;
             padding: 10px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
+            border-radius: 13px;
+            border: 1px solid var(--line);
             background: transparent;
-            color: var(--muted);
+            color: var(--ink-sub);
             font-weight: 700;
             cursor: pointer;
         }
 
-        .portal-footer {
+        .footer-credits {
             text-align: center;
             font-size: 0.72rem;
-            color: var(--muted);
-            padding-top: 10px;
-            border-top: 1px solid var(--border);
+            color: var(--ink-sub);
+            padding-top: 12px;
+            border-top: 1px solid var(--line);
             direction: ltr;
         }
     </style>
 </head>
 <body>
-    <div class="portal-shell">
-        <div class="top-bar">
-            <span class="net-tag">الهرم نت • شبكة لاسلكية</span>
-            <button type="button" class="theme-switch" onclick="PortalApp.toggleTheme()">
+    <div class="main-frame">
+        <!-- الهيدر وتبديل الوضع الليلي والنهاري -->
+        <div class="top-header">
+            <div class="brand-group">
+                <div class="brand-mark">هـ</div>
+                <div class="brand-titles">
+                    <h1>الهرم نت</h1>
+                    <span>شبكة الإنترنت اللاسلكي</span>
+                </div>
+            </div>
+            <button type="button" class="theme-btn" onclick="PortalUI.toggleTheme()">
                 <span id="themeIcon">☀️</span>
                 <span id="themeLabel">الوضع النهاري</span>
             </button>
         </div>
 
-        <header class="brand-header">
-            <div class="logo-box">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2L1.5 19.5h21L12 2zm0 5.4l6.2 10.6H5.8L12 7.4z"/>
-                </svg>
-            </div>
-            <h1 class="brand-name">الهرم نت</h1>
-            <p class="brand-sub">شبكة الإنترنت اللاسلكي</p>
-            <div id="liveBadge" class="live-badge" style="display: none;">
-                <span class="pulse-dot"></span> متصل الآن
-            </div>
-        </header>
+        <div id="connectedBar" class="live-status-strip">
+            <span>● متصل الآن</span>
+            <span>الهرم نت</span>
+        </div>
 
-        <section id="loginView">
-            <div id="promoNotice" class="notice-banner">
+        <!-- ==================== صفحة تسجيل الدخول ==================== -->
+        <div id="loginSection">
+            <!-- إشعار قابل للإزالة -->
+            <div id="streamAlert" class="dismiss-banner">
                 <div>
                     <strong>🎬⚽ متابعة المسلسلات والرياضة المباشرة</strong>
-                    <p>تتوفر داخل صفحة الاستهلاك فور تعبئة كرت الإنترنت.</p>
+                    <p>تتوفر لمشتركي الشبكة في صفحة الاستهلاك فور تعبئة الكرت.</p>
                 </div>
-                <button type="button" class="notice-close" onclick="PortalApp.closeNotice()">✕</button>
+                <button type="button" class="btn-x" title="إزالة الإشعار" onclick="PortalUI.hideAlert()">✕</button>
             </div>
 
-            <div class="glass-card">
-                <h2 class="card-heading">تسجيل الدخول وتعبئة الكرت</h2>
-                <p class="card-caption">أدخل رقم الكرت للدخول والانتقال مباشرة إلى صفحة الاستهلاك.</p>
-                <form name="login" action="$(link-login-only)" method="post" onsubmit="return PortalApp.loginSubmit(event)">
+            <!-- تعبئة الكرت -->
+            <div class="section-card">
+                <div class="card-head">تسجيل الدخول وتعبئة الكرت</div>
+                <div class="card-note">أدخل رقم الكرت للدخول إلى صفحة الاستهلاك</div>
+                <form name="login" action="$(link-login-only)" method="post" onsubmit="return PortalUI.onLogin(event)">
                     <input type="hidden" name="dst" value="$(link-orig)" />
                     <input type="hidden" name="popup" value="true" />
-                    <input type="text" id="cardNumberInput" name="username" class="code-input" placeholder="أدخل رقم الكرت" required autocomplete="off">
-                    <button type="submit" class="btn-gold">تفعيل الكرت والدخول</button>
+                    <input type="text" id="cardCodeInput" name="username" class="card-field" placeholder="أدخل رقم الكرت" required autocomplete="off">
+                    <button type="submit" class="btn-connect">دخول وعرض الاستهلاك</button>
                 </form>
             </div>
 
-            <div class="glass-card">
-                <h2 class="card-heading">شراء كرت عبر محفظة جيب</h2>
-                <select id="packageSelect" class="pkg-select">
+            <!-- الشراء عبر محفظة جيب -->
+            <div class="section-card">
+                <div class="card-head">الشراء عبر محفظة جيب</div>
+                <select id="packageSelect" class="pkg-box">
                     <option value="باقة 100 ريال — 500 ميجا">باقة 100 ريال — 500 ميجا</option>
                     <option value="باقة 200 ريال — 1.2 جيجابايت">باقة 200 ريال — 1.2 جيجابايت</option>
                     <option value="باقة 500 ريال — 3.5 جيجابايت">باقة 500 ريال — 3.5 جيجابايت</option>
                     <option value="باقة 1000 ريال — 8 جيجابايت">باقة 1000 ريال — 8 جيجابايت</option>
                 </select>
-                <button type="button" class="btn-jaib" onclick="PortalApp.openJaib()">🔴 الدفع عبر محفظة جيب</button>
+                <button type="button" class="btn-jaib" onclick="PortalUI.openJaib()">🔴 الدفع عبر محفظة جيب</button>
             </div>
 
-            <button type="button" class="btn-quran" onclick="PortalApp.openModal('quranModal')">📖 القرآن الكريم</button>
-        </section>
+            <!-- طلب الكروت عبر واتساب -->
+            <button type="button" class="btn-whatsapp-order" onclick="PortalUI.openWhatsApp()">💬 طلب الكروت عبر واتساب</button>
 
-        <section id="usageView" style="display: none;">
-            <div class="section-label">تفاصيل الحساب</div>
+            <!-- نقاط البيع + الأسعار + الملاحظات + القرآن الكريم (جميعها في تسجيل الدخول) -->
+            <div class="login-menu-grid">
+                <button type="button" class="menu-item-btn" onclick="PortalUI.openModal('posModal')">📍 نقاط البيع</button>
+                <button type="button" class="menu-item-btn" onclick="PortalUI.openModal('pricesModal')">💎 الأسعار</button>
+                <button type="button" class="menu-item-btn" onclick="PortalUI.openModal('notesModal')">📝 الملاحظات</button>
+                <button type="button" class="menu-item-btn" onclick="PortalUI.openModal('quranModal')">📖 القرآن الكريم</button>
+            </div>
+        </div>
 
-            <div class="reminder-box">
+        <!-- ==================== صفحة الاستهلاك ==================== -->
+        <div id="usageSection" style="display: none;">
+            <div class="reminder-note">
                 عزيزي المستخدم تذكر إن الله فوق كل شيء رقيب ... فأجعل أستخدامك للإنترنت فيما يرضيه ... وتستفيد
             </div>
 
-            <div class="account-card">
+            <div class="card-summary-row">
                 <div>
-                    <span class="mini-muted">رقم الكرت</span>
-                    <div id="activeCardMasked" class="card-code-val">2988****</div>
+                    <span style="font-size: 0.75rem; color: var(--ink-sub);">رقم الكرت</span>
+                    <div id="cardMaskedText" style="font-size: 1.15rem; font-weight: 900; letter-spacing: 1px;">2988****</div>
                 </div>
-                <span class="status-active">نشط</span>
+                <span class="active-tag">نشط</span>
             </div>
 
-            <div class="percent-card">
-                <div id="remainPercentVal" class="percent-big">91%</div>
-                <div class="mini-muted">النسبة المتبقية من رصيد التحميل</div>
-                <div class="progress-rail">
-                    <div id="remainPercentBar" class="progress-bar" style="width: 91%;"></div>
-                </div>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-tile">
-                    <div id="sessionTimeVal" class="stat-num">23m8s</div>
-                    <div class="stat-caption">وقت الجلسة</div>
-                </div>
-                <div class="stat-tile">
-                    <div id="validityLeftVal" class="stat-num">1 يوم 2 ساعة 21 دقيقة 6 ثانية</div>
-                    <div class="stat-caption">الباقي من الصلاحية</div>
-                </div>
-                <div class="stat-tile">
-                    <div id="downloadUsedVal" class="stat-num">27.2 MiB</div>
-                    <div class="stat-caption">التحميل المستخدم</div>
-                </div>
-                <div class="stat-tile">
-                    <div id="uploadUsedVal" class="stat-num">6.6 MiB</div>
-                    <div class="stat-caption">الرفع المستخدم</div>
-                </div>
-                <div class="stat-tile span-2">
-                    <div id="balanceLeftVal" class="stat-num">357 ميجابايت</div>
-                    <div class="stat-caption">الباقي من الرصيد</div>
+            <div class="percent-box">
+                <div class="percent-val">91%</div>
+                <div style="font-size: 0.78rem; color: var(--ink-sub); margin-top: 2px;">النسبة المتبقية من رصيد التحميل</div>
+                <div class="bar-outer">
+                    <div class="bar-inner"></div>
                 </div>
             </div>
 
-            <div class="live-media-card">
+            <div class="usage-grid">
+                <div class="usage-cell">
+                    <div class="cell-val">23m8s</div>
+                    <div class="cell-lbl">وقت الجلسة</div>
+                </div>
+                <div class="usage-cell">
+                    <div class="cell-val">1 يوم 2 ساعة 21 دقيقة 6 ثانية</div>
+                    <div class="cell-lbl">الباقي من الصلاحية</div>
+                </div>
+                <div class="usage-cell">
+                    <div class="cell-val">27.2 MiB</div>
+                    <div class="cell-lbl">التحميل المستخدم</div>
+                </div>
+                <div class="usage-cell">
+                    <div class="cell-val">6.6 MiB</div>
+                    <div class="cell-lbl">الرفع المستخدم</div>
+                </div>
+                <div class="usage-cell wide-cell">
+                    <div class="cell-val">357 ميجابايت</div>
+                    <div class="cell-lbl">الباقي من الرصيد</div>
+                </div>
+            </div>
+
+            <!-- متابعة المسلسلات والرياضة المباشرة بعد تعبئة الكرت -->
+            <div class="live-stream-box">
                 <div>
-                    <h3>🎬⚽ متابعة المسلسلات والرياضة المباشرة</h3>
-                    <p>بث مباشر للمباريات وأحدث المسلسلات للمشتركين</p>
+                    <h3>🎬⚽ المسلسلات والرياضة المباشرة</h3>
+                    <p>متابعة المباريات والمسلسلات متاحة للمشتركين</p>
                 </div>
-                <button type="button" class="btn-cyan" onclick="PortalApp.openModal('mediaModal')">متابعة الآن</button>
+                <button type="button" class="btn-watch" onclick="PortalUI.openModal('streamModal')">متابعة الآن</button>
             </div>
 
-            <button type="button" class="btn-wa" onclick="PortalApp.openModal('waModal')">💬 طلب كروت عبر واتساب</button>
-
-            <div class="tip-card">
+            <div class="advice-box">
                 <strong>نصيحة سريعة</strong>
                 <span>ننصح بالاحتفاظ بالكرت حتى ينتهي فلسنا مسؤولين عن نسيان الرمز</span>
             </div>
 
-            <button type="button" class="btn-logout" onclick="PortalApp.logout()">تسجيل الخروج</button>
+            <button type="button" class="btn-logout" onclick="PortalUI.onLogout()">تسجيل الخروج</button>
+        </div>
 
-            <div class="section-label">خدمات سريعة</div>
-            <div class="quick-row">
-                <button type="button" class="quick-btn" onclick="PortalApp.openModal('pricesModal')">الأسعار</button>
-                <button type="button" class="quick-btn" onclick="PortalApp.openModal('notesModal')">الملاحظات</button>
-                <button type="button" class="quick-btn" onclick="PortalApp.openModal('quranModal')">القرآن</button>
-            </div>
-        </section>
-
-        <footer class="portal-footer">
+        <div class="footer-credits">
             Al-Haram Net • Developed &amp; Powered By ABDO ALWASEA ZAHER © 2023
-        </footer>
+        </div>
     </div>
 
+    <!-- نافذة جيب -->
     <div id="jaibModal" class="modal-backdrop">
-        <div class="modal-box">
+        <div class="modal-panel">
             <h3>🔴 الشراء عبر محفظة جيب</h3>
             <p>حوّل قيمة الباقة إلى رقم محفظة جيب الخاص بشبكة الهرم نت:</p>
-            <div class="copy-box">
-                <strong id="jaibAccountCode">777000111</strong>
-                <button type="button" class="copy-btn" onclick="PortalApp.copyCode('jaibAccountCode')">نسخ</button>
+            <div class="copy-bar">
+                <strong id="jaibAccVal">777000111</strong>
+                <button type="button" class="btn-copy" onclick="PortalUI.copyVal('jaibAccVal')">نسخ</button>
             </div>
-            <p id="jaibPackageSummary" class="highlight-txt"></p>
-            <button type="button" class="btn-gold" onclick="PortalApp.sendJaibWhatsApp()">إرسال إشعار واتساب</button>
-            <button type="button" class="modal-close" onclick="PortalApp.closeModal('jaibModal')">إغلاق</button>
+            <p id="jaibPkgLabel" style="color: var(--coral); font-weight: 800; margin-bottom: 10px;"></p>
+            <button type="button" class="btn-connect" onclick="PortalUI.sendWa('jaib')">إرسال إشعار واتساب</button>
+            <button type="button" class="modal-close" onclick="PortalUI.closeModal('jaibModal')">إغلاق</button>
         </div>
     </div>
 
-    <div id="mediaModal" class="modal-backdrop">
-        <div class="modal-box">
-            <h3>🎬⚽ المسلسلات والرياضة المباشرة</h3>
-            <p>اختر القسم الذي ترغب في متابعته الآن:</p>
-            <button type="button" class="btn-cyan full-btn" onclick="PortalApp.openStream('sports')">⚽ البث الرياضي المباشر</button>
-            <button type="button" class="btn-gold full-btn" onclick="PortalApp.openStream('series')">🎬 مكتبة المسلسلات</button>
-            <button type="button" class="modal-close" onclick="PortalApp.closeModal('mediaModal')">إغلاق</button>
-        </div>
-    </div>
-
+    <!-- نافذة الطلب عبر واتساب -->
     <div id="waModal" class="modal-backdrop">
-        <div class="modal-box">
-            <h3>💬 طلب كروت عبر واتساب</h3>
-            <p>تواصل مباشرة مع مبيعات ودعم شبكة الهرم نت لطلب الكروت:</p>
-            <div class="copy-box">
-                <strong id="waNumberCode">+967770000000</strong>
-                <button type="button" class="copy-btn" onclick="PortalApp.copyCode('waNumberCode')">نسخ</button>
+        <div class="modal-panel">
+            <h3>💬 طلب الكروت عبر واتساب</h3>
+            <p>تواصل مع إدارة شبكة الهرم نت لطلب الكرت عبر واتساب:</p>
+            <div class="copy-bar">
+                <strong id="waNumVal">+967770000000</strong>
+                <button type="button" class="btn-copy" onclick="PortalUI.copyVal('waNumVal')">نسخ</button>
             </div>
-            <button type="button" class="btn-wa full-btn" onclick="PortalApp.openWhatsAppOrder()">فتح واتساب لطلب كرت</button>
-            <button type="button" class="modal-close" onclick="PortalApp.closeModal('waModal')">إغلاق</button>
+            <p id="waPkgLabel" style="color: var(--mint); font-weight: 800; margin-bottom: 10px;"></p>
+            <button type="button" class="btn-whatsapp-order" style="margin-bottom: 0;" onclick="PortalUI.sendWa('order')">فتح واتساب لطلب الكرت</button>
+            <button type="button" class="modal-close" onclick="PortalUI.closeModal('waModal')">إغلاق</button>
         </div>
     </div>
 
+    <!-- نافذة نقاط البيع -->
+    <div id="posModal" class="modal-backdrop">
+        <div class="modal-panel">
+            <h3>📍 نقاط البيع</h3>
+            <div class="pos-stack">
+                <div class="pos-card">
+                    <strong>نقطة البيع الأولى</strong>
+                    بقالة الهرم — الشارع الرئيسي
+                </div>
+                <div class="pos-card">
+                    <strong>نقطة البيع الثانية</strong>
+                    تموينات السلام — جوار السوق
+                </div>
+                <div class="pos-card">
+                    <strong>الطلب الإلكتروني</strong>
+                    متاح عبر محفظة جيب أو واتساب الشبكة
+                </div>
+            </div>
+            <button type="button" class="modal-close" onclick="PortalUI.closeModal('posModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة الأسعار -->
     <div id="pricesModal" class="modal-backdrop">
-        <div class="modal-box">
-            <h3>الأسعار</h3>
+        <div class="modal-panel">
+            <h3>💎 الأسعار</h3>
             <p>100 ريال: 500 ميجا<br>200 ريال: 1.2 جيجابايت<br>500 ريال: 3.5 جيجابايت<br>1000 ريال: 8 جيجابايت</p>
-            <button type="button" class="modal-close" onclick="PortalApp.closeModal('pricesModal')">إغلاق</button>
+            <button type="button" class="modal-close" onclick="PortalUI.closeModal('pricesModal')">إغلاق</button>
         </div>
     </div>
 
+    <!-- نافذة الملاحظات -->
     <div id="notesModal" class="modal-backdrop">
-        <div class="modal-box">
-            <h3>الملاحظات</h3>
-            <p>ننصح بالاحتفاظ بالكرت حتى ينتهي رصيده، ونسعد بخدمتك في أي وقت.</p>
-            <button type="button" class="modal-close" onclick="PortalApp.closeModal('notesModal')">إغلاق</button>
+        <div class="modal-panel">
+            <h3>📝 الملاحظات</h3>
+            <p>ننصح بالاحتفاظ بالكرت حتى ينتهي رصيده فلسنا مسؤولين عن نسيان الرمز.</p>
+            <button type="button" class="modal-close" onclick="PortalUI.closeModal('notesModal')">إغلاق</button>
         </div>
     </div>
 
+    <!-- نافذة القرآن الكريم -->
     <div id="quranModal" class="modal-backdrop">
-        <div class="modal-box">
+        <div class="modal-panel">
             <h3>📖 القرآن الكريم</h3>
             <p>﴿ وَإِذَا قُرِئَ الْقُرْآنُ فَاسْتَمِعُوا لَهُ وَأَنصِتُوا لَعَلَّكُمْ تُرْحَمُونَ ﴾</p>
-            <button type="button" class="modal-close" onclick="PortalApp.closeModal('quranModal')">إغلاق</button>
+            <button type="button" class="modal-close" onclick="PortalUI.closeModal('quranModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <!-- نافذة المسلسلات والرياضة المباشرة -->
+    <div id="streamModal" class="modal-backdrop">
+        <div class="modal-panel">
+            <h3>🎬⚽ المسلسلات والرياضة المباشرة</h3>
+            <p>اختر القسم المطلوب متابعته:</p>
+            <button type="button" class="btn-connect" style="margin-top: 10px;" onclick="alert('جاري فتح البث الرياضي المباشر...')">⚽ البث الرياضي المباشر</button>
+            <button type="button" class="btn-watch" style="width: 100%; margin-top: 8px; padding: 12px;" onclick="alert('جاري فتح مكتبة المسلسلات...')">🎬 مكتبة المسلسلات</button>
+            <button type="button" class="modal-close" onclick="PortalUI.closeModal('streamModal')">إغلاق</button>
         </div>
     </div>
 
     <script>
-        const PortalApp = {
-            config: {
-                jaibAccount: "777000111",
-                whatsappNumber: "967770000000",
-                sportsUrl: "#sports-live",
-                seriesUrl: "#series-library"
-            },
-
-            demoUsage: {
-                percent: 91,
-                sessionTime: "23m8s",
-                validityLeft: "1 يوم 2 ساعة 21 دقيقة 6 ثانية",
-                downloadUsed: "27.2 MiB",
-                uploadUsed: "6.6 MiB",
-                balanceLeft: "357 ميجابايت"
-            },
+        const PortalUI = {
+            jaibAcc: "777000111",
+            waPhone: "967770000000",
 
             toggleTheme() {
-                const root = document.documentElement;
-                const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-                root.setAttribute("data-theme", next);
+                const html = document.documentElement;
+                const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                html.setAttribute("data-theme", next);
                 document.getElementById("themeIcon").textContent = next === "dark" ? "☀️" : "🌙";
                 document.getElementById("themeLabel").textContent = next === "dark" ? "الوضع النهاري" : "الوضع الليلي";
             },
 
-            closeNotice() {
-                const notice = document.getElementById("promoNotice");
-                if (notice) notice.style.display = "none";
+            hideAlert() {
+                document.getElementById("streamAlert").style.display = "none";
             },
 
-            loginSubmit(event) {
-                const input = document.getElementById("cardNumberInput");
-                const code = input.value.trim();
+            onLogin(e) {
+                const code = document.getElementById("cardCodeInput").value.trim();
                 if (!code) return false;
 
                 if (window.location.hostname.includes("github.io") || window.location.protocol === "file:") {
-                    event.preventDefault();
-                    const masked = code.length > 4 ? code.slice(0, 4) + "****" : code;
-                    document.getElementById("activeCardMasked").textContent = masked;
-                    this.renderUsageStats();
-                    document.getElementById("loginView").style.display = "none";
-                    document.getElementById("usageView").style.display = "block";
-                    document.getElementById("liveBadge").style.display = "inline-flex";
+                    e.preventDefault();
+                    document.getElementById("cardMaskedText").textContent = code.length > 4 ? code.slice(0, 4) + "****" : code;
+                    document.getElementById("loginSection").style.display = "none";
+                    document.getElementById("usageSection").style.display = "block";
+                    document.getElementById("connectedBar").style.display = "flex";
                     return false;
                 }
                 return true;
             },
 
-            renderUsageStats() {
-                document.getElementById("remainPercentVal").textContent = this.demoUsage.percent + "%";
-                document.getElementById("remainPercentBar").style.width = this.demoUsage.percent + "%";
-                document.getElementById("sessionTimeVal").textContent = this.demoUsage.sessionTime;
-                document.getElementById("validityLeftVal").textContent = this.demoUsage.validityLeft;
-                document.getElementById("downloadUsedVal").textContent = this.demoUsage.downloadUsed;
-                document.getElementById("uploadUsedVal").textContent = this.demoUsage.uploadUsed;
-                document.getElementById("balanceLeftVal").textContent = this.demoUsage.balanceLeft;
-            },
-
-            logout() {
+            onLogout() {
                 if (window.location.hostname.includes("github.io") || window.location.protocol === "file:") {
-                    document.getElementById("usageView").style.display = "none";
-                    document.getElementById("liveBadge").style.display = "none";
-                    document.getElementById("loginView").style.display = "block";
-                    document.getElementById("cardNumberInput").value = "";
+                    document.getElementById("usageSection").style.display = "none";
+                    document.getElementById("connectedBar").style.display = "none";
+                    document.getElementById("loginSection").style.display = "block";
+                    document.getElementById("cardCodeInput").value = "";
                 } else {
                     window.location.href = "$(link-logout)";
                 }
@@ -873,28 +860,23 @@
 
             openJaib() {
                 const pkg = document.getElementById("packageSelect").value;
-                document.getElementById("jaibAccountCode").textContent = this.config.jaibAccount;
-                document.getElementById("jaibPackageSummary").textContent = "الباقة المختارة: " + pkg;
+                document.getElementById("jaibAccVal").textContent = this.jaibAcc;
+                document.getElementById("jaibPkgLabel").textContent = "الباقة المختارة: " + pkg;
                 this.openModal("jaibModal");
             },
 
-            sendJaibWhatsApp() {
+            openWhatsApp() {
                 const pkg = document.getElementById("packageSelect").value;
-                const msg = `مرحباً الهرم نت، قمت بالتحويل عبر محفظة جيب لـ: ${pkg}`;
-                window.open(`https://wa.me/${this.config.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
+                document.getElementById("waPkgLabel").textContent = "الباقة المطلوبة: " + pkg;
+                this.openModal("waModal");
             },
 
-            openWhatsAppOrder() {
-                const msg = "مرحباً الهرم نت، أرغب في طلب كرت إنترنت.";
-                window.open(`https://wa.me/${this.config.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
-            },
-
-            openStream(type) {
-                if (type === "sports") {
-                    alert("جاري فتح بوابة البث الرياضي المباشر...");
-                } else {
-                    alert("جاري فتح مكتبة المسلسلات...");
-                }
+            sendWa(type) {
+                const pkg = document.getElementById("packageSelect").value;
+                const msg = type === "jaib"
+                    ? `مرحباً الهرم نت، تم التحويل عبر جيب لـ (${pkg}).`
+                    : `مرحباً الهرم نت، أرغب في طلب (${pkg}) عبر واتساب.`;
+                window.open(`https://wa.me/${this.waPhone}?text=${encodeURIComponent(msg)}`, "_blank");
             },
 
             openModal(id) {
@@ -905,10 +887,10 @@
                 document.getElementById(id).style.display = "none";
             },
 
-            copyCode(elementId) {
-                const text = document.getElementById(elementId).textContent;
-                navigator.clipboard.writeText(text);
-                alert("تم النسخ: " + text);
+            copyVal(id) {
+                const txt = document.getElementById(id).textContent;
+                navigator.clipboard.writeText(txt);
+                alert("تم النسخ: " + txt);
             }
         };
     </script>
